@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uafeg-baseline"
+version = "0.1.0"
+description = "Baseline convencional (NLI + segmentacion de danio + fusion) para verificacion de reclamos de seguros vehiculares. No contiene la contribucion de tesis (Evidence Graph / GATv2)."
+requires-python = ">=3.11"
+readme = "README.md"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

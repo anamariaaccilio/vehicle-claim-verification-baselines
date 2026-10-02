@@ -1,0 +1,59 @@
+# Taxonomia canonica interna de danio vehicular usada en todo el pipeline
+# (narrativa, vision, fusion). Todo mapping de dataset externo debe converger
+# a estas 8 clases.
+canonical_classes:
+  - dent
+  - crack
+  - scratch
+  - flaking
+  - broken_part
+  - paint_chip
+  - missing_part
+  - corrosion
+
+# Mapping de las clases originales del dataset "Car Parts and Car Damages
+# Dataset" (Humans in the Loop) hacia la taxonomia canonica.
+# Las llaves deben coincidir EXACTAMENTE con los nombres de categoria tal
+# como aparecen en las anotaciones del dataset (ver data/README.md).
+hitl_to_canonical:
+  Dent: dent
+  Cracked: crack
+  Scratch: scratch
+  Flaking: flaking
+  Broken part: broken_part
+  Paint chip: paint_chip
+  Missing part: missing_part
+  Corrosion: corrosion
+
+# Clases de decision final del baseline (salida de la capa de fusion).
+decision_classes:
+  - SUPPORTED
+  - SUSPICIOUS
+  - INSUFFICIENT
+
+# Hipotesis NLI (en espanol) evaluadas por src/narrative/nli_extractor.py.
+# Cada hipotesis se evalua de forma INDEPENDIENTE (NLI multi-label: premise=
+# narrativa del reclamo, hypothesis=una de estas oraciones) contra el texto
+# libre de la narrativa. La probabilidad de "entailment" de cada hipotesis
+# es el score crudo para esa clase canonica. Redactadas para que una sola
+# hipotesis sea verdadera/falsa independientemente de las demas (no son
+# mutuamente excluyentes a nivel de texto, aunque luego se normalizan).
+#
+# NOTA (hallazgo empirico, ver README seccion "Limitaciones del Narrative
+# Specialist"): con formulaciones mas formales/con sinonimos (p. ej. "El
+# vehiculo presenta un rayon o rasguño...") el modelo mostraba baja
+# discriminacion entre clases para narrativas cortas en espanol sobre danio
+# vehicular. Formulaciones mas literales y cercanas al lexico coloquial del
+# reclamo (probadas manualmente contra ejemplos reales) discriminan algo
+# mejor, aunque la discriminacion sigue siendo debil en general: es una
+# limitacion real de aplicar un modelo NLI generico sin fine-tuning de
+# dominio, no un error de implementacion.
+nli_hypotheses:
+  dent: "El vehiculo tiene una abolladura."
+  crack: "El vehiculo tiene una grieta o rajadura."
+  scratch: "El vehiculo tiene rayones o rasguños."
+  flaking: "La pintura del vehiculo se esta descascarando."
+  broken_part: "El vehiculo tiene una pieza rota."
+  paint_chip: "La pintura del vehiculo tiene desportillados."
+  missing_part: "Al vehiculo le falta una pieza."
+  corrosion: "El vehiculo tiene oxido o corrosion."

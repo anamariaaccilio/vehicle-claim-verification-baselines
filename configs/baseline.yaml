@@ -1,0 +1,61 @@
+# Configuracion global del baseline UAFEG.
+# Los thresholds del rule engine (FASE 4) y de late fusion (FASE 5) se
+# agregaran aqui en sus respectivas fases; NO se hardcodean en codigo.
+
+seed: 42
+
+# Split determinista por source_image_id (ver src/data/split.py).
+# Ningun derivado de una imagen fuente puede caer en un split distinto
+# al de su source_image_id.
+split:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+
+paths:
+  raw_dir: data/raw/hitl
+  processed_dir: data/processed
+  manifests_dir: data/manifests
+  artifacts_dir: artifacts
+
+labels_config: configs/labels.yaml
+
+# FASE 3: Damage Specialist (Ultralytics YOLO segmentation).
+# base_model debe ser un nombre de checkpoint realmente soportado por la
+# version de ultralytics instalada (verificado contra
+# ultralytics/cfg/models/**/*-seg.yaml). weights_path es donde se espera
+# encontrar el checkpoint FINE-TUNEADO (no el preentrenado generico); si no
+# existe, el Damage Specialist reporta available=False (ver
+# src/damage/inference.py) en vez de fabricar resultados.
+damage:
+  base_model: yolov8n-seg.pt
+  weights_path: artifacts/damage/weights/best.pt
+  imgsz: 640
+  conf_threshold: 0.25
+  epochs_smoke_test: 3
+  batch_smoke_test: 4
+  epochs: 50
+  batch: 16
+
+# FASE 4: chequeos de calidad de imagen. laplacian_variance por debajo de
+# blur_variance_insufficient_threshold dispara R03 (INSUFFICIENT). Estos
+# valores son defaults razonables de la literatura de deteccion de blur
+# (varianza del Laplaciano es una heuristica estandar, no un umbral
+# aprendido) y deben recalibrarse cuando haya datos de validacion reales.
+image_quality:
+  min_width: 200
+  min_height: 200
+  blur_variance_low_quality_threshold: 100.0
+  blur_variance_insufficient_threshold: 30.0
+
+# FASE 4: Rule Baseline B0. Ver src/fusion/rules.py para la logica y
+# src/fusion/features.py para el calculo de semantic_mismatch (distancia de
+# Jensen-Shannon entre la distribucion narrativa y la visual sobre las 8
+# clases canonicas: es simetrica, acotada en [0,1] con log base 2, y no
+# requiere que ambas distribuciones compartan soporte estricto -- a
+# diferencia de KL, que no esta definida si una clase tiene probabilidad 0
+# en una de las dos distribuciones, algo esperable aqui). Placeholder sin
+# calibrar contra datos reales todavia (no hay ground truth disponible,
+# ver FASE 3); ajustar cuando exista un split de validacion etiquetado.
+rules:
+  semantic_mismatch_threshold: 0.45

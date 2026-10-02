@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# venv
+.venv/
+venv/
+
+# tests / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# datasets (no subir a git)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/manifests/*
+!data/manifests/.gitkeep
+
+# modelos / pesos / artefactos entrenados
+artifacts/*
+!artifacts/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.ckpt
+
+# reproducibilidad local
+requirements.lock
+
+# editores / SO
+.vscode/
+.idea/
+.DS_Store

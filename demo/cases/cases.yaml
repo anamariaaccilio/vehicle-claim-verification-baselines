@@ -1,0 +1,69 @@
+# Casos preparados para la demo (ver src/../README seccion "Casos de la demo").
+#
+# expected_condition es lo que ESPERAMOS que ocurra dado el diseno del caso;
+# NUNCA se pasa al pipeline (src/fusion/features.py y rules.py no aceptan
+# ningun argumento de label/expected_condition, ver tests/test_fusion.py).
+# Se usa solo para que la UI muestre "esperado vs obtenido" al final.
+#
+# image_path: null significa que el caso NO requiere imagen (puede correr
+# hoy con el pipeline real). Los demas casos requieren una imagen real del
+# dataset HITL en la ruta indicada; demo/cases_loader.py verifica en tiempo
+# real si el archivo existe y marca el caso como no disponible si falta,
+# en vez de simular un resultado.
+
+cases:
+  - case_id: CASE01
+    title: "CLEAN: narrativa coherente con el danio visible"
+    narrative_text: "Despues del choque quedo una abolladura en la puerta del vehiculo."
+    image_path: demo/cases/assets/case01_clean.jpg
+    expected_condition: SUPPORTED
+    notes: >
+      Requiere una imagen real del dataset HITL con una abolladura visible
+      en la puerta. No disponible hasta que data/raw/hitl/ este poblado y
+      se elija/copie una imagen a esta ruta.
+
+  - case_id: CASE02
+    title: "NARRATIVE CONTRADICTION: la narrativa declara un danio distinto al observado"
+    narrative_text: "El vehiculo presenta corrosion avanzada en el techo."
+    image_path: demo/cases/assets/case01_clean.jpg
+    expected_condition: SUSPICIOUS
+    notes: >
+      Reutiliza la MISMA imagen de CASE01 (abolladura) con una narrativa
+      que declara un tipo de danio distinto (corrosion). Misma dependencia
+      pendiente que CASE01.
+
+  - case_id: CASE03
+    title: "MISSING TEXT: imagen disponible, narrativa vacia"
+    narrative_text: null
+    image_path: demo/cases/assets/case01_clean.jpg
+    expected_condition: INSUFFICIENT
+    notes: >
+      Requiere la imagen de CASE01. Misma dependencia pendiente.
+
+  - case_id: CASE04
+    title: "MISSING IMAGE: narrativa disponible, sin fotografia"
+    narrative_text: "El vehiculo tiene una abolladura en la puerta trasera."
+    image_path: null
+    expected_condition: INSUFFICIENT
+    notes: >
+      No requiere ninguna imagen: puede ejecutarse end-to-end HOY con el
+      pipeline real (dispara la regla R02).
+
+  - case_id: CASE05
+    title: "LOW QUALITY: imagen real degradada mediante blur reproducible"
+    narrative_text: "Despues del choque quedo una abolladura en la puerta del vehiculo."
+    image_path: demo/cases/assets/case01_clean_gaussian_blur.jpg
+    expected_condition: INSUFFICIENT
+    notes: >
+      Generar con scripts/create_demo_variants.py a partir de
+      case01_clean.jpg una vez exista (transformacion gaussian_blur).
+      Pendiente del dataset.
+
+  - case_id: CASE06
+    title: "BENIGN JPEG: misma imagen valida recomprimida"
+    narrative_text: "Despues del choque quedo una abolladura en la puerta del vehiculo."
+    image_path: demo/cases/assets/case01_clean_jpeg_recompress.jpg
+    expected_condition: SUPPORTED
+    notes: >
+      Generar con scripts/create_demo_variants.py a partir de
+      case01_clean.jpg (transformacion jpeg_recompress). Pendiente del dataset.
