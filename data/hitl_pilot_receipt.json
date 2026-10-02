@@ -1,0 +1,308 @@
+{
+  "dataset": "humansintheloop/car-parts-and-car-damages",
+  "version": 2,
+  "scope": "INTEGRATION PILOT ONLY; not benchmark",
+  "selection": "First 24 image paths sorted by SHA256(hitl-v2-pilot-42: + path); no label or split selection",
+  "files": [
+    {
+      "path": "Car parts dataset/meta.json",
+      "bytes": 956,
+      "sha256": "62c39e8ccfdfa497c48c51f186dd3cc051bae0038530b49af1c9983aa6199ba2",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2Fmeta.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car damages dataset/meta.json",
+      "bytes": 2492,
+      "sha256": "972a590d7d378a23acc0892613640ac029eda56b0525146af0b526985a1e18b2",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20damages%20dataset%2Fmeta.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 250.png",
+      "bytes": 956338,
+      "sha256": "e52943a14a07c4c3c86d77b33f480beb930ae6620b3818e6a5e0eea924af436b",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20250.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 250.png.json",
+      "bytes": 20692,
+      "sha256": "73e13af316cb954629d576d61963841decf9047ab18fd38036bac38579f34c80",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20250.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 498.png",
+      "bytes": 427131,
+      "sha256": "0789781890e4487f0728f576e3dde503627eaeefa754baa7e33f79acb24f3629",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20498.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 498.png.json",
+      "bytes": 14976,
+      "sha256": "4b91e523208fad0096c59eeead6e4d9476f72f7c28fa3a9fb0a7906c3594f2fe",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20498.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 986.png",
+      "bytes": 545678,
+      "sha256": "3f002c720dc3befd997d7864d777b2cbc5f10efb8120510be36ec7b83b326cbf",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20986.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 986.png.json",
+      "bytes": 33160,
+      "sha256": "6a8c71ef460cbe637211c083a435b030d65e73c0d38578d800b0686333018018",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20986.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 698.jpg",
+      "bytes": 74008,
+      "sha256": "482cc6db3e59b17fc15b8098ba64a01d64b0bb088cd98ec72afd03743eb6922b",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20698.jpg?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 698.jpg.json",
+      "bytes": 22748,
+      "sha256": "74affda28a1f555e4a4c0848cc265bdcb0f2b91437750f383d8a5f0a6e79d320",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20698.jpg.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 259.png",
+      "bytes": 1186684,
+      "sha256": "09174b4c1f29f8d216fee03b25cf6947a2ff6e0a1af3acd576f20f7623af80f4",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20259.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 259.png.json",
+      "bytes": 38333,
+      "sha256": "2408cca8d31c2e16efa3ab9a952e2b67782dbba63a97ed89acf7eb3f247f080f",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20259.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 915.png",
+      "bytes": 412852,
+      "sha256": "187d8e480f9c7c3488b1bbc002017b4e5073e2fa57813dca84bb7726114eb071",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20915.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 915.png.json",
+      "bytes": 92944,
+      "sha256": "6735243cd5088ee75cc0778407559d440b4b0ed8b8afb899e2717c10f45b04d3",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20915.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 210.png",
+      "bytes": 989143,
+      "sha256": "48dd2ba7b145e2aeab949b4003555acd9955904011c3277cb8ed24a8c0bd4e47",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20210.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 210.png.json",
+      "bytes": 10483,
+      "sha256": "baff2f3fcfe7bbfd66031492ad07aa683d0e53b75ab6f62947b66d2bc12107f5",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20210.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 999.png",
+      "bytes": 536577,
+      "sha256": "8b123931b37098d2c47331b39a6561a21f629fefc0c4a60f486d4e264e678720",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20999.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 999.png.json",
+      "bytes": 18055,
+      "sha256": "a7d92acfb599dcf0d04ddb25f6df628233580e8bfe07f17ded841a3bdab4d401",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20999.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 916.png",
+      "bytes": 475359,
+      "sha256": "b714f303b65f6696b198a91c610719e47cb2c9f845c7127ba946ed940c0949a8",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20916.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 916.png.json",
+      "bytes": 12832,
+      "sha256": "1e859da917bde2edb36389fbff5bb493947c651db08088427d26d7c8d2047f70",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20916.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 463.png",
+      "bytes": 379152,
+      "sha256": "527828e310e66be048015b53534e42fc71c680530b3f7d58aaf7c5fb7d00870f",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20463.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 463.png.json",
+      "bytes": 14687,
+      "sha256": "e9c3f22944cfaf9d4efad0269374a7d12f0a97df68bd43f90929d69f6b436a14",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20463.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 495.png",
+      "bytes": 480615,
+      "sha256": "4b8cf4bd6be262e1f2073a1f3dbfb96a0a5e1a11d77e50ffbf8be6cb9c917319",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20495.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 495.png.json",
+      "bytes": 15283,
+      "sha256": "a63a0c1054dad72d781eee252b8c26a81d63eaf23f09cf52b222ebd1f7f7e092",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20495.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 619.png",
+      "bytes": 474143,
+      "sha256": "08546660f28b645b85e2f6d7912074dff6627c23f7722d91bf908e48dfc94be4",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20619.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 619.png.json",
+      "bytes": 15166,
+      "sha256": "de805a4aa8b97997e26d81678db4cb03fcf2c9acfa6d73b89254fcbae16b28e5",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20619.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 1074.png",
+      "bytes": 476521,
+      "sha256": "49995c771c40ab94cb0ce200aebc3756c03c264231182e622884715ee6eb8af6",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%201074.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 1074.png.json",
+      "bytes": 1561,
+      "sha256": "7252fe7af09019de8f397e53ae8956d96b112493487f8f83d7a0c08b7685056e",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%201074.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 482.png",
+      "bytes": 489271,
+      "sha256": "ccff8db1d0ca69c1650d829663234530187b49f05c58f6f2ef07d46bbeda9459",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20482.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 482.png.json",
+      "bytes": 9748,
+      "sha256": "6ebb9a091a3a2101e17d233758c57f0dea926ab3d9aa608a0de157a98364b353",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20482.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 163.png",
+      "bytes": 568088,
+      "sha256": "6bbe950dd5497f5740959351858175d0f2f6136280bf34aa9bcd2b1c86c7fae6",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20163.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 163.png.json",
+      "bytes": 16435,
+      "sha256": "b5f05d19c9b475628553b848054f6d43f29a9bb7470cde28b9dc4860a8797f12",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20163.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 256.png",
+      "bytes": 1173712,
+      "sha256": "83393757d99fe3bbe26e2c331b6d5b84da9dc3d1e60c53c50a4524c45b68edce",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20256.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 256.png.json",
+      "bytes": 17627,
+      "sha256": "282193ae992aef8a761ef00110ffe97ccff552e91205895abcd0fa4a3d151d24",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20256.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 867.png",
+      "bytes": 551697,
+      "sha256": "b5d6b28d0734e15e3cc62070a9490326feb88e737c1a7019e75232a09b215a9f",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20867.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 867.png.json",
+      "bytes": 14028,
+      "sha256": "56e52f0421437af65028ca7a76616c35c0351d516446e89d04c05d7214ea7dbe",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20867.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 1220.png",
+      "bytes": 696313,
+      "sha256": "b3a81b7404737ab927af64d4e93db3d6d3df7564dc8f60844a2d8452aa617f9d",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%201220.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 1220.png.json",
+      "bytes": 8671,
+      "sha256": "0dbaa44ed22fb3e902c24108182af6530c75ccd0219aa0844d3e0804229e50ba",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%201220.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 1172.png",
+      "bytes": 1093655,
+      "sha256": "c0480be518862a430f8263a856b203da23526cbfdc0724dc249e767ab6e01b54",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%201172.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 1172.png.json",
+      "bytes": 20277,
+      "sha256": "670675394096b38e28fe5ee60bc51404581f3ca0bb3feffa60dd4e06261784db",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%201172.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 645.png",
+      "bytes": 488241,
+      "sha256": "aad4cbe253d62a56e12e8a4a2a2638b7ee9be28831e937a6e3f574364776f42b",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20645.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 645.png.json",
+      "bytes": 21778,
+      "sha256": "48b08054e62cede5c8f4a97866ea7a4d8469c83280c2e99824d82b0018759c9e",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20645.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 708.png",
+      "bytes": 542925,
+      "sha256": "f918ca3765505432e8c6cab819b3fa4ccd5b326051fc5adef045e76ad92d1ecb",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20708.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 708.png.json",
+      "bytes": 8734,
+      "sha256": "039b80eb0170b70a5a357f0f24fcdb5f93cc365ac18c411f5ca10fda81130213",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20708.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 296.png",
+      "bytes": 1062701,
+      "sha256": "4e601a1feafe899ddd09dfca437eff0a05165df9feb9c78f6ebc8e8c643dd67b",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20296.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 296.png.json",
+      "bytes": 3803,
+      "sha256": "b79504811ad8e87d64882c29b684801b26eb7a04dda478eebfb00387183b6a62",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20296.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 159.png",
+      "bytes": 707921,
+      "sha256": "0b98673b245de7df7acac47c7b9692798da807a0c9a78f5140df6b792c591794",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20159.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 159.png.json",
+      "bytes": 20252,
+      "sha256": "78d774b0e5bb8ffe3adc0f3de8fbf60d4b5b474d1ea4992d8d236d53e74ec50f",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20159.png.json?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/img/Car damages 899.png",
+      "bytes": 637770,
+      "sha256": "0b681444cd98f6b5e5d30a680a6696e05b3a24255e281b2f247dd02fafd2bc50",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fimg%2FCar%20damages%20899.png?datasetVersionNumber=2"
+    },
+    {
+      "path": "Car parts dataset/File1/ann/Car damages 899.png.json",
+      "bytes": 14224,
+      "sha256": "2b0613b3184137a1cf1af119f9157730012e37ad08959db7ef61a5f920c76797",
+      "url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/car-parts-and-car-damages/Car%20parts%20dataset%2FFile1%2Fann%2FCar%20damages%20899.png.json?datasetVersionNumber=2"
+    }
+  ]
+}

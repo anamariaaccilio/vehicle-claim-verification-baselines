@@ -7,8 +7,8 @@
 | ClaimRecord | src/schemas/claim.py::ClaimRecord (alias de Claim) | Compatible con API previa |
 | EvidencePacket | src/schemas/packet.py | Nuevo contrato 0.1.0, evidencias opcionales tipadas |
 | Labels y mapping | configs/labels.yaml; DecisionLabel verificado por test | Disponible |
-| Manifest | src/data/manifest.py; SourceImage | IO JSONL disponible; dataset real NOT AVAILABLE YET |
-| Splits | src/data/split.py; configs/baseline.yaml | Hash seed 42; 0.70/0.15/0.15; sin splits reales persistidos |
+| Manifest | src/data/manifest.py; SourceImage | IO JSONL y piloto real de imágenes disponibles; benchmark de reclamos NOT AVAILABLE YET |
+| Splits | src/data/split.py; configs/baseline.yaml | Hash seed 42; 0.70/0.15/0.15; splits piloto persistidos, benchmark aún sin fijar |
 | Predicción B0 | src/fusion/rules.py::RuleTrace / as_dict | Decisión y traza; no probabilidad calibrada |
 | Esquema común de probabilidades | No existe | NOT AVAILABLE YET |
 | C0–C10 | No hay especificación/generador completo | NOT AVAILABLE YET; no asignar significados nuevos por inferencia |
@@ -33,3 +33,11 @@ No se pueden comparar científicamente sistemas hasta completar estos artefactos
 ## Evidencia de reproducibilidad
 
 El tag pre-two-repo-split-2026-10-02 contiene el código anterior sin alteraciones. Las pruebas iniciales completas dieron 64 passed en Python 3.11.9 con NLI ya cacheado. El snapshot externo conserva hashes originales, índice y patches. `requirements-ci.txt` fija las dependencias directas de tests observadas; no es un lock completo de todas las dependencias transitivas. Una validación en entorno CI limpio sigue pendiente hasta ejecutar Actions.
+
+## Avance de ingestión 2026-10-02
+
+Se añadió un piloto real de HITL v2, documentado en docs/DATASET_DISCOVERY.md.
+El manifest de 24 imágenes y sus splits sirven para verificar ingestión y
+auditoría; no reemplazan el manifest/labels/packets del benchmark de reclamos
+que sigue NOT AVAILABLE YET. El lector real valida el formato ann/img; el
+adapter COCO previo no se usó.

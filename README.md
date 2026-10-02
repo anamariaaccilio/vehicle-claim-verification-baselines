@@ -31,7 +31,7 @@ env -u PYTHONPATH OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 .venv/bin/python -m pytest
 env -u PYTHONPATH .venv/bin/python scripts/check_splits.py --manifest tests/fixtures/split_manifest.jsonl --group-key source_image_id --split-key split
 ```
 
-La fixture es sintética, no el benchmark. `data/manifests` solo contiene `.gitkeep`: el audit de dataset real está pendiente. Ver [protocolo](EXPERIMENTAL_PROTOCOL.md) y [datos](data/README.md).
+La fixture es sintética, no el benchmark. Ya existe un piloto local de 24 imágenes reales, auditado por fuente y duplicados exactos; el benchmark completo de reclamos sigue pendiente. Ver [fuentes y piloto](docs/DATASET_DISCOVERY.md). Ver [protocolo](EXPERIMENTAL_PROTOCOL.md) y [datos](data/README.md).
 
 Por defecto se omiten 5 tests de integración con modelos; se conservan y pueden ejecutarse con `--run-model-tests` usando exclusivamente pesos ya cacheados. `tests/conftest.py` fuerza Hugging Face offline. CI usa Python 3.11, dependencias CPU y fixtures pequeñas: no descarga modelos/datasets ni entrena redes. No se ha ejecutado GitHub Actions desde esta migración local.
 
