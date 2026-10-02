@@ -183,7 +183,7 @@ def generate_claims(root: Path, audit: dict, splits: dict, config: dict, registr
                                        'reason': 'Prespecified quality gate failed; no label/claim emitted', 'parameters': parameters})
                     continue
                 image_path, operation, image_sha = variant['image_path'], variant['operation'], variant['image_sha256']
-            claims.append(ClaimRecord(claim_id=identifier, source_image_id=source_id,
+            claims.append(ClaimRecord(schema_version="0.2.0", claim_id=identifier, source_image_id=source_id,
                 image_path=image_path, narrative_text=text, expected_label=registry[condition]['expected_label'],
                 condition=condition, split=splits['sources'][source_id]['split'],
                 annotation_reference=source['annotation_reference'], annotated_damage_classes=source['damage_classes'],
@@ -287,13 +287,13 @@ def build_benchmark(root: Path, config_path: Path, output: Path) -> dict:
     splits = frozen_splits(audit, config)  # Before producing ANY derived claim/image.
     claims, exclusions = generate_claims(root, audit, splits, config, registry)
     validation = validate_claims(claims, audit, splits, config, registry)
-    packets = [EvidencePacket(claim=claim) for claim in claims]
+    packets = [EvidencePacket(schema_version="0.2.0", claim=claim) for claim in claims]
     artifacts = {'manifest.jsonl':b''.join(canonical(claim.model_dump(mode='json')) for claim in claims),
                  'evidence_packets.jsonl':b''.join(canonical(packet.model_dump(mode='json')) for packet in packets),
                  'splits.json':canonical(splits), 'dataset_audit.json':canonical(audit),
                  'validation.json':canonical(validation), 'exclusions.json':canonical(exclusions)}
     metadata = {'benchmark_version':config['benchmark_version'], 'generator_version':config['generator_version'],
-                'schema_version':SCHEMA_VERSION, 'config_sha256':sha(config_path.read_bytes()),
+                'schema_version':'0.2.0', 'config_sha256':sha(config_path.read_bytes()),
                 'conditions_sha256':sha((root/config['conditions_config']).read_bytes()),
                 'acquisition_receipt_sha256':sha((root/config['acquisition_receipt']).read_bytes()),
                 'artifacts_sha256':{name:sha(content) for name, content in artifacts.items()},

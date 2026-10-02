@@ -39,8 +39,12 @@ class SourceImage(BaseModel):
             self.damage_classes = seen
 
 
-CLAIM_SCHEMA_VERSION = "0.2.0"
-SchemaVersion = Literal["0.2.0"]
+CLAIM_SCHEMA_VERSION = "0.3.0"
+SchemaVersion = Literal["0.2.0", "0.3.0"]
+
+
+class OODLabel(str, Enum):
+    OOD = "OOD"
 Condition = Literal["C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"]
 
 
@@ -77,7 +81,7 @@ class Claim(BaseModel):
     narrative_text: Optional[str] = None
     image_path: Optional[str] = None
     source_image_id: Optional[str] = None
-    expected_label: Optional[DecisionLabel] = None
+    expected_label: Optional[DecisionLabel | OODLabel] = None
     metadata: dict = Field(default_factory=dict)
     split: Optional[Split] = None
     condition: Optional[Condition] = None
@@ -98,6 +102,10 @@ class Claim(BaseModel):
     def complete_benchmark_record(self):
         # Legacy minimal Claim instances remain valid. Conditional records must
         # have traceability; benchmark-level semantics are checked by the auditor.
+        if self.expected_label == OODLabel.OOD and (self.condition != "C10" or self.schema_version != "0.3.0"):
+            raise ValueError("OOD is a held-out benchmark target, only C10 schema 0.3.0")
+        if self.condition == "C10" and (self.expected_label != OODLabel.OOD or self.split != Split.TEST):
+            raise ValueError("C10 must be OOD and held out in test")
         if self.condition is not None:
             if not all([self.source_image_id, self.split, self.expected_label,
                         self.annotation_reference, self.provenance, self.transformation]):

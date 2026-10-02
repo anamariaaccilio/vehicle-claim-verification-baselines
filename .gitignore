@@ -56,3 +56,8 @@ requirements.lock
 data/manifests/benchmark_v1/*
 !data/manifests/benchmark_v1/*.json
 !data/manifests/benchmark_v1/*.jsonl
+
+!data/manifests/benchmark_v2/
+data/manifests/benchmark_v2/*
+!data/manifests/benchmark_v2/*.json
+!data/manifests/benchmark_v2/*.jsonl
