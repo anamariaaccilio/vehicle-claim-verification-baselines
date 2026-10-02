@@ -1,3 +1,6 @@
+> Protocolo histórico de v0.1.0, preservado para reproducir sus 127 registros.
+> El protocolo vigente C0–C10 es [BENCHMARK_V2_PROTOCOL.md](BENCHMARK_V2_PROTOCOL.md).
+
 # Benchmark v1: reclamos controlados sobre imágenes reales
 
 ## Unidad experimental y versión

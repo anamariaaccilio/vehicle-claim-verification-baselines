@@ -5,9 +5,9 @@
 | Elemento | Fuente | Estado |
 |---|---|---|
 | ClaimRecord | src/schemas/claim.py::ClaimRecord (alias de Claim) | Compatible con API previa |
-| EvidencePacket | src/schemas/packet.py | Contrato 0.2.0 con ClaimRecord/provenance extendidos y evidencias opcionales tipadas |
+| EvidencePacket | src/schemas/packet.py | Contrato 0.3.0 compatible con registros 0.2.0, con ClaimRecord/provenance extendidos y evidencias opcionales tipadas |
 | Labels y mapping | configs/labels.yaml; DecisionLabel verificado por test | Disponible |
-| Manifest | src/data/manifest.py; SourceImage | IO de fuentes + manifest real de 127 reclamos controlados en data/manifests/benchmark_v1 |
+| Manifest | src/data/manifest.py; SourceImage | IO de fuentes + manifest real de 226 reclamos controlados en data/manifests/benchmark_v2 |
 | Splits | src/data/split.py; configs/baseline.yaml | Grupos exactos/dHash antes de hash seed 42; splits v1 congelados |
 | Predicción B0 | src/fusion/rules.py::RuleTrace / as_dict | Decisión y traza; no probabilidad calibrada |
 | Esquema común de probabilidades | No existe | NOT AVAILABLE YET |
@@ -28,7 +28,7 @@
 6. Entrenar solo en train; selección, thresholds y calibración solo en validation. Abrir test únicamente para evaluación final, igual para B0–B8/P1/P2/ablations.
 7. Implementar evaluación compartida: macro-F1, precision/recall, matriz de confusión; PR-AUC/AUROC de SUSPICIOUS cuando haya soporte; Brier/NLL/ECE solo para probabilidades válidas. Declarar binning y casos indefinidos antes de comparar. Selective prediction requiere curva riesgo/cobertura con umbral fijado en validation. Estas métricas aún NO están implementadas.
 
-Existe un primer benchmark de reclamos controlados versionado; no equivale a completar C0–C10 ni a validar científicamente UAFEG. Schema 0.2.0 explícito. El lock registra artefactos reales del benchmark, distintos del antiguo manifest de fuentes del piloto.
+Existe un benchmark de reclamos controlados versionado con cobertura operativa C0–C10; no equivale a validar científicamente UAFEG. Schema 0.3.0 explícito. El lock registra artefactos reales del benchmark, distintos del antiguo manifest de fuentes del piloto.
 
 ## Evidencia de reproducibilidad
 
@@ -44,4 +44,4 @@ adapter COCO previo no se usó.
 
 ## Estado actual de benchmark
 
-La nota de ingestión anterior describe el milestone previo. Ahora existe v1 de reclamos controlados con manifest/splits/packets reales, schema 0.2.0, generador y auditoría. Ver BENCHMARK_PROTOCOL.md para protocolo vigente, tabla canónica C0–C10, campos de ClaimRecord, reproducción y límites científicos. El schema probabilístico y las métricas de modelos permanecen pendientes; esta fase no entrenó sistemas.
+La nota de ingestión anterior describe el milestone previo. Ahora existe v2 de reclamos controlados con manifest/splits/packets reales, schema 0.3.0, generador y auditoría. Ver BENCHMARK_V2_PROTOCOL.md para protocolo vigente, tabla canónica C0–C10, campos de ClaimRecord, reproducción y límites científicos. El schema probabilístico y las métricas de modelos permanecen pendientes; esta fase no entrenó sistemas.

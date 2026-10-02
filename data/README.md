@@ -1,3 +1,7 @@
+> Benchmark vigente: `data/manifests/benchmark_v2/` (226 reclamos, C0–C10, schema 0.3.0).
+> La descripción de `benchmark_v1` más abajo es histórica y sus artefactos se conservan.
+> Reproducción: `scripts/build_benchmark_v2.py`; detalles en `BENCHMARK_V2_PROTOCOL.md`.
+
 # Datos
 
 ## Estado verificado en la fase de datos (2026-10-02)

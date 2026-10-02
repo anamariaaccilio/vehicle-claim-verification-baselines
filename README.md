@@ -1,6 +1,6 @@
 # Vehicle Claim Verification Baselines
 
-Fuente canónica del contrato experimental de la tesis «Grafos de evidencia multimodal conscientes de incertidumbre para la verificación robusta de reclamos de seguros vehiculares». Conserva el código original y establece el benchmark reproducible y sus métodos de referencia. Existe un primer benchmark reproducible de 127 reclamos experimentales sobre 24 imágenes reales. No es un dataset de reclamos de una aseguradora ni el benchmark C0–C10 completo; no hay resultados científicos de modelos.
+Fuente canónica del contrato experimental de la tesis «Grafos de evidencia multimodal conscientes de incertidumbre para la verificación robusta de reclamos de seguros vehiculares». Conserva el código original y establece el benchmark reproducible y sus métodos de referencia. Existe un benchmark reproducible de 226 reclamos experimentales sobre 24 imágenes reales, con cobertura operativa C0–C10. No es un dataset de reclamos de una aseguradora ni una validación científica final; no hay resultados de modelos.
 
 | SYSTEM | DESCRIPTION | STATUS |
 |---|---|---|
@@ -16,7 +16,7 @@ Fuente canónica del contrato experimental de la tesis «Grafos de evidencia mul
 
 `IMPLEMENTED` no significa entrenado/evaluado en un benchmark real. Ver [auditoría inicial](MIGRATION_AUDIT.md).
 
-El contrato vive en `src/schemas`: `ClaimRecord` es un alias compatible de `Claim`, `EvidencePacket` agrega las evidencias existentes (versión explícita 0.2.0), `SourceImage` representa filas del manifest. `configs/labels.yaml` es la fuente de taxonomía/mapping; las constantes Python se cargan desde ella. `DecisionLabel` conserva su enum público y un test verifica igualdad con YAML. No hay segunda definición en UAFEG.
+El contrato vive en `src/schemas`: `ClaimRecord` es un alias compatible de `Claim`, `EvidencePacket` agrega las evidencias existentes (versión explícita 0.3.0, compatible con registros 0.2.0), `SourceImage` representa filas del manifest. `configs/labels.yaml` es la fuente de taxonomía/mapping; las constantes Python se cargan desde ella. `DecisionLabel` conserva su enum público y un test verifica igualdad con YAML. No hay segunda definición en UAFEG.
 
 El repositorio hermano `uafeg` consume este contrato por instalación editable y fija commit/hashes en `benchmark.lock.json`. Aquí no se implementan P1/P2, gates, modelos de grafos ni Claims Analyst Agent. Para B6 vs P1, P1 vs P2 y ablations se usarán idénticos manifest, splits, EvidencePackets, labels, métricas y test set.
 
@@ -31,7 +31,7 @@ env -u PYTHONPATH OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 .venv/bin/python -m pytest
 env -u PYTHONPATH .venv/bin/python scripts/check_splits.py --manifest tests/fixtures/split_manifest.jsonl --group-key source_image_id --split-key split
 ```
 
-La fixture es sintética, no el benchmark. Las 24 imágenes locales originan 127 reclamos controlados versionados en `data/manifests/benchmark_v1/manifest.jsonl`. Ver [benchmark y reproducción](BENCHMARK_PROTOCOL.md), [dataset audit](DATASET_AUDIT.md) y [near-duplicates](NEAR_DUPLICATE_AUDIT.md). Ver [protocolo](EXPERIMENTAL_PROTOCOL.md) y [datos](data/README.md).
+La fixture es sintética, no el benchmark. Las 24 imágenes locales originan 226 reclamos controlados versionados en `data/manifests/benchmark_v2/manifest.jsonl`; la versión v1 anterior sigue congelada. Ver [benchmark y reproducción vigente](BENCHMARK_V2_PROTOCOL.md), [dataset audit](DATASET_AUDIT.md) y [near-duplicates](NEAR_DUPLICATE_AUDIT.md). Ver [protocolo](EXPERIMENTAL_PROTOCOL.md) y [datos](data/README.md).
 
 Por defecto se omiten 5 tests de integración con modelos; se conservan y pueden ejecutarse con `--run-model-tests` usando exclusivamente pesos ya cacheados. `tests/conftest.py` fuerza Hugging Face offline. CI usa Python 3.11, dependencias CPU y fixtures pequeñas: no descarga modelos/datasets ni entrena redes. No se ha ejecutado GitHub Actions desde esta migración local.
 
@@ -41,7 +41,7 @@ Los raw datasets, pesos, `.env`, `.venv`, caches y artefactos de demo no se vers
 
 **Real vehicle-damage imagery + controlled/synthetic claim scenarios**, a partir de HITL v2 (CC0 según autor). C0: control compatible; C1: contradicción; C2: sustitución; C3: copy-move/splice; C4: inpainting/eliminación; C5: contradicción + manipulación; C6/C7: narrativa/imagen ausentes; C8: transformaciones benignas; C9: calidad insuficiente; C10: familia de manipulación OOD. Tabla canónica y estados en [BENCHMARK_PROTOCOL.md](BENCHMARK_PROTOCOL.md).
 
-Implementados C0/C1/C6/C7 y C9 con gate de calidad; C8 parcial (JPEG). C2–C5/C10 pendientes. C0/C8 son SUPPORTED, no fraude; C6/C7/C9 son INSUFFICIENT. Splits por grupos de duplicados/near-duplicates antes de variantes: 17/4/3 fuentes, 89/22/16 claims. Narrativas deterministas derivadas de anotaciones; no datos personales inventados.
+En la versión histórica v1: implementados C0/C1/C6/C7 y C9 con gate de calidad; C8 parcial (JPEG); C2–C5/C10 pendientes entonces. La versión v2 descrita abajo completa la cobertura operativa. C0/C8 son SUPPORTED, no fraude; C6/C7/C9 son INSUFFICIENT. Splits por grupos de duplicados/near-duplicates antes de variantes: 17/4/3 fuentes, 89/22/16 claims. Narrativas deterministas derivadas de anotaciones; no datos personales inventados.
 
 ```bash
 env -u PYTHONPATH .venv/bin/python scripts/build_claim_benchmark.py
@@ -49,3 +49,52 @@ env -u PYTHONPATH .venv/bin/python scripts/build_claim_benchmark.py --check --ve
 ```
 
 El test set v1 está congelado. No usar labels/clases anotadas/condiciones/provenance como features. La muestra y las plantillas limitan la validez científica; ver shortcuts y limitaciones en el protocolo. EvidencePackets contienen referencias/texto reales, con especialistas null.
+
+## Benchmark completo C0–C10 (v0.2.0)
+
+La versión actual está en `data/manifests/benchmark_v2/`; v0.1.0 se conserva
+sin cambios en `benchmark_v1/`. Son imágenes reales de daño vehicular con
+reclamos experimentales/sintéticos, no expedientes de una aseguradora.
+La taxonomía canónica es la tabla autorizada por el usuario; el `.tex` no estuvo disponible.
+
+El generador produce 226 reclamos a partir de 24 imágenes: 24 por condición
+C0–C8, 7 C9 y 3 C10. C9 conserva su criterio fijo de insuficiencia; 17 intentos
+que no lo cumplen se registran como exclusiones. C10 se reserva exclusivamente
+para test. Los splits de fuentes de v1 se mantienen exactamente (17/4/3);
+los reclamos se distribuyen 157/38/31 en train/validation/test.
+
+| Condición | Operación implementada | Etiqueta esperada |
+|---|---|---|
+| C0 | Narrativa compatible, imagen original | SUPPORTED |
+| C1 | Negación de un daño anotado | SUSPICIOUS |
+| C2 | Sustitución por otra fuente/grupo del mismo split | SUSPICIOUS |
+| C3 | Copy-move localizado 24×24 | SUSPICIOUS |
+| C4 | Inpainting Telea de un polígono de daño | SUSPICIOUS |
+| C5 | C3 + negación de daño original conservado | SUSPICIOUS |
+| C6 | Narrativa ausente | INSUFFICIENT |
+| C7 | Imagen ausente | INSUFFICIENT |
+| C8 | JPEG95 benigno con PSNR ≥35 dB | SUPPORTED |
+| C9 | Desenfoque con criterio fijo de insuficiencia | INSUFFICIENT |
+| C10 | Inversión RGB localizada, familia reservada para test | OOD |
+
+Las once condiciones tienen generador y registros reales. Esto no implica que
+se hayan implementado todas las alternativas de cada condición: C3 usa copy-move,
+no splice; C8 usa JPEG, no resize/crop. C4 verifica inpainting y localización,
+no desaparición convincente del daño. C2 registra sustitución conocida, que
+puede no ser identificable solo a partir de imagen y texto. C10 es OOD respecto
+a las familias del split de entrenamiento del benchmark; no hay modelos entrenados.
+
+```bash
+env -u PYTHONPATH .venv/bin/python scripts/build_benchmark_v2.py
+env -u PYTHONPATH .venv/bin/python scripts/build_benchmark_v2.py --check --verify-images
+env -u PYTHONPATH .venv/bin/python scripts/check_splits.py --manifest data/manifests/benchmark_v2/manifest.jsonl --group-key source_image_id --split-key split
+env -u PYTHONPATH HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -m pytest -q
+```
+
+`--check` sin `--verify-images` valida contratos/artefactos sin raw en CI.
+La regeneración exige el piloto local ya adquirido y rechaza sobrescrituras
+incompatibles. Las imágenes y máscaras derivadas permanecen ignoradas por Git.
+El contrato 0.3.0 acepta los registros 0.2.0 existentes y permite OOD únicamente
+en C10/test; `DecisionLabel` sigue teniendo tres clases.
+
+Véase `BENCHMARK_V2_PROTOCOL.md` para límites científicos, trazabilidad y revisión.
