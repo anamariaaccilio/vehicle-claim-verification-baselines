@@ -23,16 +23,19 @@ def test_hypotheses_cover_all_canonical_classes():
     assert all(isinstance(v, str) and v.strip() for v in hyps.values())
 
 
+@pytest.mark.model
 def test_extractor_raises_on_empty_text(extractor):
     with pytest.raises(ValueError):
         extractor.extract("")
 
 
+@pytest.mark.model
 def test_extractor_raises_on_whitespace_only_text(extractor):
     with pytest.raises(ValueError):
         extractor.extract("   \n\t  ")
 
 
+@pytest.mark.model
 def test_extractor_returns_valid_schema_for_real_narrative(extractor):
     result = extractor.extract("El auto tiene una abolladura.")
 
@@ -48,6 +51,7 @@ def test_extractor_returns_valid_schema_for_real_narrative(extractor):
     assert result.device in ("cpu", "cuda")
 
 
+@pytest.mark.model
 def test_extractor_to_evidence_matches_result(extractor):
     result = extractor.extract("El vehiculo tiene rayones.")
     evidence = result.to_evidence()

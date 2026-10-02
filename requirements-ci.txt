@@ -1,0 +1,10 @@
+# Lightweight test surface; torch CPU installed separately by CI.
+pydantic==2.13.5
+PyYAML==6.0.3
+pytest==9.1.1
+numpy==2.4.6
+Pillow==12.3.0
+opencv-python-headless==5.0.0.93
+streamlit==1.64.0
+transformers==5.17.0
+sentencepiece==0.2.2

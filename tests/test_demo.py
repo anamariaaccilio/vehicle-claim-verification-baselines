@@ -4,6 +4,7 @@ lanza excepciones -- ni en el estado inicial ni al presionar ANALIZAR con
 el caso R01 (narrativa y imagen ausentes, el camino mas rapido de probar
 porque no requiere una imagen real)."""
 from pathlib import Path
+import pytest
 
 from streamlit.testing.v1 import AppTest
 
@@ -16,6 +17,7 @@ def test_demo_app_loads_without_exceptions():
     assert not at.exception
 
 
+@pytest.mark.model
 def test_demo_app_analyze_with_no_input_triggers_r01_without_exceptions():
     at = AppTest.from_file(APP_PATH)
     at.run(timeout=60)
