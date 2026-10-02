@@ -1,0 +1,6 @@
+{"source_image_id": "fixture_0", "claim_id": "fixture_claim_0", "path": "synthetic/0/C0.jpg", "split": "train", "condition": "C0"}
+{"source_image_id": "fixture_0", "claim_id": "fixture_claim_0", "path": "synthetic/0/C8.jpg", "split": "train", "condition": "C8"}
+{"source_image_id": "fixture_1", "claim_id": "fixture_claim_1", "path": "synthetic/1/C0.jpg", "split": "validation", "condition": "C0"}
+{"source_image_id": "fixture_1", "claim_id": "fixture_claim_1", "path": "synthetic/1/C8.jpg", "split": "validation", "condition": "C8"}
+{"source_image_id": "fixture_2", "claim_id": "fixture_claim_2", "path": "synthetic/2/C0.jpg", "split": "test", "condition": "C0"}
+{"source_image_id": "fixture_2", "claim_id": "fixture_claim_2", "path": "synthetic/2/C8.jpg", "split": "test", "condition": "C8"}

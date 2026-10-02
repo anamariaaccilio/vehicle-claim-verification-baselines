@@ -74,3 +74,33 @@ def test_check_no_leakage_detects_conflicting_splits():
         assert False, "se esperaba LeakageError"
     except LeakageError:
         pass
+
+
+import pytest
+from src.data.split_audit import audit_rows
+
+
+def test_audit_rejects_missing_split():
+    with pytest.raises(LeakageError):
+        check_no_leakage([SourceImage(source_image_id="x", path="x.jpg")])
+
+
+@pytest.mark.parametrize("rows", [[], [{}], [{"source_image_id": "", "split": "train"}],
+    [{"source_image_id": "x", "split": "val"}]])
+def test_audit_rejects_incomplete_manifest(rows):
+    with pytest.raises(ValueError):
+        audit_rows(rows)
+
+
+def test_audit_reports_exact_overlap():
+    rows = [{"source_image_id": "x", "split": s} for s in ["train", "test"]]
+    report = audit_rows(rows)
+    assert report["result"] == "FAIL"
+    assert report["overlap"]["train/test"] == ["x"]
+
+
+def test_audit_accepts_variants_and_custom_keys():
+    report = audit_rows([{"source": "x", "partition": "train"}] * 2,
+                        "source", "partition")
+    assert report["result"] == "PASS"
+    assert report["groups"] == {"train": 1, "validation": 0, "test": 0}

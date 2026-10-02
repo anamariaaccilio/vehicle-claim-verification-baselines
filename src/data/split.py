@@ -81,8 +81,9 @@ def check_no_leakage(records: list[SourceImage]) -> None:
     """Verifica que ningun source_image_id aparezca en mas de un split."""
     splits_by_id: dict[str, set[Split]] = defaultdict(set)
     for r in records:
-        if r.split is not None:
-            splits_by_id[r.source_image_id].add(r.split)
+        if not r.source_image_id or not r.source_image_id.strip() or r.split is None:
+            raise LeakageError("source_image_id and split are required for leakage audit")
+        splits_by_id[r.source_image_id].add(r.split)
 
     offenders = {sid: splits for sid, splits in splits_by_id.items() if len(splits) > 1}
     if offenders:
