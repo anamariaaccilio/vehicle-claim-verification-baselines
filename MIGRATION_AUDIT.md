@@ -16,7 +16,7 @@ No se modificó código para esta auditoría.
 - Evidencias tipadas, DecisionLabel, SourceImage y Split existen.
 - Manifest JSONL implementado; data/manifests contiene solo .gitkeep. No dataset real ni splits persistidos.
 - Split hash seed+source_image_id y test de variantes/leakage existentes. Omite splits None: mejorar fail-closed.
-- claim_id existe en Claim y casos demo; incident_id/vehicle_id/policy_id no encontrados como campos.
+- claim_id existe en Claim; los casos demo usan case_id. incident_id/vehicle_id/policy_id no encontrados como campos.
 - Taxonomía duplicada entre constantes Python y YAML, tests verifican igualdad; centralizar sin romper API.
 - B0 IMPLEMENTED: reglas R01-R05 + feature vector + pipeline; sin evaluación científica.
 - B1 PARTIAL: extractor NLI real; falta baseline text-only de decisión/evaluación.
