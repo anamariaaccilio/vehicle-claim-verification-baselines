@@ -50,3 +50,7 @@ class Claim(BaseModel):
     source_image_id: Optional[str] = None
     expected_label: Optional[DecisionLabel] = None
     metadata: dict = Field(default_factory=dict)
+
+
+# Public contract name; preserves compatibility with existing Claim users.
+ClaimRecord = Claim

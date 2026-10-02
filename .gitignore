@@ -41,3 +41,12 @@ requirements.lock
 .vscode/
 .idea/
 .DS_Store
+
+# Secrets and additional model/cache formats
+.env
+.env.*
+*.pem
+*.key
+*.safetensors
+*.bin
+.cache/

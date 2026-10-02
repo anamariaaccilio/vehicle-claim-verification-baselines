@@ -11,33 +11,16 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, field_validator
 
-# Taxonomia canonica interna. Debe mantenerse en sincronia con
-# configs/labels.yaml (la fuente de verdad para mapping es el YAML;
-# esta lista es la version "compilada" para validacion en tiempo de
-# ejecucion / tests que no necesitan leer el YAML).
-CANONICAL_DAMAGE_CLASSES: tuple[str, ...] = (
-    "dent",
-    "crack",
-    "scratch",
-    "flaking",
-    "broken_part",
-    "paint_chip",
-    "missing_part",
-    "corrosion",
-)
+# Canonical taxonomy is read from the existing repository configuration.
+# Local development uses an editable installation of this repository.
+from pathlib import Path
+import yaml
 
-# Mapping de clases originales del dataset HITL a la taxonomia canonica.
-# Debe mantenerse en sincronia con configs/labels.yaml::hitl_to_canonical.
-HITL_TO_CANONICAL: dict[str, str] = {
-    "Dent": "dent",
-    "Cracked": "crack",
-    "Scratch": "scratch",
-    "Flaking": "flaking",
-    "Broken part": "broken_part",
-    "Paint chip": "paint_chip",
-    "Missing part": "missing_part",
-    "Corrosion": "corrosion",
-}
+LABELS_CONFIG_PATH = Path(__file__).resolve().parents[2] / "configs" / "labels.yaml"
+with LABELS_CONFIG_PATH.open(encoding="utf-8") as _stream:
+    _labels = yaml.safe_load(_stream)
+CANONICAL_DAMAGE_CLASSES: tuple[str, ...] = tuple(_labels["canonical_classes"])
+HITL_TO_CANONICAL: dict[str, str] = dict(_labels["hitl_to_canonical"])
 
 
 class DecisionLabel(str, Enum):
