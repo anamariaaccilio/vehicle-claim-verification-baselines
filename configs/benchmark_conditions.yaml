@@ -1,0 +1,70 @@
+# Canonical taxonomy explicitly supplied and authorized by the user, 2026-10-02.
+# capitulo4.tex was not available locally; no claim of having verified it.
+source: user_supplied_thesis_table_2026_10_02
+conditions:
+  C0:
+    category: Control
+    description: Narrativa compatible + imagen original
+    expected_label: SUPPORTED
+    status: IMPLEMENTED
+    modification: Ninguna; narrativa derivada de clases anotadas
+  C1:
+    category: Semántica
+    description: Daño declarado incompatible con lo observado
+    expected_label: SUSPICIOUS
+    status: IMPLEMENTED
+    modification: Negación explícita de una clase de daño realmente anotada
+  C2:
+    category: Semántica
+    description: Sustitución por imagen de otro expediente
+    expected_label: SUSPICIOUS
+    status: NOT IMPLEMENTED
+    modification: Imagen donante del mismo split; pendiente protocolo de sustitución y validación semántica
+  C3:
+    category: Forense
+    description: Copy-move o splice localizado
+    expected_label: SUSPICIOUS
+    status: NOT IMPLEMENTED
+    modification: Pendiente composición localizada con máscara trazable; cualquier donor del mismo split
+  C4:
+    category: Forense
+    description: Inpainting o eliminación de daño
+    expected_label: SUSPICIOUS
+    status: NOT IMPLEMENTED
+    modification: Pendiente eliminación verificada de daño; no basta aplicar relleno arbitrario
+  C5:
+    category: Combinada
+    description: Contradicción narrativa + manipulación visual
+    expected_label: SUSPICIOUS
+    status: NOT IMPLEMENTED
+    modification: Depende de una manipulación C3/C4 validada y contradicción real
+  C6:
+    category: Ausencia
+    description: Narrativa ausente
+    expected_label: INSUFFICIENT
+    status: IMPLEMENTED
+    modification: narrative_text=null; imagen original conservada
+  C7:
+    category: Ausencia
+    description: Imagen ausente
+    expected_label: INSUFFICIENT
+    status: IMPLEMENTED
+    modification: image_path=null; narrativa C0 conservada
+  C8:
+    category: Control
+    description: JPEG, redimensionado o recorte benigno
+    expected_label: SUPPORTED
+    status: PARTIAL
+    modification: JPEG quality=95 sin resize/crop; solo se emite si PSNR>=35 dB. Resize/crop pendientes
+  C9:
+    category: Degradación
+    description: Desenfoque o calidad insuficiente
+    expected_label: INSUFFICIENT
+    status: IMPLEMENTED
+    modification: Gaussian blur de radio 0.15*min(width,height); emisión solo con varianza Laplaciana<=1
+  C10:
+    category: Estrés OOD
+    description: Manipulación no vista durante el entrenamiento
+    expected_label: OOD
+    status: NOT IMPLEMENTED
+    modification: Pendiente reservar familia de manipulación fuera de train; OOD no es cuarta clase de decisión corriente

@@ -1,0 +1,18 @@
+benchmark_version: "0.1.0"
+generator_version: "0.1.0"
+seed: 42
+dataset_dir: data/raw/hitl_pilot_v2/Car parts dataset
+acquisition_receipt: data/hitl_pilot_receipt.json
+# Prespecified before inspecting pair distances; never fitted on validation/test.
+near_duplicate_hamming_threshold: 6
+split:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+conditions_config: configs/benchmark_conditions.yaml
+conditions: [C0, C1, C6, C7, C8, C9]
+# Fixed operational parameters, not selected/fitted using test images.
+jpeg_quality: 95
+jpeg_min_psnr_db: 35.0
+blur_radius_fraction: 0.15
+blur_max_laplacian_variance: 1.0

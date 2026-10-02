@@ -50,3 +50,9 @@ requirements.lock
 *.safetensors
 *.bin
 .cache/
+
+# Canonical text-only controlled benchmark; raw/derived images stay ignored.
+!data/manifests/benchmark_v1/
+data/manifests/benchmark_v1/*
+!data/manifests/benchmark_v1/*.json
+!data/manifests/benchmark_v1/*.jsonl

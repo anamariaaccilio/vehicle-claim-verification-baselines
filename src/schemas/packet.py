@@ -4,19 +4,18 @@ None means unavailable evidence. Empty visual detections mean an available
 specialist with no detections. Ground truth stays in ClaimRecord and must not
 be used as graph/model features.
 """
-from typing import Literal
 from pydantic import BaseModel, ConfigDict
-from src.schemas.claim import ClaimRecord
+from src.schemas.claim import ClaimRecord, SchemaVersion, CLAIM_SCHEMA_VERSION
 from src.schemas.evidence import (
     NarrativeEvidence, VisualEvidence, ImageQuality, ForensicResult,
 )
 
-SCHEMA_VERSION = "0.1.0"  # First explicit packet contract version, introduced here.
+SCHEMA_VERSION = CLAIM_SCHEMA_VERSION  # Explicitly extended claim/provenance contract.
 
 
 class EvidencePacket(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    schema_version: Literal["0.1.0"] = SCHEMA_VERSION
+    schema_version: SchemaVersion = SCHEMA_VERSION
     claim: ClaimRecord
     narrative: NarrativeEvidence | None = None
     visual: VisualEvidence | None = None
