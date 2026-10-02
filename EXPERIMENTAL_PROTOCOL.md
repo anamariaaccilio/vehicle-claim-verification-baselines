@@ -5,13 +5,13 @@
 | Elemento | Fuente | Estado |
 |---|---|---|
 | ClaimRecord | src/schemas/claim.py::ClaimRecord (alias de Claim) | Compatible con API previa |
-| EvidencePacket | src/schemas/packet.py | Nuevo contrato 0.1.0, evidencias opcionales tipadas |
+| EvidencePacket | src/schemas/packet.py | Contrato 0.2.0 con ClaimRecord/provenance extendidos y evidencias opcionales tipadas |
 | Labels y mapping | configs/labels.yaml; DecisionLabel verificado por test | Disponible |
-| Manifest | src/data/manifest.py; SourceImage | IO JSONL y piloto real de imágenes disponibles; benchmark de reclamos NOT AVAILABLE YET |
-| Splits | src/data/split.py; configs/baseline.yaml | Hash seed 42; 0.70/0.15/0.15; splits piloto persistidos, benchmark aún sin fijar |
+| Manifest | src/data/manifest.py; SourceImage | IO de fuentes + manifest real de 127 reclamos controlados en data/manifests/benchmark_v1 |
+| Splits | src/data/split.py; configs/baseline.yaml | Grupos exactos/dHash antes de hash seed 42; splits v1 congelados |
 | Predicción B0 | src/fusion/rules.py::RuleTrace / as_dict | Decisión y traza; no probabilidad calibrada |
 | Esquema común de probabilidades | No existe | NOT AVAILABLE YET |
-| C0–C10 | No hay especificación/generador completo | NOT AVAILABLE YET; no asignar significados nuevos por inferencia |
+| C0–C10 | configs/benchmark_conditions.yaml, tabla autorizada por usuaria | Generación parcial; ver BENCHMARK_PROTOCOL.md |
 | Narrativas | configs/labels.yaml::nli_hypotheses; demo/cases/cases.yaml | Hipótesis y casos demo, no benchmark etiquetado |
 | Métricas | src/evaluation/metrics.py, stress_slices.py | STUB, sin resultados |
 | Calibration | src/calibration/calibrate.py | STUB |
@@ -28,7 +28,7 @@
 6. Entrenar solo en train; selección, thresholds y calibración solo en validation. Abrir test únicamente para evaluación final, igual para B0–B8/P1/P2/ablations.
 7. Implementar evaluación compartida: macro-F1, precision/recall, matriz de confusión; PR-AUC/AUROC de SUSPICIOUS cuando haya soporte; Brier/NLL/ECE solo para probabilidades válidas. Declarar binning y casos indefinidos antes de comparar. Selective prediction requiere curva riesgo/cobertura con umbral fijado en validation. Estas métricas aún NO están implementadas.
 
-No se pueden comparar científicamente sistemas hasta completar estos artefactos. El lock del MVP usa null para manifest/splits ausentes y no convierte una fixture en benchmark real. La versión de schema 0.1.0 se introduce en esta migración; no se infiere de la versión de distribución.
+Existe un primer benchmark de reclamos controlados versionado; no equivale a completar C0–C10 ni a validar científicamente UAFEG. Schema 0.2.0 explícito. El lock registra artefactos reales del benchmark, distintos del antiguo manifest de fuentes del piloto.
 
 ## Evidencia de reproducibilidad
 
@@ -41,3 +41,7 @@ El manifest de 24 imágenes y sus splits sirven para verificar ingestión y
 auditoría; no reemplazan el manifest/labels/packets del benchmark de reclamos
 que sigue NOT AVAILABLE YET. El lector real valida el formato ann/img; el
 adapter COCO previo no se usó.
+
+## Estado actual de benchmark
+
+La nota de ingestión anterior describe el milestone previo. Ahora existe v1 de reclamos controlados con manifest/splits/packets reales, schema 0.2.0, generador y auditoría. Ver BENCHMARK_PROTOCOL.md para protocolo vigente, tabla canónica C0–C10, campos de ClaimRecord, reproducción y límites científicos. El schema probabilístico y las métricas de modelos permanecen pendientes; esta fase no entrenó sistemas.

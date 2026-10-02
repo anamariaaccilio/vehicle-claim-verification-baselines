@@ -76,3 +76,11 @@ data/
 ├── manifests/    # manifest.jsonl generado (no versionado en git)
 └── README.md
 ```
+
+## Benchmark de reclamos controlados v1
+
+El antiguo `hitl_pilot_v2.jsonl` es un manifest de imágenes. El nuevo
+`data/manifests/benchmark_v1/manifest.jsonl` contiene reclamos experimentales
+sobre esas imágenes, con labels de escenario, condición y provenance. Solo
+este subdirectorio de artefactos textuales está permitido en Git; raw y
+derivados siguen ignorados. Ver [protocolo](../BENCHMARK_PROTOCOL.md).
