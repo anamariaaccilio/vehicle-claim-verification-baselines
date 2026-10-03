@@ -66,3 +66,7 @@ data/manifests/benchmark_v2/*
 data/manifests/benchmark_v3/*
 !data/manifests/benchmark_v3/*.json
 !data/manifests/benchmark_v3/*.jsonl
+
+# Local demo test reports and screenshots (not scientific benchmark artifacts)
+demo/benchmark/generated/
+demo/screenshots/*.png
