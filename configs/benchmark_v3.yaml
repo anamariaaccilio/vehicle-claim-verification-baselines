@@ -1,0 +1,32 @@
+benchmark_version: 0.3.0
+generator_version: 0.3.0
+seed: 42
+dataset_dir: data/raw/hitl_full_v2/Car parts dataset
+acquisition_receipt: data/hitl_full_receipt.json
+near_duplicate_hamming_threshold: 6
+split:
+  train: 0.7
+  validation: 0.15
+  test: 0.15
+conditions_config: configs/benchmark_conditions_v2.yaml
+conditions:
+- C0
+- C1
+- C2
+- C3
+- C4
+- C5
+- C6
+- C7
+- C8
+- C9
+- C10
+jpeg_quality: 95
+jpeg_min_psnr_db: 35.0
+blur_radius_fraction: 0.15
+blur_max_laplacian_variance: 1.0
+copy_patch_size: 24
+inpaint_radius: 3
+resize_scale: 1.25
+crop_margin_fraction: 0.05
+png_compression_level: 1

@@ -32,9 +32,9 @@ def base_config(config):
     return {**config, 'conditions': [c for c in config['conditions'] if c in base.ACTIVE]}
 
 
-def png_bytes(array):
+def png_bytes(array, compress_level=9):
     buffer = io.BytesIO()
-    Image.fromarray(array).save(buffer, format='PNG', compress_level=9)
+    Image.fromarray(array).save(buffer, format='PNG', compress_level=compress_level)
     return buffer.getvalue()
 
 
@@ -122,12 +122,12 @@ def donor_for(source, audit, splits, seed):
     return candidates[base.stable_index(source['source_image_id'],seed,'image-substitution',len(candidates))]
 
 
-def generate(root, audit, splits, config, registry):
-    claims, exclusions = base.generate_claims(root, audit, splits, base_config(config), registry)
+def generate(root, audit, splits, config, registry, source_subset=None):
+    claims, exclusions = base.generate_claims(root, audit, splits, base_config(config), registry, source_subset=source_subset)
     for claim in claims:
         claim.schema_version = '0.3.0'
     parents = {c.source_image_id:c for c in claims if c.condition == 'C0'}
-    for source in audit['sources']:
+    for source in (audit['sources'] if source_subset is None else source_subset):
         parent = parents[source['source_image_id']]
         for condition in EXTRA:
             if condition == 'C10' and parent.split.value != 'test':
@@ -156,7 +156,7 @@ def generate(root, audit, splits, config, registry):
                 pixels, mask, operation = result
                 path = f'data/processed/benchmark_v2/{identifier}.png'
                 mask_path = f'data/processed/benchmark_v2/{identifier}.mask.png'
-                content, mask_content = png_bytes(pixels), png_bytes(mask)
+                content, mask_content = png_bytes(pixels, config.get('png_compression_level', 9)), png_bytes(mask, config.get('png_compression_level', 9))
                 base.write_verified(root/path, content)
                 base.write_verified(root/mask_path, mask_content)
                 image_sha = base.sha(content)

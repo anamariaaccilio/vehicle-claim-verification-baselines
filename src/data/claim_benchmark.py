@@ -137,7 +137,7 @@ def visual_variant(root: Path, source: dict, condition: str, identifier: str, co
         else:
             radius = config['blur_radius_fraction'] * min(original.size)
             blurred = original.filter(ImageFilter.GaussianBlur(radius=radius))
-            blurred.save(buffer, format='PNG', compress_level=9)
+            blurred.save(buffer, format='PNG', compress_level=config.get('png_compression_level', 9))
             content = buffer.getvalue()
             gray = cv2.cvtColor(np.asarray(blurred), cv2.COLOR_RGB2GRAY)
             variance = float(cv2.Laplacian(gray, cv2.CV_64F).var())
@@ -152,11 +152,11 @@ def visual_variant(root: Path, source: dict, condition: str, identifier: str, co
     return {'image_path': relative, 'operation': operation, 'image_sha256': sha(content)}, parameters
 
 
-def generate_claims(root: Path, audit: dict, splits: dict, config: dict, registry: dict):
+def generate_claims(root: Path, audit: dict, splits: dict, config: dict, registry: dict, source_subset=None):
     if set(config['conditions']) - ACTIVE or 'C0' not in config['conditions']:
         raise ValueError('Requested condition is not implemented, or C0 is missing')
     claims, exclusions = [], []
-    for source in audit['sources']:
+    for source in (audit['sources'] if source_subset is None else source_subset):
         source_id = source['source_image_id']
         base_narrative, template, denied_class = narrative(source, config['seed'])
         provenance = ClaimProvenance(dataset=audit['dataset'], dataset_version=audit['dataset_version'],

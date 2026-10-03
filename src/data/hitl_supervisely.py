@@ -17,13 +17,15 @@ from src.schemas.claim import SourceImage
 from src.schemas.evidence import HITL_TO_CANONICAL, BoundingBox, DamageAnnotation, Polygon
 
 
-def parse_hitl_supervisely(dataset_dir: str | Path, *, relative_to: str | Path | None = None) -> list[SourceImage]:
+def parse_hitl_supervisely(dataset_dir: str | Path, *, relative_to: str | Path | None = None, annotation_paths: list[Path] | None = None) -> list[SourceImage]:
     root = Path(dataset_dir).resolve()
     meta = json.loads((root / 'meta.json').read_text(encoding='utf-8'))
     classes = {item['title'] for item in meta['classes']}
     if classes != set(HITL_TO_CANONICAL):
         raise ValueError('Expected HITL damage taxonomy; do not select dataset by folder name alone')
-    annotations = sorted(root.glob('*/ann/*.json'))
+    annotations = sorted(root.glob('*/ann/*.json')) if annotation_paths is None else sorted(annotation_paths)
+    if any(path.resolve().parent.parent.parent != root for path in annotations):
+        raise ValueError('Annotation path must belong to the requested dataset')
     if not annotations:
         raise ValueError('No annotation files found')
     records, seen = [], set()

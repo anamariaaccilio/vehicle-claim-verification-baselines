@@ -61,3 +61,8 @@ data/manifests/benchmark_v1/*
 data/manifests/benchmark_v2/*
 !data/manifests/benchmark_v2/*.json
 !data/manifests/benchmark_v2/*.jsonl
+
+!data/manifests/benchmark_v3/
+data/manifests/benchmark_v3/*
+!data/manifests/benchmark_v3/*.json
+!data/manifests/benchmark_v3/*.jsonl
