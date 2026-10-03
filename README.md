@@ -150,3 +150,7 @@ El contrato 0.3.0 acepta los registros 0.2.0 existentes y permite OOD únicament
 en C10/test; `DecisionLabel` sigue teniendo tres clases.
 
 Véase `BENCHMARK_V2_PROTOCOL.md` para límites científicos, trazabilidad y revisión.
+
+## Demo visual de avance
+
+Ejecutar `./run_demo.sh` y abrir http://127.0.0.1:8765/demo para un recorrido local de 85 segundos. Muestra artefactos reales del benchmark v3, auditorías, contratos y el grafo MVP sin entrenamiento ni predicciones. Ver [instrucciones](demo/benchmark/README.md), [guion](DEMO_VIDEO_SCRIPT.md) y [reporte](DEMO_BUILD_REPORT.md). READY_FOR_MODELS sigue siendo NO.

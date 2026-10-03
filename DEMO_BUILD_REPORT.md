@@ -85,3 +85,16 @@ Seis capturas locales en `demo/screenshots/`. Las cinco esenciales se detallan e
 ## J. Git
 
 Se registran commits exclusivamente locales de la demo y la actualización mecánica del lock. No se modifican imágenes, manifests, schemas, generadores, P1/P2 ni modelos. Los resultados/capturas son ignorados. `git status --short` y hashes de commits finales se entregan también al cerrar la tarea; no se hace push.
+
+### Cierre verificado
+
+- Repo A: **127 passed, 5 skipped**, ejecución de la suite sin modelos; los cinco omitidos son explícitos, no fallos ocultos.
+- Repo B: **18 passed**, comprobado después de generar el lock con Repo A limpio. El fallo transitorio descrito arriba quedó resuelto.
+- Browser smoke: **PASS**, diez páginas, C0–C10, búsqueda/split y trece pasos; imágenes cargadas, cero excepciones JavaScript.
+- SHA reproducibility: **3/3 MATCH**. Overlaps source-level: train/validation=0, train/test=0, validation/test=0; donantes entre splits=0.
+- Rutas no permitidas: `/image?path=.env` devuelve 403; `/.git/config` devuelve 404.
+- `git diff --check`: sin errores. No raw, weights, secretos, caches ni capturas agregados al índice.
+- Commit de implementación: `f9d8b92686597995fee3c040f5db12b88330d390`. Cierre documental en el commit siguiente; lock actualizado por script, sin cambiar ninguno de sus hashes de benchmark v2.
+- Estado esperado al entregar, comprobado con `git status --short`: ambos working trees limpios; logs/capturas locales ignorados. El servidor permanece disponible en loopback para revisión.
+
+Los logs finales se regeneran después de los commits para que los fingerprints del panel coincidan con HEAD. Consultar `demo/benchmark/generated/tests.json` para fecha, comando, duración y cada caso exacto; `browser-check.json` para el recorrido real del navegador. No push.
