@@ -1,3 +1,6 @@
+> Estado científico actual: READY_FOR_MODELS = NO. V3 es candidato, v2 permanece congelado.
+> La unidad estadística y el bootstrap agrupado se detallan en STATISTICAL_EVALUATION_PROTOCOL.md.
+
 # Contrato experimental y límites del milestone
 
 ## Fuentes canónicas

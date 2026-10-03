@@ -1,4 +1,7 @@
-> Benchmark vigente: `data/manifests/benchmark_v2/` (226 reclamos, C0–C10, schema 0.3.0).
+> Candidato nuevo de QA: `data/manifests/benchmark_v3/` (9.275 reclamos, 807 fuentes). READY_FOR_MODELS = NO.
+> El snapshot v2 consumido por UAFEG se conserva sin cambios. Ver README principal y auditorías.
+
+> Snapshot histórico: `data/manifests/benchmark_v2/` (226 reclamos, C0–C10, schema 0.3.0).
 > La descripción de `benchmark_v1` más abajo es histórica y sus artefactos se conservan.
 > Reproducción: `scripts/build_benchmark_v2.py`; detalles en `BENCHMARK_V2_PROTOCOL.md`.
 

@@ -1,0 +1,1148 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Benchmark — QA humana local</title><style>
+body{font:16px system-ui;background:#f2f4f8;color:#17233a;margin:0}header{position:sticky;top:0;background:#17233a;color:white;padding:14px;z-index:2}
+main{max-width:1500px;margin:auto;padding:16px}article{background:white;border:1px solid #ccd3df;padding:18px;margin:20px 0;border-radius:10px}
+.images{display:flex;flex-wrap:wrap;gap:12px}.images figure{flex:1;min-width:270px;margin:0}.images img{width:100%;height:340px;object-fit:contain;background:#e8e8e8}
+figcaption{font-weight:bold;padding:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere}input,select,button{font:inherit;padding:8px;margin:5px}.note{width:65%}.narrative{font-size:1.15em}article[hidden]{display:none}
+</style><header><strong>QA humana · generación ≠ realismo validado</strong>
+<select id="condition"><option value="">Todas</option><option>C0</option><option>C1</option><option>C2</option><option>C3</option><option>C4</option><option>C5</option><option>C6</option><option>C7</option><option>C8</option><option>C9</option><option>C10</option></select>
+<input id="search" placeholder="Buscar claim / source"><button id="export">Exportar revisión JSON</button><span id="count"></span></header>
+<main><p>Manifest/selección SHA256: <code>c40613bf7ec127db1b1e73d016e642233ab43b19b1d44ab3266f3299557463c4</code></p><p>Comparación original / imagen presentada, donante y máscara. Haga clic en una imagen para inspeccionarla a resolución completa.
+Las selecciones se guardan en este navegador y se exportan manualmente; no cambian labels ni constituyen adjudicación automática.</p><article data-condition="C0" data-id="clm_5ea501558626f03426e949e0" data-source="hitl:Car damages 101">
+<h2>C0 · SUPPORTED</h2><p>clm_5ea501558626f03426e949e0 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_5ea501558626f03426e949e0&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C0&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;5691ef5aabc07572118814334103e4706f9133c73c76997e0c5c5412b95a9f5c&quot;,
+    &quot;operation&quot;: &quot;identity&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C0" data-id="clm_e5cd31e960ffa69a246ea619" data-source="hitl:Car damages 102">
+<h2>C0 · SUPPORTED</h2><p>clm_e5cd31e960ffa69a246ea619 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_e5cd31e960ffa69a246ea619&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C0&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ce430325e3b1e769d3f7ed6cdcebe5e816ecc33c90f7cec6c9b28b3d09d08702&quot;,
+    &quot;operation&quot;: &quot;identity&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C0" data-id="clm_c341cacbec5122f190eda05b" data-source="hitl:Car damages 103">
+<h2>C0 · SUPPORTED</h2><p>clm_c341cacbec5122f190eda05b · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_c341cacbec5122f190eda05b&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C0&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;df7505f32bdac4599115eb65a69fc64970100d5157623220cbacb3ec575841c1&quot;,
+    &quot;operation&quot;: &quot;identity&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C1" data-id="clm_4b57bdf37ef2fbde747335b5" data-source="hitl:Car damages 101">
+<h2>C1 · SUSPICIOUS</h2><p>clm_4b57bdf37ef2fbde747335b5 · hitl:Car damages 101</p>
+<p class="narrative">No es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_4b57bdf37ef2fbde747335b5&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C1&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;No es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;5691ef5aabc07572118814334103e4706f9133c73c76997e0c5c5412b95a9f5c&quot;,
+    &quot;operation&quot;: &quot;narrative_contradiction&quot;,
+    &quot;parameters&quot;: {
+      &quot;denied_annotated_class&quot;: &quot;broken_part&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C1" data-id="clm_656564a67e5c4292cee2971a" data-source="hitl:Car damages 102">
+<h2>C1 · SUSPICIOUS</h2><p>clm_656564a67e5c4292cee2971a · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, no es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_656564a67e5c4292cee2971a&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C1&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, no es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ce430325e3b1e769d3f7ed6cdcebe5e816ecc33c90f7cec6c9b28b3d09d08702&quot;,
+    &quot;operation&quot;: &quot;narrative_contradiction&quot;,
+    &quot;parameters&quot;: {
+      &quot;denied_annotated_class&quot;: &quot;scratch&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C1" data-id="clm_157c4e2e288b7da8403bd625" data-source="hitl:Car damages 103">
+<h2>C1 · SUSPICIOUS</h2><p>clm_157c4e2e288b7da8403bd625 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_157c4e2e288b7da8403bd625&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C1&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;df7505f32bdac4599115eb65a69fc64970100d5157623220cbacb3ec575841c1&quot;,
+    &quot;operation&quot;: &quot;narrative_contradiction&quot;,
+    &quot;parameters&quot;: {
+      &quot;denied_annotated_class&quot;: &quot;broken_part&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C2" data-id="clm_c4d89ded7b92407dfc9961ab" data-source="hitl:Car damages 101">
+<h2>C2 · SUSPICIOUS</h2><p>clm_c4d89ded7b92407dfc9961ab · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20608.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20608.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Donante hitl:Car damages 608</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20608.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20608.png" alt="Donante hitl:Car damages 608"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_c4d89ded7b92407dfc9961ab&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C2&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [
+    &quot;hitl:Car damages 608&quot;
+  ],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [
+      &quot;hitl:Car damages 608&quot;
+    ],
+    &quot;image_sha256&quot;: &quot;ac6212de01cf9389599d3154647ec125be9ae0ca836e7068088aa8c30ee24f6e&quot;,
+    &quot;operation&quot;: &quot;same_split_image_substitution&quot;,
+    &quot;parameters&quot;: {
+      &quot;donor_annotation_reference&quot;: &quot;data/raw/hitl_full_v2/Car parts dataset/File1/ann/Car damages 608.png.json&quot;,
+      &quot;donor_annotation_sha256&quot;: &quot;84f28f655863255ff54b877e26a97ef9618c5cfe9abe610f6f764db4eaa85db5&quot;,
+      &quot;donor_image_sha256&quot;: &quot;ac6212de01cf9389599d3154647ec125be9ae0ca836e7068088aa8c30ee24f6e&quot;,
+      &quot;semantics&quot;: &quot;known controlled expediente substitution; visual contradiction not guaranteed&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C2" data-id="clm_1af01dbb8e379eca32054f56" data-source="hitl:Car damages 102">
+<h2>C2 · SUSPICIOUS</h2><p>clm_1af01dbb8e379eca32054f56 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20780.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20780.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Donante hitl:Car damages 780</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20780.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20780.png" alt="Donante hitl:Car damages 780"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_1af01dbb8e379eca32054f56&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C2&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [
+    &quot;hitl:Car damages 780&quot;
+  ],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [
+      &quot;hitl:Car damages 780&quot;
+    ],
+    &quot;image_sha256&quot;: &quot;ce121cb80fe2e0a3b28ef1a3f55f457626a234d980bb0ab85612f5f9af6b3007&quot;,
+    &quot;operation&quot;: &quot;same_split_image_substitution&quot;,
+    &quot;parameters&quot;: {
+      &quot;donor_annotation_reference&quot;: &quot;data/raw/hitl_full_v2/Car parts dataset/File1/ann/Car damages 780.png.json&quot;,
+      &quot;donor_annotation_sha256&quot;: &quot;a7a601e0f420605135d5e3142bdeb49916b4576821b80159abe0afe1c2045470&quot;,
+      &quot;donor_image_sha256&quot;: &quot;ce121cb80fe2e0a3b28ef1a3f55f457626a234d980bb0ab85612f5f9af6b3007&quot;,
+      &quot;semantics&quot;: &quot;known controlled expediente substitution; visual contradiction not guaranteed&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C2" data-id="clm_02edf49132b9e3f731cbc745" data-source="hitl:Car damages 103">
+<h2>C2 · SUSPICIOUS</h2><p>clm_02edf49132b9e3f731cbc745 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201199.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201199.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Donante hitl:Car damages 1199</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201199.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201199.png" alt="Donante hitl:Car damages 1199"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_02edf49132b9e3f731cbc745&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C2&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [
+    &quot;hitl:Car damages 1199&quot;
+  ],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [
+      &quot;hitl:Car damages 1199&quot;
+    ],
+    &quot;image_sha256&quot;: &quot;b23ec46e50128c5d6c87de0c5bc6cb0251347a6a7d026b49e7c1e857d1fc51a6&quot;,
+    &quot;operation&quot;: &quot;same_split_image_substitution&quot;,
+    &quot;parameters&quot;: {
+      &quot;donor_annotation_reference&quot;: &quot;data/raw/hitl_full_v2/Car parts dataset/File1/ann/Car damages 1199.png.json&quot;,
+      &quot;donor_annotation_sha256&quot;: &quot;9cbef01c50a710ad8c0ccd3c2e0e8a1306d1ae511b8914688f09cbe31c72d14f&quot;,
+      &quot;donor_image_sha256&quot;: &quot;b23ec46e50128c5d6c87de0c5bc6cb0251347a6a7d026b49e7c1e857d1fc51a6&quot;,
+      &quot;semantics&quot;: &quot;known controlled expediente substitution; visual contradiction not guaranteed&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C3" data-id="clm_7802065aa85939835e81a22c" data-source="hitl:Car damages 101">
+<h2>C3 · SUSPICIOUS</h2><p>clm_7802065aa85939835e81a22c · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_7802065aa85939835e81a22c.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_7802065aa85939835e81a22c.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_7802065aa85939835e81a22c.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_7802065aa85939835e81a22c.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_7802065aa85939835e81a22c&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C3&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;7b4ec9ddfd9bb6d9eb1a302721f28a582cddf9892d4718a9eff42f1d84662cdb&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 1,
+      &quot;changed_fraction&quot;: 0.0020550877693734835,
+      &quot;changed_pixels&quot;: 576,
+      &quot;destination_box&quot;: [
+        576,
+        0,
+        600,
+        24
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_7802065aa85939835e81a22c.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;effc20f92242af095a660b0f6b15e18453362cef437c75871d31dbd6573d3d5e&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        206,
+        227,
+        230,
+        251
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C3" data-id="clm_08d6825ae527eb6d799031f3" data-source="hitl:Car damages 102">
+<h2>C3 · SUSPICIOUS</h2><p>clm_08d6825ae527eb6d799031f3 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_08d6825ae527eb6d799031f3.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_08d6825ae527eb6d799031f3.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_08d6825ae527eb6d799031f3.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_08d6825ae527eb6d799031f3.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_08d6825ae527eb6d799031f3&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C3&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;74f67848f615ba21bb549e2e180f74e8f5e8c2ddcf70f6b12bb77df0dc3883a5&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 19,
+      &quot;changed_fraction&quot;: 0.001944244731805616,
+      &quot;changed_pixels&quot;: 576,
+      &quot;destination_box&quot;: [
+        72,
+        432,
+        96,
+        456
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_08d6825ae527eb6d799031f3.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;343514d4405f746b595e359594bc0cd8d1acda6239a24d92aa434d2cf67b2b92&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        501,
+        207,
+        525,
+        231
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C3" data-id="clm_53f1a39eaa852113a82a2708" data-source="hitl:Car damages 103">
+<h2>C3 · SUSPICIOUS</h2><p>clm_53f1a39eaa852113a82a2708 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_53f1a39eaa852113a82a2708.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_53f1a39eaa852113a82a2708.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_53f1a39eaa852113a82a2708.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_53f1a39eaa852113a82a2708.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_53f1a39eaa852113a82a2708&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C3&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;f4b50d2e7a8b878acbaeed8ade653ddfaa524d99c8b9f0e45b2f6b82b53238df&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 4,
+      &quot;changed_fraction&quot;: 0.0013735346579040243,
+      &quot;changed_pixels&quot;: 576,
+      &quot;destination_box&quot;: [
+        96,
+        0,
+        120,
+        24
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_53f1a39eaa852113a82a2708.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;bbc0ce5f16b9ad7212d8e41f9a0ed9cf01ab6cf6f57f5bcb11015be9189c4f3c&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        621,
+        260,
+        645,
+        284
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C4" data-id="clm_5c65525da4da922885aefc23" data-source="hitl:Car damages 101">
+<h2>C4 · SUSPICIOUS</h2><p>clm_5c65525da4da922885aefc23 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_5c65525da4da922885aefc23.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_5c65525da4da922885aefc23.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_5c65525da4da922885aefc23.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_5c65525da4da922885aefc23.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_5c65525da4da922885aefc23&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C4&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ed9c73f48b15c1d30e0d9151a076a4eb614466ab275b64314ae507a2a222a323&quot;,
+    &quot;operation&quot;: &quot;damage_mask_inpainting&quot;,
+    &quot;parameters&quot;: {
+      &quot;algorithm&quot;: &quot;OpenCV INPAINT_TELEA&quot;,
+      &quot;annotation_object_index&quot;: 1,
+      &quot;changed_fraction&quot;: 0.00022834308548594262,
+      &quot;changed_pixels&quot;: 64,
+      &quot;damage_removal_verified&quot;: false,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_5c65525da4da922885aefc23.mask.png&quot;,
+      &quot;mask_pixels&quot;: 64,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;b1c8d69af51b3f81d0a715183765a8382c32f6aba3c3311e2a5cc07dcad38976&quot;,
+      &quot;radius&quot;: 3
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C4" data-id="clm_7192ad26d9efcb5fabb2f282" data-source="hitl:Car damages 102">
+<h2>C4 · SUSPICIOUS</h2><p>clm_7192ad26d9efcb5fabb2f282 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_7192ad26d9efcb5fabb2f282.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_7192ad26d9efcb5fabb2f282.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_7192ad26d9efcb5fabb2f282.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_7192ad26d9efcb5fabb2f282.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_7192ad26d9efcb5fabb2f282&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C4&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;87d2c22d188c1709c6c94d6dd905a12103a4fe2c29d5e93b2e885b4a630a4cea&quot;,
+    &quot;operation&quot;: &quot;damage_mask_inpainting&quot;,
+    &quot;parameters&quot;: {
+      &quot;algorithm&quot;: &quot;OpenCV INPAINT_TELEA&quot;,
+      &quot;annotation_object_index&quot;: 19,
+      &quot;changed_fraction&quot;: 5.4006798105711556e-05,
+      &quot;changed_pixels&quot;: 16,
+      &quot;damage_removal_verified&quot;: false,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_7192ad26d9efcb5fabb2f282.mask.png&quot;,
+      &quot;mask_pixels&quot;: 16,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;01052911f3d24fd1b61a3e2a929d5f435883754a3fe2c08e3d7f61a5fea44d1a&quot;,
+      &quot;radius&quot;: 3
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C4" data-id="clm_f5d4a0300ee1b04c37d74b5a" data-source="hitl:Car damages 103">
+<h2>C4 · SUSPICIOUS</h2><p>clm_f5d4a0300ee1b04c37d74b5a · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_f5d4a0300ee1b04c37d74b5a.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_f5d4a0300ee1b04c37d74b5a.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_f5d4a0300ee1b04c37d74b5a.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_f5d4a0300ee1b04c37d74b5a.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_f5d4a0300ee1b04c37d74b5a&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C4&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;4ae06f6137bad4bb0bf715270326dcb6584799a6563907f3b09d00f48b914a05&quot;,
+    &quot;operation&quot;: &quot;damage_mask_inpainting&quot;,
+    &quot;parameters&quot;: {
+      &quot;algorithm&quot;: &quot;OpenCV INPAINT_TELEA&quot;,
+      &quot;annotation_object_index&quot;: 4,
+      &quot;changed_fraction&quot;: 6.438443708925113e-05,
+      &quot;changed_pixels&quot;: 27,
+      &quot;damage_removal_verified&quot;: false,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_f5d4a0300ee1b04c37d74b5a.mask.png&quot;,
+      &quot;mask_pixels&quot;: 27,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;46bf4937ce518fadffb83af5a97bb04f3f0fe6ef957ed820b7ae3531e13e9727&quot;,
+      &quot;radius&quot;: 3
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C5" data-id="clm_0ff246c441771892dbf2ebf2" data-source="hitl:Car damages 101">
+<h2>C5 · SUSPICIOUS</h2><p>clm_0ff246c441771892dbf2ebf2 · hitl:Car damages 101</p>
+<p class="narrative">No es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_0ff246c441771892dbf2ebf2.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_0ff246c441771892dbf2ebf2.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_0ff246c441771892dbf2ebf2.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_0ff246c441771892dbf2ebf2.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_0ff246c441771892dbf2ebf2&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C5&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;No es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;7b4ec9ddfd9bb6d9eb1a302721f28a582cddf9892d4718a9eff42f1d84662cdb&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 1,
+      &quot;changed_fraction&quot;: 0.0020550877693734835,
+      &quot;changed_pixels&quot;: 576,
+      &quot;denied_annotated_class&quot;: &quot;broken_part&quot;,
+      &quot;destination_box&quot;: [
+        576,
+        0,
+        600,
+        24
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_0ff246c441771892dbf2ebf2.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;effc20f92242af095a660b0f6b15e18453362cef437c75871d31dbd6573d3d5e&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        206,
+        227,
+        230,
+        251
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C5" data-id="clm_63f38763927e423547a965cd" data-source="hitl:Car damages 102">
+<h2>C5 · SUSPICIOUS</h2><p>clm_63f38763927e423547a965cd · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, no es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_63f38763927e423547a965cd.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_63f38763927e423547a965cd.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_63f38763927e423547a965cd.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_63f38763927e423547a965cd.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_63f38763927e423547a965cd&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C5&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, no es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;74f67848f615ba21bb549e2e180f74e8f5e8c2ddcf70f6b12bb77df0dc3883a5&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 19,
+      &quot;changed_fraction&quot;: 0.001944244731805616,
+      &quot;changed_pixels&quot;: 576,
+      &quot;denied_annotated_class&quot;: &quot;scratch&quot;,
+      &quot;destination_box&quot;: [
+        72,
+        432,
+        96,
+        456
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_63f38763927e423547a965cd.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;343514d4405f746b595e359594bc0cd8d1acda6239a24d92aa434d2cf67b2b92&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        501,
+        207,
+        525,
+        231
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C5" data-id="clm_d5fbb39a8b2104a46eb981b4" data-source="hitl:Car damages 103">
+<h2>C5 · SUSPICIOUS</h2><p>clm_d5fbb39a8b2104a46eb981b4 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_d5fbb39a8b2104a46eb981b4.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_d5fbb39a8b2104a46eb981b4.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_d5fbb39a8b2104a46eb981b4.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_d5fbb39a8b2104a46eb981b4.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_d5fbb39a8b2104a46eb981b4&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C5&quot;,
+  &quot;expected_label&quot;: &quot;SUSPICIOUS&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;f4b50d2e7a8b878acbaeed8ade653ddfaa524d99c8b9f0e45b2f6b82b53238df&quot;,
+    &quot;operation&quot;: &quot;localized_copy_move&quot;,
+    &quot;parameters&quot;: {
+      &quot;annotation_object_index&quot;: 4,
+      &quot;changed_fraction&quot;: 0.0013735346579040243,
+      &quot;changed_pixels&quot;: 576,
+      &quot;denied_annotated_class&quot;: &quot;broken_part&quot;,
+      &quot;destination_box&quot;: [
+        96,
+        0,
+        120,
+        24
+      ],
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_d5fbb39a8b2104a46eb981b4.mask.png&quot;,
+      &quot;mask_pixels&quot;: 576,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;bbc0ce5f16b9ad7212d8e41f9a0ed9cf01ab6cf6f57f5bcb11015be9189c4f3c&quot;,
+      &quot;original_damage_pixels_preserved&quot;: true,
+      &quot;source_box&quot;: [
+        621,
+        260,
+        645,
+        284
+      ]
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C6" data-id="clm_68d2109924b65d5f875c1ccd" data-source="hitl:Car damages 101">
+<h2>C6 · INSUFFICIENT</h2><p>clm_68d2109924b65d5f875c1ccd · hitl:Car damages 101</p>
+<p class="narrative">NARRATIVA AUSENTE</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_68d2109924b65d5f875c1ccd&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C6&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: null,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;5691ef5aabc07572118814334103e4706f9133c73c76997e0c5c5412b95a9f5c&quot;,
+    &quot;operation&quot;: &quot;remove_narrative&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C6" data-id="clm_00f23b5963c55e994070c035" data-source="hitl:Car damages 102">
+<h2>C6 · INSUFFICIENT</h2><p>clm_00f23b5963c55e994070c035 · hitl:Car damages 102</p>
+<p class="narrative">NARRATIVA AUSENTE</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_00f23b5963c55e994070c035&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C6&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: null,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ce430325e3b1e769d3f7ed6cdcebe5e816ecc33c90f7cec6c9b28b3d09d08702&quot;,
+    &quot;operation&quot;: &quot;remove_narrative&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C6" data-id="clm_3c772fc07b66ac165b302067" data-source="hitl:Car damages 103">
+<h2>C6 · INSUFFICIENT</h2><p>clm_3c772fc07b66ac165b302067 · hitl:Car damages 103</p>
+<p class="narrative">NARRATIVA AUSENTE</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_3c772fc07b66ac165b302067&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C6&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: null,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;df7505f32bdac4599115eb65a69fc64970100d5157623220cbacb3ec575841c1&quot;,
+    &quot;operation&quot;: &quot;remove_narrative&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C7" data-id="clm_72d1ed1bf025e4742b2fcff6" data-source="hitl:Car damages 101">
+<h2>C7 · INSUFFICIENT</h2><p>clm_72d1ed1bf025e4742b2fcff6 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><p>MODALIDAD AUSENTE</p></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_72d1ed1bf025e4742b2fcff6&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C7&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: null,
+    &quot;operation&quot;: &quot;remove_image&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C7" data-id="clm_3805506184a3d7c9715f6a44" data-source="hitl:Car damages 102">
+<h2>C7 · INSUFFICIENT</h2><p>clm_3805506184a3d7c9715f6a44 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><p>MODALIDAD AUSENTE</p></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_3805506184a3d7c9715f6a44&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C7&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: null,
+    &quot;operation&quot;: &quot;remove_image&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C7" data-id="clm_1daba9a4dd5eb924eef8bf37" data-source="hitl:Car damages 103">
+<h2>C7 · INSUFFICIENT</h2><p>clm_1daba9a4dd5eb924eef8bf37 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><p>MODALIDAD AUSENTE</p></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_1daba9a4dd5eb924eef8bf37&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C7&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: null,
+    &quot;operation&quot;: &quot;remove_image&quot;,
+    &quot;parameters&quot;: {},
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_049970a36c93f29d8233d6f4" data-source="hitl:Car damages 101">
+<h2>C8 · SUPPORTED</h2><p>clm_049970a36c93f29d8233d6f4 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_049970a36c93f29d8233d6f4.jpg" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_049970a36c93f29d8233d6f4.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_049970a36c93f29d8233d6f4&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;79dd5a9fe6a72a5f885c2e3202311c1ab5622ce6a337f8aca2c1b58b050c8d2d&quot;,
+    &quot;operation&quot;: &quot;jpeg_recompression&quot;,
+    &quot;parameters&quot;: {
+      &quot;crop&quot;: false,
+      &quot;minimum_psnr_db&quot;: 35.0,
+      &quot;psnr_db&quot;: 45.75783442,
+      &quot;quality&quot;: 95,
+      &quot;resize&quot;: false,
+      &quot;subsampling&quot;: 0,
+      &quot;subtype&quot;: &quot;C8_JPEG&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_308106e5fd68b24c809e3c84" data-source="hitl:Car damages 102">
+<h2>C8 · SUPPORTED</h2><p>clm_308106e5fd68b24c809e3c84 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_308106e5fd68b24c809e3c84.jpg" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_308106e5fd68b24c809e3c84.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_308106e5fd68b24c809e3c84&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;f7f84f0a2018c4146ebccab06967af2f4757284bf096ac33ace70e95171bc213&quot;,
+    &quot;operation&quot;: &quot;jpeg_recompression&quot;,
+    &quot;parameters&quot;: {
+      &quot;crop&quot;: false,
+      &quot;minimum_psnr_db&quot;: 35.0,
+      &quot;psnr_db&quot;: 50.77791184,
+      &quot;quality&quot;: 95,
+      &quot;resize&quot;: false,
+      &quot;subsampling&quot;: 0,
+      &quot;subtype&quot;: &quot;C8_JPEG&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_696d9bc675e1149a84000afd" data-source="hitl:Car damages 103">
+<h2>C8 · SUPPORTED</h2><p>clm_696d9bc675e1149a84000afd · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_696d9bc675e1149a84000afd.jpg" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_696d9bc675e1149a84000afd.jpg" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_696d9bc675e1149a84000afd&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;661438bb6a613c91cd4447e96560c41feb9eebbf11166a766a30dbb9f86245a6&quot;,
+    &quot;operation&quot;: &quot;jpeg_recompression&quot;,
+    &quot;parameters&quot;: {
+      &quot;crop&quot;: false,
+      &quot;minimum_psnr_db&quot;: 35.0,
+      &quot;psnr_db&quot;: 44.14268268,
+      &quot;quality&quot;: 95,
+      &quot;resize&quot;: false,
+      &quot;subsampling&quot;: 0,
+      &quot;subtype&quot;: &quot;C8_JPEG&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_737da5c81f0e5582990ebdf3" data-source="hitl:Car damages 101">
+<h2>C8 · SUPPORTED</h2><p>clm_737da5c81f0e5582990ebdf3 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_737da5c81f0e5582990ebdf3.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_737da5c81f0e5582990ebdf3.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_737da5c81f0e5582990ebdf3&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;f0a667bed1ceb3cc01c85150f808eb3e1b27ec111930e44a0d01ef7c9b759651&quot;,
+    &quot;operation&quot;: &quot;benign_resize&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;interpolation&quot;: &quot;Pillow LANCZOS&quot;,
+      &quot;original_size&quot;: [
+        637,
+        440
+      ],
+      &quot;output_size&quot;: [
+        796,
+        550
+      ],
+      &quot;scale_x&quot;: 1.249607535321821,
+      &quot;scale_y&quot;: 1.25,
+      &quot;subtype&quot;: &quot;C8_RESIZE&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_0b54457c57a6c724fc4e2091" data-source="hitl:Car damages 102">
+<h2>C8 · SUPPORTED</h2><p>clm_0b54457c57a6c724fc4e2091 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_0b54457c57a6c724fc4e2091.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_0b54457c57a6c724fc4e2091.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_0b54457c57a6c724fc4e2091&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;1b6fa8a1fa1f7e02b40838a98bbd89bb7dbfc520e6423fce4e65742092314a4e&quot;,
+    &quot;operation&quot;: &quot;benign_resize&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;interpolation&quot;: &quot;Pillow LANCZOS&quot;,
+      &quot;original_size&quot;: [
+        629,
+        471
+      ],
+      &quot;output_size&quot;: [
+        786,
+        589
+      ],
+      &quot;scale_x&quot;: 1.2496025437201908,
+      &quot;scale_y&quot;: 1.2505307855626326,
+      &quot;subtype&quot;: &quot;C8_RESIZE&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_55428a7b68615df8d047bf12" data-source="hitl:Car damages 103">
+<h2>C8 · SUPPORTED</h2><p>clm_55428a7b68615df8d047bf12 · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_55428a7b68615df8d047bf12.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_55428a7b68615df8d047bf12.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_55428a7b68615df8d047bf12&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;584cb1b8bcec244445470f12fa4b8b10c99849f82eac5c4d6b1ca3c9f977c51d&quot;,
+    &quot;operation&quot;: &quot;benign_resize&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;interpolation&quot;: &quot;Pillow LANCZOS&quot;,
+      &quot;original_size&quot;: [
+        881,
+        476
+      ],
+      &quot;output_size&quot;: [
+        1101,
+        595
+      ],
+      &quot;scale_x&quot;: 1.2497162315550512,
+      &quot;scale_y&quot;: 1.25,
+      &quot;subtype&quot;: &quot;C8_RESIZE&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_66fb75a42c84376d2b5f3da4" data-source="hitl:Car damages 101">
+<h2>C8 · SUPPORTED</h2><p>clm_66fb75a42c84376d2b5f3da4 · hitl:Car damages 101</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20101.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_66fb75a42c84376d2b5f3da4.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_66fb75a42c84376d2b5f3da4.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_66fb75a42c84376d2b5f3da4&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 101&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta piezas rotas. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;b3c849761277c74a3d4cb000269f62439e3f428b10bf1b791390be0ad8648788&quot;,
+    &quot;operation&quot;: &quot;benign_crop&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;annotation_translation&quot;: [
+        -31,
+        -22
+      ],
+      &quot;crop_box&quot;: [
+        31,
+        22,
+        606,
+        418
+      ],
+      &quot;maximum_margin_fraction&quot;: 0.05,
+      &quot;original_size&quot;: [
+        637,
+        440
+      ],
+      &quot;output_size&quot;: [
+        575,
+        396
+      ],
+      &quot;retained_damage_pixels&quot;: 65615,
+      &quot;subtype&quot;: &quot;C8_CROP&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_585fbc0b7c1bca234a98504c" data-source="hitl:Car damages 102">
+<h2>C8 · SUPPORTED</h2><p>clm_585fbc0b7c1bca234a98504c · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_585fbc0b7c1bca234a98504c.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_585fbc0b7c1bca234a98504c.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_585fbc0b7c1bca234a98504c&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;43c2d704d0ccc597f5c5c5d16af0c9505013daecf71499d332ab0f19f23fc576&quot;,
+    &quot;operation&quot;: &quot;benign_crop&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;annotation_translation&quot;: [
+        -31,
+        -23
+      ],
+      &quot;crop_box&quot;: [
+        31,
+        23,
+        598,
+        448
+      ],
+      &quot;maximum_margin_fraction&quot;: 0.05,
+      &quot;original_size&quot;: [
+        629,
+        471
+      ],
+      &quot;output_size&quot;: [
+        567,
+        425
+      ],
+      &quot;retained_damage_pixels&quot;: 21436,
+      &quot;subtype&quot;: &quot;C8_CROP&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C8" data-id="clm_0f2b4ac1bcf33a1143a700eb" data-source="hitl:Car damages 103">
+<h2>C8 · SUPPORTED</h2><p>clm_0f2b4ac1bcf33a1143a700eb · hitl:Car damages 103</p>
+<p class="narrative">El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20103.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v3/clm_0f2b4ac1bcf33a1143a700eb.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v3/clm_0f2b4ac1bcf33a1143a700eb.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_0f2b4ac1bcf33a1143a700eb&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 103&quot;,
+  &quot;condition&quot;: &quot;C8&quot;,
+  &quot;expected_label&quot;: &quot;SUPPORTED&quot;,
+  &quot;narrative_text&quot;: &quot;El vehículo no está libre de piezas rotas. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;c6eba7b9bb02cecf7389cd079893debcffed52d5f7597f1ef1efa2fbc9976d54&quot;,
+    &quot;operation&quot;: &quot;benign_crop&quot;,
+    &quot;parameters&quot;: {
+      &quot;all_damage_regions_retained&quot;: true,
+      &quot;annotation_translation&quot;: [
+        -44,
+        -23
+      ],
+      &quot;crop_box&quot;: [
+        44,
+        23,
+        837,
+        453
+      ],
+      &quot;maximum_margin_fraction&quot;: 0.05,
+      &quot;original_size&quot;: [
+        881,
+        476
+      ],
+      &quot;output_size&quot;: [
+        793,
+        430
+      ],
+      &quot;retained_damage_pixels&quot;: 19186,
+      &quot;subtype&quot;: &quot;C8_CROP&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C9" data-id="clm_f7ca31e65f6551fed3a2b572" data-source="hitl:Car damages 1063">
+<h2>C9 · INSUFFICIENT</h2><p>clm_f7ca31e65f6551fed3a2b572 · hitl:Car damages 1063</p>
+<p class="narrative">En la imagen, el vehículo presenta piezas faltantes. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201063.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201063.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_f7ca31e65f6551fed3a2b572.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_f7ca31e65f6551fed3a2b572.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_f7ca31e65f6551fed3a2b572&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 1063&quot;,
+  &quot;condition&quot;: &quot;C9&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;En la imagen, el vehículo presenta piezas faltantes. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;6a4f1df28bbe99b8ccd6390f95f7691f5bfeb1c8747134b2b539406aab5d50de&quot;,
+    &quot;operation&quot;: &quot;gaussian_blur&quot;,
+    &quot;parameters&quot;: {
+      &quot;laplacian_variance&quot;: 0.94400611,
+      &quot;maximum_laplacian_variance&quot;: 1.0,
+      &quot;radius_fraction&quot;: 0.15,
+      &quot;radius_pixels&quot;: 77.85
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C9" data-id="clm_7df3005cf2d79a3b789df54a" data-source="hitl:Car damages 1064">
+<h2>C9 · INSUFFICIENT</h2><p>clm_7df3005cf2d79a3b789df54a · hitl:Car damages 1064</p>
+<p class="narrative">Respecto al daño mostrado, no es correcto afirmar que el vehículo no presenta corrosión. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201064.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201064.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_7df3005cf2d79a3b789df54a.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_7df3005cf2d79a3b789df54a.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_7df3005cf2d79a3b789df54a&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 1064&quot;,
+  &quot;condition&quot;: &quot;C9&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;Respecto al daño mostrado, no es correcto afirmar que el vehículo no presenta corrosión. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;7111c49e3f43880fa57e2a552eebf562440f290b5ca2238d27e2ca7bcfba35cd&quot;,
+    &quot;operation&quot;: &quot;gaussian_blur&quot;,
+    &quot;parameters&quot;: {
+      &quot;laplacian_variance&quot;: 0.96684884,
+      &quot;maximum_laplacian_variance&quot;: 1.0,
+      &quot;radius_fraction&quot;: 0.15,
+      &quot;radius_pixels&quot;: 67.2
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C9" data-id="clm_10f3d52243b55b31f639b77e" data-source="hitl:Car damages 1065">
+<h2>C9 · INSUFFICIENT</h2><p>clm_10f3d52243b55b31f639b77e · hitl:Car damages 1065</p>
+<p class="narrative">Es correcto afirmar que el vehículo presenta rayones. Esta descripción corresponde al daño observado.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201065.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201065.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v1/clm_10f3d52243b55b31f639b77e.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v1/clm_10f3d52243b55b31f639b77e.png" alt="Imagen presentada al reclamo"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_10f3d52243b55b31f639b77e&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 1065&quot;,
+  &quot;condition&quot;: &quot;C9&quot;,
+  &quot;expected_label&quot;: &quot;INSUFFICIENT&quot;,
+  &quot;narrative_text&quot;: &quot;Es correcto afirmar que el vehículo presenta rayones. Esta descripción corresponde al daño observado.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ebf27482998a108e2c5c827e9b8f0e193e7b9899690d045375c41c57aaf17ab0&quot;,
+    &quot;operation&quot;: &quot;gaussian_blur&quot;,
+    &quot;parameters&quot;: {
+      &quot;laplacian_variance&quot;: 0.94797447,
+      &quot;maximum_laplacian_variance&quot;: 1.0,
+      &quot;radius_fraction&quot;: 0.15,
+      &quot;radius_pixels&quot;: 70.5
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C10" data-id="clm_b6376b4249f5dd270198b733" data-source="hitl:Car damages 102">
+<h2>C10 · OOD</h2><p>clm_b6376b4249f5dd270198b733 · hitl:Car damages 102</p>
+<p class="narrative">En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%20102.jpg" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_b6376b4249f5dd270198b733.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_b6376b4249f5dd270198b733.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_b6376b4249f5dd270198b733.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_b6376b4249f5dd270198b733.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_b6376b4249f5dd270198b733&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 102&quot;,
+  &quot;condition&quot;: &quot;C10&quot;,
+  &quot;expected_label&quot;: &quot;OOD&quot;,
+  &quot;narrative_text&quot;: &quot;En esta descripción, es correcto afirmar que el vehículo presenta rayones. Se describe el estado visible.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;12f94d22447b295495f2db89007a9bbace76d934bd51768abcc7df0f0978bff2&quot;,
+    &quot;operation&quot;: &quot;localized_rgb_inversion&quot;,
+    &quot;parameters&quot;: {
+      &quot;allowed_split&quot;: &quot;test&quot;,
+      &quot;annotation_object_index&quot;: 19,
+      &quot;changed_fraction&quot;: 5.4006798105711556e-05,
+      &quot;changed_pixels&quot;: 16,
+      &quot;held_out_family&quot;: &quot;localized_rgb_inversion&quot;,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_b6376b4249f5dd270198b733.mask.png&quot;,
+      &quot;mask_pixels&quot;: 16,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;01052911f3d24fd1b61a3e2a929d5f435883754a3fe2c08e3d7f61a5fea44d1a&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C10" data-id="clm_32bf0eebf77dd53df09cb146" data-source="hitl:Car damages 1062">
+<h2>C10 · OOD</h2><p>clm_32bf0eebf77dd53df09cb146 · hitl:Car damages 1062</p>
+<p class="narrative">Respecto al daño mostrado, el vehículo no está libre de rayones.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201062.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201062.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_32bf0eebf77dd53df09cb146.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_32bf0eebf77dd53df09cb146.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_32bf0eebf77dd53df09cb146.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_32bf0eebf77dd53df09cb146.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_32bf0eebf77dd53df09cb146&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 1062&quot;,
+  &quot;condition&quot;: &quot;C10&quot;,
+  &quot;expected_label&quot;: &quot;OOD&quot;,
+  &quot;narrative_text&quot;: &quot;Respecto al daño mostrado, el vehículo no está libre de rayones.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;ce8b49bf4a1963a11b5f137fc4f91871d166905e30c8ea1de3f8721561e1a38b&quot;,
+    &quot;operation&quot;: &quot;localized_rgb_inversion&quot;,
+    &quot;parameters&quot;: {
+      &quot;allowed_split&quot;: &quot;test&quot;,
+      &quot;annotation_object_index&quot;: 9,
+      &quot;changed_fraction&quot;: 0.00011857473172466947,
+      &quot;changed_pixels&quot;: 42,
+      &quot;held_out_family&quot;: &quot;localized_rgb_inversion&quot;,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_32bf0eebf77dd53df09cb146.mask.png&quot;,
+      &quot;mask_pixels&quot;: 42,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;cb33c2fc8b00e33a7f6b4ea4c5f4a8aead042b146ac686c3817860013958ee63&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article><article data-condition="C10" data-id="clm_29ad1a22e8e893c4f50f80b4" data-source="hitl:Car damages 1082">
+<h2>C10 · OOD</h2><p>clm_29ad1a22e8e893c4f50f80b4 · hitl:Car damages 1082</p>
+<p class="narrative">En la fotografía del vehículo, el vehículo presenta abolladuras.</p><div class="images"><figure><figcaption>Original</figcaption><a href="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201082.png" target="_blank"><img loading="lazy" src="data/raw/hitl_full_v2/Car%20parts%20dataset/File1/img/Car%20damages%201082.png" alt="Original"></a></figure><figure><figcaption>Imagen presentada al reclamo</figcaption><a href="data/processed/benchmark_v2/clm_29ad1a22e8e893c4f50f80b4.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_29ad1a22e8e893c4f50f80b4.png" alt="Imagen presentada al reclamo"></a></figure><figure><figcaption>Máscara de transformación</figcaption><a href="data/processed/benchmark_v2/clm_29ad1a22e8e893c4f50f80b4.mask.png" target="_blank"><img loading="lazy" src="data/processed/benchmark_v2/clm_29ad1a22e8e893c4f50f80b4.mask.png" alt="Máscara de transformación"></a></figure></div>
+<details><summary>Procedencia, parámetros y seed</summary><pre>{
+  &quot;claim_id&quot;: &quot;clm_29ad1a22e8e893c4f50f80b4&quot;,
+  &quot;source_image_id&quot;: &quot;hitl:Car damages 1082&quot;,
+  &quot;condition&quot;: &quot;C10&quot;,
+  &quot;expected_label&quot;: &quot;OOD&quot;,
+  &quot;narrative_text&quot;: &quot;En la fotografía del vehículo, el vehículo presenta abolladuras.&quot;,
+  &quot;donor_source_image_ids&quot;: [],
+  &quot;transformation&quot;: {
+    &quot;donor_source_image_ids&quot;: [],
+    &quot;image_sha256&quot;: &quot;80b49b65360e1ba8e854c3c58613c0d9f9e2b798942ec769bee132c574b9e4c5&quot;,
+    &quot;operation&quot;: &quot;localized_rgb_inversion&quot;,
+    &quot;parameters&quot;: {
+      &quot;allowed_split&quot;: &quot;test&quot;,
+      &quot;annotation_object_index&quot;: 2,
+      &quot;changed_fraction&quot;: 0.0008224969361989127,
+      &quot;changed_pixels&quot;: 300,
+      &quot;held_out_family&quot;: &quot;localized_rgb_inversion&quot;,
+      &quot;human_realism_review&quot;: &quot;NOT PERFORMED&quot;,
+      &quot;mask_path&quot;: &quot;data/processed/benchmark_v2/clm_29ad1a22e8e893c4f50f80b4.mask.png&quot;,
+      &quot;mask_pixels&quot;: 300,
+      &quot;mask_selection&quot;: &quot;smallest rasterized damage polygon; index tie-break&quot;,
+      &quot;mask_sha256&quot;: &quot;cc749b007251cae0a82fddf32a5b7e1658edf54136db2db1895a21e62e0481da&quot;
+    },
+    &quot;seed&quot;: 42
+  }
+}</pre></details>
+<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
+<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article></main><script>
+const manifestDigest="c40613bf7ec127db1b1e73d016e642233ab43b19b1d44ab3266f3299557463c4";
+const cards=[...document.querySelectorAll('article')], key='uafeg-qa-'+location.pathname+'-'+manifestDigest;
+let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+for(const c of cards){let r=c.querySelector('.review'),n=c.querySelector('.note');r.value=saved[c.dataset.id]?.status||'PENDIENTE';n.value=saved[c.dataset.id]?.note||'';
+for(const el of [r,n])el.addEventListener('change',()=>{saved[c.dataset.id]={status:r.value,note:n.value};try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}})}
+function filter(){let n=0;for(const c of cards){c.hidden=!!((condition.value&&c.dataset.condition!==condition.value)||(search.value&&!c.textContent.toLowerCase().includes(search.value.toLowerCase())));if(!c.hidden)n++}document.querySelector('#count').textContent=n+' reclamos'}
+const condition=document.querySelector('#condition'),search=document.querySelector('#search');condition.onchange=filter;search.oninput=filter;filter();
+document.querySelector('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({gallery:location.pathname,manifest_sha256:manifestDigest,reviews:saved},null,2)],{type:'application/json'}));a.download='human_qa_reviews.json';a.click();URL.revokeObjectURL(a.href)};
+</script></html>

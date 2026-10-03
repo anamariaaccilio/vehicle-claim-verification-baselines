@@ -1,5 +1,57 @@
 # Vehicle Claim Verification Baselines
 
+**Estado científico: READY_FOR_MODELS = NO.** V2 permanece congelado; v3 es un
+candidato reproducible de 9.275 reclamos / 807 fuentes aceptadas del conjunto HITL
+completo de daño. Falta adjudicación humana y resolver la compatibilidad semántica
+frecuente de C2. Pasar tests de ingeniería no equivale a validar las etiquetas.
+
+Revisión local: [galería v2](benchmark_v2_qa.html),
+[galería v3 completa](benchmark_v3_qa.html) y [muestra v3](benchmark_v3_qa_sample.html).
+Cada galería identifica el hash de sus registros; la exportación de revisión no
+cambia labels. Los bytes de imágenes permanecen fuera de Git.
+
+Auditorías: [escala HITL](DATASET_SCALE_AUDIT.md), [C2 v2](C2_SEMANTIC_AUDIT.md), [C2 v3](C2_SEMANTIC_AUDIT_V3.md),
+[C3](C3_FORENSIC_AUDIT.md), [C4](C4_INPAINT_AUDIT.md), [C5](C5_COMBINED_AUDIT.md),
+[C8](C8_BENIGN_CONTROLS_AUDIT.md), [C9 v3](C9_DEGRADATION_AUDIT_V3.md),
+[C10](C10_OOD_AUDIT.md), [narrativas](NARRATIVE_SHORTCUT_AUDIT.md),
+[duplicados](NEAR_DUPLICATE_FULL_AUDIT.md), [unidad estadística](STATISTICAL_EVALUATION_PROTOCOL.md).
+
+## Reproducir la fase de QA y el candidato v3
+
+```bash
+env -u PYTHONPATH .venv/bin/python scripts/fetch_hitl_full.py
+env -u PYTHONPATH .venv/bin/python scripts/build_benchmark_v3.py
+env -u PYTHONPATH .venv/bin/python scripts/build_benchmark_v3.py --check --verify-images
+env -u PYTHONPATH .venv/bin/python scripts/audit_benchmark_v2.py
+env -u PYTHONPATH .venv/bin/python scripts/summarize_benchmark_qa.py
+env -u PYTHONPATH .venv/bin/python scripts/audit_benchmark_v3_pixels.py
+env -u PYTHONPATH OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -m pytest -q
+```
+
+La QA de v2 requiere también el piloto en su ruta histórica. En una instalación
+nueva se reproduce con `scripts/fetch_hitl_pilot.py --receipt data/hitl_pilot_receipt.json
+--output data/raw/hitl_pilot_v2` y `scripts/build_benchmark_v2.py` antes de la auditoría.
+Los tests ordinarios y `--check` sin imágenes usan artefactos de texto; no descargan raw.
+
+V3 usa la taxonomía/etiquetas canónicas de `configs/benchmark_conditions_v2.yaml`;
+las operaciones adicionales están en `configs/benchmark_v3.yaml`: C8_JPEG,
+C8_RESIZE (1.25×), C8_CROP (hasta5% de margen sin eliminar daño anotado).
+Las 538 exclusiones C9 conservan el umbral<=1.0; no se fuerzan. C10 tiene129 casos,
+solo test. Las narrativas emparejadas conservan el mismo target y estilo entre
+control/contradicción; las variaciones neutrales no añaden hechos sobre el vehículo.
+La revisión no cambia automáticamente labels C2.
+
+Unidad de evaluación: fuente/grupo, no variante individual. C2 requiere considerar
+además dependencia con donantes. Anotaciones, condiciones, labels, IDs, paths y
+parámetros son metadatos de auditoría y no deben entrar como features de modelos.
+Las anotaciones referenciadas describen la fuente original; C2 referencia también
+las del donante, y C8 registra la transformación geométrica. No son outputs de especialistas.
+
+UAFEG mantiene el snapshot v2 en su lock mientras v3 sigue pendiente de QA científica.
+No se entrenaron modelos ni se implementaron P1/P2 en esta fase.
+
+## Estado de sistemas y versiones anteriores
+
 Fuente canónica del contrato experimental de la tesis «Grafos de evidencia multimodal conscientes de incertidumbre para la verificación robusta de reclamos de seguros vehiculares». Conserva el código original y establece el benchmark reproducible y sus métodos de referencia. Existe un benchmark reproducible de 226 reclamos experimentales sobre 24 imágenes reales, con cobertura operativa C0–C10. No es un dataset de reclamos de una aseguradora ni una validación científica final; no hay resultados de modelos.
 
 | SYSTEM | DESCRIPTION | STATUS |
@@ -52,7 +104,7 @@ El test set v1 está congelado. No usar labels/clases anotadas/condiciones/prove
 
 ## Benchmark completo C0–C10 (v0.2.0)
 
-La versión actual está en `data/manifests/benchmark_v2/`; v0.1.0 se conserva
+La versión histórica v2 está en `data/manifests/benchmark_v2/`; v0.1.0 se conserva
 sin cambios en `benchmark_v1/`. Son imágenes reales de daño vehicular con
 reclamos experimentales/sintéticos, no expedientes de una aseguradora.
 La taxonomía canónica es la tabla autorizada por el usuario; el `.tex` no estuvo disponible.
