@@ -1,6 +1,6 @@
 # Guion de demo — 85 segundos
 
-Inicio: `./run_demo.sh`; abrir http://127.0.0.1:8765/demo a 1600×1000 o pantalla completa. Avanzar con →. No activar entrenamientos ni la demo Streamlit antigua.
+Inicio: `./run_demo.sh`; abrir http://127.0.0.1:8765/demo a 1600×1000 o pantalla completa. Avanzar con → y retroceder con ←; Escape sale del modo. Los tiempos y controles del guion no aparecen en el video. No activar entrenamientos ni la demo Streamlit antigua.
 
 | Tiempo | Pantalla / paso | Qué decir | Qué NO afirmar |
 |---|---|---|---|

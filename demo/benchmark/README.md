@@ -11,7 +11,7 @@ Abrir http://127.0.0.1:8765 o http://127.0.0.1:8765/demo. Navegación con botone
 Opciones:
 
 ```bash
-./run_demo.sh --refresh-tests  # volver a ejecutar suites sin modelos
+./run_demo.sh --refresh-tests --check  # volver a ejecutar suites sin modelos
 ./run_demo.sh --check          # validar paths, conteos y tres regeneraciones; salir
 ./run_demo.sh --port 8767      # puerto alternativo
 ```
@@ -25,3 +25,7 @@ Artefactos derivados de presentación en `generated/` son locales e ignorados. N
 Todos los claims aceptados se muestran como REVIEW REQUIRED para aprobación humana. SCHEMA VALIDATED es exclusivamente validación de software. EXCLUDED se reserva para exclusiones registradas (C9) mostradas en Conditions. No se adjudican nuevos labels.
 
 Los paquetes de v3 tienen especialistas null: su grafo real tiene un nodo claim y cero aristas. source_image_id es metadato, no un nodo. support/contradiction/overlap/unknown se muestran como relaciones futuras, no existentes. B sigue fijado al manifest v2; el preview de v3 no lo promueve a aprobado.
+
+## Grabación sin instrucciones en pantalla
+
+En `/demo`, la barra de pasos, los tiempos y los botones de presentación están ocultos. Avanzar con →, retroceder con ← y salir del modo con Escape. La navegación lateral sigue disponible. Se conservan los estados QA y las limitaciones científicas. Si el servidor ya existe, `./run_demo.sh` imprime su URL y termina sin error. Tras cambios visuales, recargar con Ctrl+Shift+R.

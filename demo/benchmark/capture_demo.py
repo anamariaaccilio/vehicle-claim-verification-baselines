@@ -72,7 +72,9 @@ async def inspect(url):
         for step in range(13):
             await settle()
             assert await evaluate(f"document.querySelector('#step').innerText.startsWith('{step+1} / 13')")
-            if step < 12: await evaluate("document.querySelector('#next').click()")
+            assert await evaluate("getComputedStyle(document.querySelector('#tour')).display==='none'")
+            assert await evaluate("getComputedStyle(document.querySelector('#present')).display==='none'")
+            if step < 12: await evaluate("document.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight'}))")
         assert not errors, errors
         print('PASS 10 pages, C0–C10, split/search filters, 13 presentation steps, images, no JS exceptions')
         (HERE / 'generated/browser-check.json').write_text(json.dumps({'result':'PASS','pages':10,'conditions':11,'presentation_steps':13,'js_errors':errors},indent=2))

@@ -13,6 +13,9 @@ from pathlib import Path
 import subprocess
 import sys
 from urllib.parse import urlparse, parse_qs
+from urllib.request import urlopen
+from urllib.error import URLError
+import socket
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -192,6 +195,23 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(); parser.add_argument('--port', type=int, default=8765)
     parser.add_argument('--refresh-tests', action='store_true'); parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
+    if not args.check:
+        # Reuse the existing demo; never terminate an unknown port owner.
+        address = f'http://127.0.0.1:{args.port}'
+        with socket.socket() as probe:
+            occupied = probe.connect_ex(('127.0.0.1', args.port)) == 0
+        if occupied:
+            try:
+                with urlopen(address, timeout=3) as response:
+                    is_demo = b'<title>UAFEG' in response.read(4096)
+            except (URLError, OSError):
+                is_demo = False
+            if is_demo:
+                print(f'La demo ya está ejecutándose. Abre {address}/demo')
+                print('No hace falta iniciarla otra vez. Recarga el navegador con Ctrl+Shift+R.')
+                sys.exit(0)
+            print(f'El puerto {args.port} está ocupado por otro servicio. Usa ./run_demo.sh --port {args.port + 1}', file=sys.stderr)
+            sys.exit(1)
     if args.refresh_tests or not (CACHE / 'tests.json').exists(): run_tests()
     demo = Demo()
     if args.check:
