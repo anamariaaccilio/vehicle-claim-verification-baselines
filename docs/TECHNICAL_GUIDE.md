@@ -62,15 +62,15 @@ Fuente canónica del contrato experimental de la tesis «Grafos de evidencia mul
 | B3 | Forensic only: TruFor/base contienen solo docstrings; calidad de imagen no es forense | STUB |
 | B4 | Concatenation + MLP: features existentes; MLP ausente y train_classifier es stub | PARTIAL |
 | B5 | Calibrated late fusion | NOT IMPLEMENTED |
-| B6 | DeepSets | NOT IMPLEMENTED |
+| B6 | DeepSets | IMPLEMENTED_CODE_NOT_TRAINED (en el repo hermano `uafeg`, no en este repo — ver abajo) |
 | B7 | Discounted Belief Fusion | NOT IMPLEMENTED |
 | B8 | Frozen multimodal LLM; condicionado a viabilidad y reproducibilidad | NOT IMPLEMENTED |
 
 `IMPLEMENTED` no significa entrenado/evaluado en un benchmark real. Ver [auditoría inicial](../MIGRATION_AUDIT.md).
 
-El contrato vive en `src/schemas`: `ClaimRecord` es un alias compatible de `Claim`, `EvidencePacket` agrega las evidencias existentes (versión explícita 0.3.0, compatible con registros 0.2.0), `SourceImage` representa filas del manifest. `configs/labels.yaml` es la fuente de taxonomía/mapping; las constantes Python se cargan desde ella. `DecisionLabel` conserva su enum público y un test verifica igualdad con YAML. No hay segunda definición en UAFEG.
+El contrato vive en `src/schemas`: `ClaimRecord` es un alias compatible de `Claim`, `EvidencePacket` agrega las evidencias existentes (versión explícita 0.3.0, compatible con registros 0.2.0), `SourceImage` representa filas del manifest. `configs/labels.yaml` es la fuente de taxonomía/mapping; las constantes Python se cargan desde ella. `DecisionLabel` conserva su enum público y un test verifica igualdad con YAML. No hay segunda definición en UAFEG. Las métricas (`src/evaluation/`), calibración (`src/calibration/`), incertidumbre (`src/uncertainty/`) y abstención (`src/abstention/`) compartidas por B6/P1/P2 y por los baselines de este repo también viven aquí, como código puro con tests reales; no se han ejecutado todavía sobre resultados de modelos reales.
 
-El repositorio hermano `uafeg` consume este contrato por instalación editable y fija commit/hashes en `benchmark.lock.json`. Aquí no se implementan P1/P2, gates, modelos de grafos ni Claims Analyst Agent. Para B6 vs P1, P1 vs P2 y ablations se usarán idénticos manifest, splits, EvidencePackets, labels, métricas y test set.
+El repositorio hermano `uafeg` consume este contrato por instalación editable y fija commit/hashes en `benchmark.lock.json`. **B6, P1 (grafo sin reliability gate) y P2 (con reliability gate) están implementados ahí** (`IMPLEMENTED_CODE_NOT_TRAINED`: código y tests reales, cero entrenamiento sobre benchmark real) — ver `uafeg/docs/IMPLEMENTATION_STATUS.md` para el estado exacto. Este repo (A) no implementa P1/P2/gates/Claims Analyst Agent; solo provee el contrato que consumen. Para B6 vs P1, P1 vs P2 y ablations se usan idénticos manifest, splits, EvidencePackets, labels, métricas y test set.
 
 Los splits se asignan por hash de `seed=42` + `source_image_id` (`src/data/split.py`). Todas las variantes de una fuente quedan en un solo split. `validation` es el nombre canónico (no `val`). El auditor rechaza IDs/splits ausentes y comprueba también claim/incident/vehicle/policy IDs solo cuando aparecen realmente.
 

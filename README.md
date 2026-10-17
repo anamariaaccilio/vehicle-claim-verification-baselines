@@ -25,8 +25,10 @@ Las etiquetas actuales son experimentales, no predicciones.
 
 - Banco de pruebas (benchmark): construido y en validación científica.
 - 807 imágenes reales aceptadas, 9.275 escenarios controlados y 11 tipos de prueba.
-- EvidenceGraph: prototipo mínimo (MVP), sin razonamiento aprendido.
-- B0: reglas implementadas; otros métodos parciales o pendientes. P1/P2: pendientes.
+- EvidenceGraph: implementado en el repo hermano `uafeg`, con relaciones narrativa-visual.
+- B0: reglas implementadas; otros baselines parciales o pendientes (ver [guía técnica](docs/TECHNICAL_GUIDE.md)).
+- B6/P1/P2 (DeepSets / grafo sin compuerta / grafo con reliability gate): implementados y
+  testeados en `uafeg`, pero **sin entrenar** sobre el benchmark real (`IMPLEMENTED_CODE_NOT_TRAINED`).
 - Resultados predictivos finales: todavía no disponibles. **READY_FOR_MODELS = NO**.
 
 ## Estructura del proyecto
