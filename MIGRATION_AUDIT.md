@@ -7,7 +7,7 @@ Fecha: 2026-10-02. Fuente: inspección local; PDF solo referencia, no autorizaci
 Ruta: `/home/ana/Documentos/tesis 2/uafeg-baseline`.
 Branch `master`, sin commits (git log falla: does not have any commits yet), sin remotos.
 Working tree con archivos A/AM y untracked. No existe historial que etiquetar aún.
-Estado, índice y diffs originales conservados fuera de ambos repos en `.migration-snapshot-2026-10-02`.
+Estado, índice y diffs originales conservados fuera de ambos repos en `.migration-snapshot-2026-10-02` (reubicado 2026-10-17 a `../project-history/migration-snapshot-2026-10-02/` durante la limpieza final del workspace; mismo contenido, fuera de ambos repos como fue diseñado).
 No se modificó código para esta auditoría.
 
 ## Hallazgos reales

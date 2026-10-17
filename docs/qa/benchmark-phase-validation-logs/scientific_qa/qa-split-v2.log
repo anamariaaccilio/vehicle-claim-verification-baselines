@@ -1,0 +1,38 @@
+{
+  "manifest": "data/manifests/benchmark_v2/manifest.jsonl",
+  "sha256": "3e45880e3a0d5d949bded72b278d80d8366a0ede963c58631affc3258619f9fe",
+  "audits": [
+    {
+      "group_key": "source_image_id",
+      "split_key": "split",
+      "rows": 226,
+      "groups": {
+        "train": 17,
+        "validation": 4,
+        "test": 3
+      },
+      "overlap": {
+        "train/validation": [],
+        "train/test": [],
+        "validation/test": []
+      },
+      "result": "PASS"
+    },
+    {
+      "group_key": "claim_id",
+      "split_key": "split",
+      "rows": 226,
+      "groups": {
+        "train": 157,
+        "validation": 38,
+        "test": 31
+      },
+      "overlap": {
+        "train/validation": [],
+        "train/test": [],
+        "validation/test": []
+      },
+      "result": "PASS"
+    }
+  ]
+}

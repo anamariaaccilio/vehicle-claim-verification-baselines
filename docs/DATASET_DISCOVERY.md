@@ -35,7 +35,7 @@ El adapter COCO preexistente presupone otra exportación y fusiona anotaciones b
 
 24 imágenes, 24 anotaciones y dos meta.json: **50 archivos, 15.896.440 bytes**, verificados por tamaño y SHA256. Selección determinista: ordenar imágenes por SHA256 de `hitl-v2-pilot-42:` + ruta y tomar las primeras 24; sin escoger por clase o split.
 
-El recibo versionado `data/hitl_pilot_receipt.json` contiene URLs públicas fijadas a versión 2 y SHA256; no contiene imágenes ni anotaciones raw. El inventario completo y los metadatos de búsqueda se conservaron fuera del repo, en `../.phase2-data-discovery/`.
+El recibo versionado `data/hitl_pilot_receipt.json` contiene URLs públicas fijadas a versión 2 y SHA256; no contiene imágenes ni anotaciones raw. El inventario completo y los metadatos de búsqueda se conservaron fuera del repo, en `../project-history/phase2-data-discovery/` (reubicado 2026-10-17 desde `../.phase2-data-discovery/` durante la limpieza final del workspace; mismo contenido, fuera de ambos repos como fue diseñado).
 
 El lector `src/data/hitl_supervisely.py` valida taxonomía, existencia/decodificación de imágenes, dimensiones, polígonos y límites. No mezcla geometrías de archivos distintos; rechaza IDs ambiguos, clases desconocidas, huecos y geometrías no representables. No transforma ground truth en predicciones del especialista visual.
 

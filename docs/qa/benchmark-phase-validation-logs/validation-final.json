@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "claims": 127,
+  "conditions": {
+    "C0": 24,
+    "C1": 24,
+    "C6": 24,
+    "C7": 24,
+    "C8": 24,
+    "C9": 7
+  },
+  "claims_per_split": {
+    "test": 16,
+    "train": 89,
+    "validation": 22
+  },
+  "sources_per_split": {
+    "train": 17,
+    "validation": 4,
+    "test": 3
+  },
+  "groups_per_split": {
+    "train": 17,
+    "validation": 4,
+    "test": 3
+  },
+  "overlap": {
+    "train/validation": [],
+    "train/test": [],
+    "validation/test": []
+  },
+  "parent_claim_leakage": false,
+  "exact_image_cross_split_leakage": false,
+  "near_duplicate_cross_split_leakage": false
+}

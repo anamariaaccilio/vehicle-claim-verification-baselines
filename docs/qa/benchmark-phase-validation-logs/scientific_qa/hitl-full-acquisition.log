@@ -1,0 +1,18 @@
+{"archive_files": 7250, "archive_bytes": 3103430533, "damage_root": "Car parts dataset/", "selected_files": 1629, "selected_bytes": 554040448, "images": 814}
+100/1629 checked; errors=0
+200/1629 checked; errors=0
+300/1629 checked; errors=0
+400/1629 checked; errors=0
+500/1629 checked; errors=0
+600/1629 checked; errors=0
+700/1629 checked; errors=0
+800/1629 checked; errors=0
+900/1629 checked; errors=0
+1000/1629 checked; errors=0
+1100/1629 checked; errors=0
+1200/1629 checked; errors=0
+1300/1629 checked; errors=0
+1400/1629 checked; errors=0
+1500/1629 checked; errors=0
+1600/1629 checked; errors=0
+PASS: 1629 files; receipt /home/ana/Documentos/tesis 2/vehicle-claim-verification-baselines/data/hitl_full_receipt.json
