@@ -91,13 +91,41 @@ def paired_grouped_bootstrap_diff(
     }
 
 
+def holm_correction(p_values: Sequence[float]) -> list[float]:
+    """Correccion de Holm-Bonferroni (step-down), confirmada contra el .tex
+    real de la tesis (capitulo4.tex, "Diseno estadistico": "La correccion de
+    Holm se aplica a las tres hipotesis confirmatorias [H1, H2, H3], con
+    nivel global alpha=0.05"). Devuelve p-valores ajustados en el ORDEN
+    ORIGINAL de entrada (no en el orden ordenado internamente).
+
+    Procedimiento: ordenar p-valores ascendente; al i-esimo (1-indexado) de
+    m comparaciones se le multiplica por (m-i+1); se aplica el maximo
+    acumulado para garantizar monotonicidad; se recorta a 1.0.
+    """
+    m = len(p_values)
+    if m == 0:
+        return []
+    order = sorted(range(m), key=lambda i: p_values[i])
+    adjusted_sorted = []
+    running_max = 0.0
+    for rank, idx in enumerate(order):
+        factor = m - rank
+        value = min(1.0, p_values[idx] * factor)
+        running_max = max(running_max, value)
+        adjusted_sorted.append(running_max)
+    adjusted = [0.0] * m
+    for rank, idx in enumerate(order):
+        adjusted[idx] = adjusted_sorted[rank]
+    return adjusted
+
+
 def bonferroni_correction(p_values: Sequence[float]) -> list[float]:
     """Correccion de Bonferroni (conservadora) para comparaciones multiples.
 
-    NOTA: el metodo exacto de correccion especificado por la tesis no pudo
-    verificarse porque el .tex no esta disponible en el workspace (ver
-    PROJECT_COMPLETION_GAP.md, seccion 1). Bonferroni se usa como default
-    conservador y explicito, no como eleccion confirmada contra la tesis.
+    El .tex real de la tesis especifica Holm (ver `holm_correction`), no
+    Bonferroni, para H1/H2/H3. Esta funcion se conserva como alternativa
+    mas conservadora y de uso general (p.ej. comparaciones exploratorias
+    fuera de H1-H3), no como el metodo confirmado por la tesis.
     """
     m = len(p_values)
     return [min(1.0, p * m) for p in p_values]

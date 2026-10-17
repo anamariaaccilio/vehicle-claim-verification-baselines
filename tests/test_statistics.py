@@ -7,6 +7,7 @@ import pytest
 from src.evaluation.statistics import (
     bonferroni_correction,
     grouped_bootstrap_ci,
+    holm_correction,
     paired_grouped_bootstrap_diff,
 )
 
@@ -54,3 +55,29 @@ def test_paired_bootstrap_detects_consistent_difference():
 def test_bonferroni_correction_scales_by_number_of_tests():
     corrected = bonferroni_correction([0.01, 0.02, 0.5])
     assert corrected == [pytest.approx(0.03), pytest.approx(0.06), 1.0]
+
+
+def test_holm_correction_matches_textbook_example():
+    # Ejemplo estandar Holm (3 hipotesis, como H1/H2/H3 de la tesis):
+    # ordenados ascendente [0.01, 0.02, 0.5] -> factores [3, 2, 1] -> [0.03, 0.04, 0.5]
+    # (con monotonicidad: max acumulado en orden ascendente)
+    corrected = holm_correction([0.01, 0.02, 0.5])
+    assert corrected == [pytest.approx(0.03), pytest.approx(0.04), pytest.approx(0.5)]
+
+
+def test_holm_correction_is_never_more_conservative_than_bonferroni():
+    # Holm domina a Bonferroni: cada p-valor ajustado por Holm es <= el de Bonferroni.
+    p_values = [0.004, 0.012, 0.03, 0.04]
+    holm = holm_correction(p_values)
+    bonf = bonferroni_correction(p_values)
+    assert all(h <= b + 1e-12 for h, b in zip(holm, bonf))
+
+
+def test_holm_correction_preserves_input_order():
+    # p-valores NO ordenados de entrada; la salida debe mapear 1:1 por indice original.
+    corrected = holm_correction([0.5, 0.01, 0.02])
+    assert corrected == [pytest.approx(0.5), pytest.approx(0.03), pytest.approx(0.04)]
+
+
+def test_holm_correction_empty_input():
+    assert holm_correction([]) == []

@@ -1,8 +1,20 @@
-"""Abstencion por umbral de incertidumbre (tau_U) y/o confianza (tau_c)
-(FASE 6 / tesis seccion de abstencion). tau_U y tau_c se ajustan SOLO con
-validation, nunca con test. No se crea una cuarta clase ABSTAIN: la salida
-por muestra es siempre (prediction, abstained: bool), conservando la
-prediccion original incluso cuando se abstiene.
+"""Abstencion por umbral de incertidumbre (tau_U) y cobertura de evidencia
+(tau_c) (FASE 6 / tesis seccion de abstencion).
+
+Corregido en la pasada de consistencia de 2026-10-17 contra el .tex real de
+la tesis (capitulo2.tex, eq:abstencion): la regla es
+"y_hat = INSUFFICIENT/revision si U(x) > tau_U O c_bar(x) < tau_c" donde
+c_bar(x) es la COBERTURA AGREGADA del expediente (que tanto del campo
+relevante se observo), NO la confianza de la prediccion (max probabilidad).
+La version anterior de este modulo llamaba a esta segunda senal
+"confidence"; se renombra a "evidence_coverage" para que coincida
+exactamente con c_bar(x) de la tesis y no se confunda con max-probability
+confidence (una senal distinta que la tesis no usa aqui).
+
+tau_U y tau_c se ajustan SOLO con validation, nunca con test. No se crea
+una cuarta clase ABSTAIN: la salida por muestra es siempre
+(prediction, abstained: bool), conservando la prediccion original incluso
+cuando se abstiene.
 """
 from __future__ import annotations
 
@@ -14,28 +26,32 @@ import numpy as np
 @dataclass
 class AbstentionThresholds:
     tau_u: float | None = None  # abstiene si uncertainty > tau_u
-    tau_c: float | None = None  # abstiene si confidence < tau_c
+    tau_c: float | None = None  # abstiene si evidence_coverage (c_bar) < tau_c
 
-    def decide(self, uncertainty: np.ndarray, confidence: np.ndarray) -> np.ndarray:
+    def decide(self, uncertainty: np.ndarray, evidence_coverage: np.ndarray) -> np.ndarray:
         n = len(np.asarray(uncertainty))
         abstain = np.zeros(n, dtype=bool)
         if self.tau_u is not None:
             abstain |= np.asarray(uncertainty) > self.tau_u
         if self.tau_c is not None:
-            abstain |= np.asarray(confidence) < self.tau_c
+            abstain |= np.asarray(evidence_coverage) < self.tau_c
         return abstain
 
 
 def fit_thresholds_on_validation(
     val_uncertainty: np.ndarray,
-    val_confidence: np.ndarray,
+    val_evidence_coverage: np.ndarray,
     target_coverage: float,
 ) -> AbstentionThresholds:
     """Elige tau_u/tau_c sobre validation para retener aproximadamente
     target_coverage de las muestras (las de menor incertidumbre / mayor
-    confianza). NUNCA debe ajustarse sobre test."""
+    cobertura de evidencia c_bar). `target_coverage` es la cobertura
+    OPERATIVA del sistema (fraccion del dataset que se responde, ver
+    risk_coverage_curve); `val_evidence_coverage` es c_bar(x) por muestra
+    (cobertura de evidencia del expediente, eq:abstencion de la tesis) — no
+    confundir ambos sentidos de "cobertura". NUNCA debe ajustarse sobre test."""
     val_uncertainty = np.asarray(val_uncertainty, dtype=float)
-    val_confidence = np.asarray(val_confidence, dtype=float)
+    val_evidence_coverage = np.asarray(val_evidence_coverage, dtype=float)
     n = len(val_uncertainty)
     if n == 0:
         return AbstentionThresholds()
@@ -46,7 +62,7 @@ def fit_thresholds_on_validation(
     n_keep = max(1, int(np.ceil(target_coverage * n)))
     kept_idx = order[:n_keep]
     tau_u = float(val_uncertainty[kept_idx].max())
-    tau_c = float(val_confidence[kept_idx].min())
+    tau_c = float(val_evidence_coverage[kept_idx].min())
     return AbstentionThresholds(tau_u=tau_u, tau_c=tau_c)
 
 
@@ -73,12 +89,12 @@ def risk_coverage_curve(uncertainty: np.ndarray, correct: np.ndarray) -> dict:
 def apply_abstention(
     predictions,
     uncertainty: np.ndarray,
-    confidence: np.ndarray,
+    evidence_coverage: np.ndarray,
     thresholds: AbstentionThresholds,
 ) -> list[dict]:
     """Salida por muestra: {'prediction': ..., 'abstained': bool}. No agrega
     una clase ABSTAIN; la prediccion original siempre se conserva."""
-    abstain = thresholds.decide(uncertainty, confidence)
+    abstain = thresholds.decide(uncertainty, evidence_coverage)
     return [
         {"prediction": pred, "abstained": bool(ab)}
         for pred, ab in zip(predictions, abstain)
