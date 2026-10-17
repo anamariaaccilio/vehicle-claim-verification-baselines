@@ -29,3 +29,7 @@ Los paquetes de v3 tienen especialistas null: su grafo real tiene un nodo claim 
 ## Grabación sin instrucciones en pantalla
 
 En `/demo`, la barra de pasos, los tiempos y los botones de presentación están ocultos. Avanzar con →, retroceder con ← y salir del modo con Escape. La navegación lateral sigue disponible. Se conservan los estados QA y las limitaciones científicas. Si el servidor ya existe, `./run_demo.sh` imprime su URL y termina sin error. Tras cambios visuales, recargar con Ctrl+Shift+R.
+
+## Lectura progresiva de la demo
+
+La portada explica problema, flujo propuesto, un caso real y avance. La navegación visible se reduce a Inicio, Casos, Cómo funciona, Estado y Técnico. Auditorías, hashes, pruebas y JSON permanecen accesibles desde Técnico. La comparación B6/P1/P2 está plegada en Explorar detalles. Las etiquetas del ejemplo son experimentales, nunca predicciones.

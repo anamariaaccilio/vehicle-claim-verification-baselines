@@ -50,9 +50,23 @@ async def inspect(url):
             if await evaluate("!!document.querySelector('nav button')"): break
             await asyncio.sleep(.1)
         assert await evaluate("!!document.querySelector('nav button')"), await evaluate('document.documentElement.outerHTML')
+        await settle()
+        assert await evaluate("document.querySelectorAll('nav button').length===5")
+        assert await evaluate("document.querySelectorAll('.home-section').length===5")
+        assert await evaluate("!document.querySelector('main pre')")
+        assert await evaluate("!document.querySelector('.idea-comparison').open")
+        assert await evaluate("document.querySelector('.expected-result').innerText.includes('Etiqueta experimental')")
         await capture('01_overview')
+        for target in ['conditions','packet','technical']:
+            await evaluate("setPage('overview')")
+            await settle()
+            await evaluate(f"document.querySelector('[data-open={target}]').click()")
+            await settle()
+        await evaluate("setPage('technical')")
+        await settle()
+        assert await evaluate("document.querySelectorAll('.technical-menu button').length===7")
         for page in ['explorer','conditions','packet','leakage','repro','tests','c2','narratives','next']:
-            await evaluate(f"document.querySelector('[data-page={page}]').click()")
+            await evaluate(f"setPage('{page}')")
             await settle()
             print('PASS page', page)
         await evaluate("selected=example('C3').claim_id; setPage('explorer')")
@@ -61,6 +75,8 @@ async def inspect(url):
         for condition in range(11):
             await evaluate(f"document.querySelector('#condition').value='C{condition}';document.querySelector('#condition').dispatchEvent(new Event('input'))")
             await settle()
+            assert await evaluate(f"document.querySelector('#condition-explanation h2').innerText.startsWith('C{condition} ·')")
+            assert await evaluate("document.querySelector('#condition-explanation').innerText.includes('No es una predicción')")
         await evaluate("document.querySelector('#split').value='test';document.querySelector('#split').dispatchEvent(new Event('input'))")
         await settle()
         assert await evaluate("document.querySelector('#sample').innerText.includes('test')")

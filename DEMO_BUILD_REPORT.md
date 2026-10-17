@@ -6,7 +6,7 @@
 - `demo/benchmark/server.py`: carga de artifacts, lectura de imágenes permitidas, grafo real, regeneraciones en memoria y ejecución/lectura de pytest.
 - `demo/benchmark/index.html`, `style.css`, `app.js`: interfaz sin framework ni dependencias externas.
 - `demo/benchmark/capture_demo.py`: comprobación de navegador y capturas opcionales con herramientas ya instaladas.
-- `demo/benchmark/README.md`, `demo/screenshots/README.md`, `DEMO_VIDEO_SCRIPT.md`, este reporte.
+- `demo/benchmark/README.md`, `demo/screenshots/README.md`, este reporte.
 - `demo/benchmark/generated/`: resultados actuales XML/JSON/log de pytest y comprobación del navegador; ignorados por Git.
 - `demo/screenshots/01_overview.png` a `06_test_dashboard.png`: capturas locales ignoradas.
 - `.gitignore` actualizado solo para salidas locales de demo. Demo Streamlit preexistente preservada.
@@ -78,9 +78,9 @@ Overview; Sample explorer; Conditions; EvidencePacket & Graph; Leakage; Reproduc
 - Requiere imágenes locales y ambas carpetas hermanas. No es una aplicación desplegada ni un empaquetado de raw data.
 - Los grupos de propósito del dashboard se derivan de nombres de tests y pueden solaparse; no son nuevas métricas de calidad predictiva.
 
-## H–I. Capturas y video
+## H–I. Capturas de la demo
 
-Seis capturas locales en `demo/screenshots/`. Las cinco esenciales se detallan en su README. Guion de 85 segundos en `DEMO_VIDEO_SCRIPT.md`, con pantalla, texto, duración y afirmaciones que evitar.
+Seis capturas locales en `demo/screenshots/`. Las cinco esenciales se detallan en su README.
 
 ## J. Git
 
