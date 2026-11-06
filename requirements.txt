@@ -25,5 +25,5 @@ matplotlib>=3.8
 streamlit>=1.33
 
 # === FASE 8 (opcional): forense ===
-# TruFor: dependencias propias documentadas en src/forensic/trufor_adapter.py
+# Especialista forense pendiente: ver docs/TRAINING.md en el repo hermano uafeg.
 # No se instalan aqui automaticamente (pesos/licencia bajo demanda).
