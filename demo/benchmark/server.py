@@ -94,11 +94,11 @@ class Demo:
         self.packets = {p['claim']['claim_id']: p for p in lines(self.base / 'evidence_packets.jsonl')}
         self.audit = read(self.base / 'dataset_audit.json')
         self.sources = {s['source_image_id']: s for s in self.audit['sources']}
-        self.summary = read(ROOT / 'qa_summary.json')
-        self.pixels = {r['claim_id']: r for rows in read(ROOT / 'qa_v3_pixels.json').values() for r in rows}
+        self.summary = read(ROOT / 'data/qa/qa_summary.json')
+        self.pixels = {r['claim_id']: r for rows in read(ROOT / 'data/qa/qa_v3_pixels.json').values() for r in rows}
         self.c2 = {r['claim_id']: r for r in c2_audit(self.claims, self.sources)}
         self.v2claims = {c['claim_id']: c for c in lines(ROOT / 'data/manifests/benchmark_v2/manifest.jsonl')}
-        self.v2c2 = read(ROOT / 'qa_measurements.json')['c2']
+        self.v2c2 = read(ROOT / 'data/qa/qa_measurements.json')['c2']
         self.registry = yaml.safe_load((ROOT / 'configs/benchmark_conditions_v2.yaml').read_text())['conditions']
         self.config = yaml.safe_load((ROOT / 'configs/benchmark_v3.yaml').read_text())
         self.allowed = set()

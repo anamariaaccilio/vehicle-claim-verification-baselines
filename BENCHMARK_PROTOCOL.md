@@ -58,7 +58,7 @@ Primero se auditan bytes, píxeles RGB y dHash128 de originales. Pares exactos o
 
 Se congelaron 24 grupos: **17 train / 4 validation / 3 test**. Todos los claims de una fuente y sus padres C0 pertenecen al mismo split; 127 claims quedan **89 / 22 / 16**. La proporción es aproximada por hash, no estratificación. No se manipuló el split para balancear clases/condiciones. No hay claim_id de un expediente real multiimagen; cada claim experimental apunta a una fuente y se verifica además parent-claim/group leakage.
 
-El audit no encontró duplicados exactos ni candidatos dHash; no prueba ausencia de otras vistas del mismo vehículo. Ver DATASET_AUDIT.md y NEAR_DUPLICATE_AUDIT.md para límites y grupos completos.
+El audit no encontró duplicados exactos ni candidatos dHash; no prueba ausencia de otras vistas del mismo vehículo. Los límites y los grupos completos se regeneran con los scripts de auditoría de `scripts/`, que escriben en `reports/`.
 
 ## Artefactos canónicos y reproducción
 

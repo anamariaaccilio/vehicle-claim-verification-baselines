@@ -67,6 +67,9 @@ data/manifests/benchmark_v3/*
 !data/manifests/benchmark_v3/*.json
 !data/manifests/benchmark_v3/*.jsonl
 
+# Reportes y galerias regenerables por los scripts de auditoria
+reports/
+
 # Local demo test reports and screenshots (not scientific benchmark artifacts)
 demo/benchmark/generated/
 demo/screenshots/*.png

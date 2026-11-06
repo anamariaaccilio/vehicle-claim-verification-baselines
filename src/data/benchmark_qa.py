@@ -256,10 +256,15 @@ reader.readAsText(file)};
     target.write_text(content,encoding='utf-8')
 
 
-def run_qa(root,bundle,config,output):
+def run_qa(root,bundle,config,output,data_output=None):
+    """`output`: carpeta de reportes regenerables (auditorias .md y galeria).
+    `data_output`: carpeta de las mediciones que otros componentes leen
+    (qa_measurements.json); por defecto la misma que `output`."""
+    data_output=output if data_output is None else data_output
     claims=[json.loads(line) for line in (bundle/'manifest.jsonl').read_text().splitlines()]
     audit=json.loads((bundle/'dataset_audit.json').read_text());sources={s['source_image_id']:s for s in audit['sources']}
     output.mkdir(parents=True,exist_ok=True)
+    data_output.mkdir(parents=True,exist_ok=True)
     c2=c2_audit(claims,sources);manipulations=manipulation_audit(root,claims,sources,config);narratives=narrative_audit(claims)
     intro='# C2 semantic audit — v2\n\nHeurística descriptiva basada en clases anotadas, NO adjudicación humana.\nTodas las clases narradas anotadas en donor: likely compatible; ninguna: likely contradiction; solapamiento parcial: ambiguous.\nAusencia de anotación no prueba ausencia visual. No hay ubicación anatómica narrada; compatibilidad de ubicación UNKNOWN.\nNo se cambian labels. Umbral de similitud dHash128<=6.\n\n'
     (output/'C2_SEMANTIC_AUDIT.md').write_text(intro+str(dict(Counter(r['classification'] for r in c2)))+'\n\n'+table(c2,list(c2[0])))
@@ -278,7 +283,7 @@ def run_qa(root,bundle,config,output):
     (output/'C10_OOD_AUDIT.md').write_text('# C10 — OOD procedimental\n\nFamilia exacta: inversión RGB localizada (255-RGB) dentro del menor polígono de daño rasterizado.\nTres registros, exclusivamente test; ninguno en train/validation. DecisionLabel permanece con tres clases.\nNo se entrenó ningún modelo; esto verifica reserva de familia, no generalización empírica.\n')
     result={'c2':c2,**manipulations,'narrative':narratives,'c9':c9,'families':{k:sorted(v) for k,v in families.items()},
             'manifest_sha256':sha((bundle/'manifest.jsonl').read_bytes())}
-    (output/'qa_measurements.json').write_bytes(canonical(result))
+    (data_output/'qa_measurements.json').write_bytes(canonical(result))
     return result
 
 

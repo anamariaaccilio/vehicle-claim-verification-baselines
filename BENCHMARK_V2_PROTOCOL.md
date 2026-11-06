@@ -3,7 +3,7 @@
 ## Alcance y fuente
 
 Continuación del piloto HITL auditado: 24 imágenes, 256 anotaciones, ocho clases.
-`DATASET_AUDIT.md` y `NEAR_DUPLICATE_AUDIT.md` conservan la auditoría de fuentes.
+La auditoría de fuentes y de duplicados se regenera con los scripts de `scripts/` y se escribe en `reports/`.
 La versión nueva no amplía ni representa el dataset completo. No hay información
 personal inventada, outputs de especialistas, entrenamientos ni resultados de modelos.
 La tabla proporcionada y autorizada por el usuario sigue siendo canónica.

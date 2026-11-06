@@ -16,6 +16,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+REPORTS = ROOT / 'reports'      # salida regenerable, fuera de git (ver .gitignore)
+DATA_QA = ROOT / 'data/qa'      # mediciones ya calculadas que este script reutiliza
 sys.path.insert(0, str(ROOT))
 
 from src.data.benchmark_qa import build_audit_index, c2_audit, gallery  # noqa: E402
@@ -37,7 +39,7 @@ def main() -> int:
     audit = json.loads((bundle / "dataset_audit.json").read_text())
     sources = {s["source_image_id"]: s for s in audit["sources"]}
     claim_by_id = {c["claim_id"]: c for c in claims}
-    pixel_rows = json.loads((ROOT / "qa_v3_pixels.json").read_text())
+    pixel_rows = json.loads((DATA_QA / "qa_v3_pixels.json").read_text())
     c2_rows = c2_audit(claims, sources)
     audit_index = build_audit_index(c2_rows, pixel_rows)
 
@@ -119,7 +121,7 @@ def main() -> int:
         "humana.</p></section>"
     )
 
-    gallery(ROOT, ordered, sources, ROOT / "benchmark_v3_review_sample.html", audit_index=audit_index, extra_intro=intro)
+    gallery(ROOT, ordered, sources, REPORTS / "benchmark_v3_review_sample.html", audit_index=audit_index, extra_intro=intro)
 
     print(json.dumps({
         "total_claims_v3": len(claims),
@@ -130,7 +132,7 @@ def main() -> int:
             "possible_boundary_artifact_flag": len(boundary_artifacts),
             "too_similar_flag_c2": len(too_similar),
         },
-        "output": "benchmark_v3_review_sample.html",
+        "output": "reports/benchmark_v3_review_sample.html",
     }, indent=2, ensure_ascii=False))
     return 0
 
