@@ -148,13 +148,46 @@ def table(rows,keys):
     return '| '+' | '.join(keys)+' |\n| '+' | '.join('---' for _ in keys)+' |\n'+'\n'.join('| '+' | '.join(str(row.get(key,'')).replace('|','/').replace('\n',' ') for key in keys)+' |' for row in rows)+'\n'
 
 
-def gallery(root,claims,sources,target):
+_REASON_OPTIONS=[
+    ('C2_sustitucion_identificable','C2: sustitución identificable (clases/contexto no compatibles)'),
+    ('C2_compatible','C2: compatible con el relato, no concluyente por sí solo'),
+    ('C2_no_identificable','C2: no identificable solo con imagen y texto disponibles'),
+    ('C345_integra_cumple','C3/C4/C5: edición íntegra y cumple la transformación prevista'),
+    ('C345_cumple_no_realista','C3/C4/C5: cumple la transformación pero no resulta realista'),
+    ('C345_no_verificable','C3/C4/C5: no se puede verificar la edición o la máscara'),
+    ('otro','Otro (detallar en observaciones)'),
+]
+"""Motivos propuestos para discusión con la asesora; no son automáticos ni
+obligatorios. El revisor puede dejarlo vacío y usar solo observaciones."""
+
+
+def build_audit_index(c2_rows=(),pixel_rows_by_condition=None):
+    """claim_id -> señales automáticas (alertas de QA), nunca juicio de validez.
+    c2_rows: salida de c2_audit. pixel_rows_by_condition: {'C3':[...],'C4':[...],'C5':[...]}
+    (p.ej. cargado de qa_v3_pixels.json ya calculado, sin recomputar sobre imágenes)."""
+    index={}
+    for row in c2_rows: index[row['claim_id']]=row
+    for rows in (pixel_rows_by_condition or {}).values():
+        for row in rows: index[row['claim_id']]=row
+    return index
+
+
+def gallery(root,claims,sources,target,audit_index=None,extra_intro=''):
+    audit_index=audit_index or {}
     def img(label,path):
         if path is None: return f'<figure><figcaption>{label}</figcaption><p>MODALIDAD AUSENTE</p></figure>'
         full=(root/path).resolve()
         if not full.is_file(): raise ValueError(f'Missing gallery asset: {path}')
         url=quote(os.path.relpath(full,target.parent).replace(os.sep,'/'),safe='/')
         return f'<figure><figcaption>{label}</figcaption><a href="{url}" target="_blank"><img loading="lazy" src="{url}" alt="{label}"></a></figure>'
+    def audit_block(claim_id):
+        flags=audit_index.get(claim_id)
+        if not flags: return ''
+        skip={'claim_id','source_image_id'}
+        rows=''.join(f'<tr><td>{html.escape(str(k))}</td><td>{html.escape(str(v))}</td></tr>' for k,v in flags.items() if k not in skip)
+        return (f'<details class="audit"><summary>Señales automáticas de QA (alertas, no deciden validez)</summary>'
+                f'<table class="audit-flags">{rows}</table>'
+                f'<p class="warn">No decidir únicamente por el porcentaje de área modificada.</p></details>')
     cards=[]
     for c in claims:
         source=sources[c['source_image_id']];p=c['transformation']['parameters'];donors=c['transformation']['donor_source_image_ids']
@@ -162,38 +195,64 @@ def gallery(root,claims,sources,target):
         for donor in donors: pictures+=img('Donante '+html.escape(donor),sources[donor]['image_path'])
         if p.get('mask_path'): pictures+=img('Máscara de transformación',p['mask_path'])
         detail={key:c[key] for key in ('claim_id','source_image_id','condition','expected_label','narrative_text')}
-        detail.update(donor_source_image_ids=donors,transformation=c['transformation'])
-        identifier=html.escape(c['claim_id'])
-        cards.append(f'''<article data-condition="{c['condition']}" data-id="{identifier}" data-source="{html.escape(c['source_image_id'])}">
-<h2>{c['condition']} · {html.escape(c['expected_label'])}</h2><p>{identifier} · {html.escape(c['source_image_id'])}</p>
+        detail.update(split=c.get('split','unknown'),donor_source_image_ids=donors,transformation=c['transformation'])
+        identifier=html.escape(c['claim_id']);split=html.escape(str(c.get('split','unknown')))
+        reason_options=''.join(f'<option value="{value}">{html.escape(text)}</option>' for value,text in _REASON_OPTIONS)
+        cards.append(f'''<article data-condition="{c['condition']}" data-id="{identifier}" data-source="{html.escape(c['source_image_id'])}" data-split="{split}">
+<h2>{c['condition']} <span class="split-badge">{split}</span></h2><p>{identifier} · {html.escape(c['source_image_id'])}</p>
 <p class="narrative">{html.escape(c['narrative_text'] or 'NARRATIVA AUSENTE')}</p><div class="images">{pictures}</div>
+{audit_block(c['claim_id'])}
+<details class="label-reveal"><summary>Mostrar etiqueta objetivo (abrir solo después de decidir)</summary><p>expected_label: <strong>{html.escape(c['expected_label'])}</strong></p></details>
 <details><summary>Procedencia, parámetros y seed</summary><pre>{html.escape(json.dumps(detail,ensure_ascii=False,indent=2))}</pre></details>
-<label>Revisión humana: <select class="review"><option>PENDIENTE</option><option>ACEPTABLE</option><option>REVISAR</option><option>RECHAZAR</option></select></label>
-<input class="note" placeholder="Motivo / observación" aria-label="Observación humana"></article>''')
+<fieldset class="review-panel"><label>Revisión: <select class="review">
+<option value="PENDIENTE">PENDIENTE DE REVISIÓN</option><option value="VALIDO">VÁLIDO</option><option value="AMBIGUO">AMBIGUO</option><option value="INVALIDO">INVÁLIDO</option>
+</select></label>
+<label>Motivo: <select class="reason"><option value="">(elegir)</option>{reason_options}</select></label>
+<label class="obs">Observaciones: <input class="note" placeholder="Observación adicional" aria-label="Observación humana"></label>
+</fieldset></article>''')
     content='''<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Benchmark — QA humana local</title><style>
 body{font:16px system-ui;background:#f2f4f8;color:#17233a;margin:0}header{position:sticky;top:0;background:#17233a;color:white;padding:14px;z-index:2}
 main{max-width:1500px;margin:auto;padding:16px}article{background:white;border:1px solid #ccd3df;padding:18px;margin:20px 0;border-radius:10px}
 .images{display:flex;flex-wrap:wrap;gap:12px}.images figure{flex:1;min-width:270px;margin:0}.images img{width:100%;height:340px;object-fit:contain;background:#e8e8e8}
-figcaption{font-weight:bold;padding:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere}input,select,button{font:inherit;padding:8px;margin:5px}.note{width:65%}.narrative{font-size:1.15em}article[hidden]{display:none}
+figcaption{font-weight:bold;padding:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere}input,select,button{font:inherit;padding:8px;margin:5px}
+.note{width:60%}.narrative{font-size:1.15em}article[hidden]{display:none}.split-badge{font-size:.6em;background:#e8e8e8;color:#17233a;border-radius:6px;padding:2px 8px;vertical-align:middle}
+table.audit-flags{border-collapse:collapse;width:100%}table.audit-flags td{border:1px solid #ccd3df;padding:4px 8px;font-size:.9em}
+.warn{color:#8a4b00;font-weight:bold}.review-panel{border:1px solid #ccd3df;border-radius:8px;padding:10px;margin-top:10px}
 </style><header><strong>QA humana · generación ≠ realismo validado</strong>
-<select id="condition"><option value="">Todas</option>'''+''.join(f'<option>C{i}</option>' for i in range(11))+'''</select>
-<input id="search" placeholder="Buscar claim / source"><button id="export">Exportar revisión JSON</button><span id="count"></span></header>
+<select id="condition"><option value="">Todas las condiciones</option>'''+''.join(f'<option>C{i}</option>' for i in range(11))+'''</select>
+<select id="status"><option value="">Todos los estados</option><option value="PENDIENTE">Pendiente</option><option value="VALIDO">Válido</option><option value="AMBIGUO">Ambiguo</option><option value="INVALIDO">Inválido</option></select>
+<input id="search" placeholder="Buscar claim / source">
+<button id="export">Exportar revisión JSON</button>
+<label style="color:inherit">Importar: <input id="import" type="file" accept="application/json"></label>
+<span id="count"></span></header>
 <main><p>Comparación original / imagen presentada, donante y máscara. Haga clic en una imagen para inspeccionarla a resolución completa.
-Las selecciones se guardan en este navegador y se exportan manualmente; no cambian labels ni constituyen adjudicación automática.</p>'''+''.join(cards)+'''</main><script>
+Las selecciones se guardan en este navegador y se exportan/importan manualmente como archivo JSON; nunca modifican el manifest original ni cambian labels.
+La etiqueta objetivo permanece oculta por defecto: ábrala solo después de registrar su juicio si quiere evitar sesgo de confirmación.</p>'''+extra_intro+''.join(cards)+'''</main><script>
 const cards=[...document.querySelectorAll('article')], key='uafeg-qa-'+location.pathname;
 let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
-for(const c of cards){let r=c.querySelector('.review'),n=c.querySelector('.note');r.value=saved[c.dataset.id]?.status||'PENDIENTE';n.value=saved[c.dataset.id]?.note||'';
-for(const el of [r,n])el.addEventListener('change',()=>{saved[c.dataset.id]={status:r.value,note:n.value};try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}})}
-function filter(){let n=0;for(const c of cards){c.hidden=!!((condition.value&&c.dataset.condition!==condition.value)||(search.value&&!c.textContent.toLowerCase().includes(search.value.toLowerCase())));if(!c.hidden)n++}document.querySelector('#count').textContent=n+' reclamos'}
-const condition=document.querySelector('#condition'),search=document.querySelector('#search');condition.onchange=filter;search.oninput=filter;filter();
-document.querySelector('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({gallery:location.pathname,reviews:saved},null,2)],{type:'application/json'}));a.download='human_qa_reviews.json';a.click();URL.revokeObjectURL(a.href)};
+function persist(){try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}}
+function applyReview(id,entry){const c=cards.find(x=>x.dataset.id===id);if(!c)return;const r=c.querySelector('.review'),m=c.querySelector('.reason'),n=c.querySelector('.note');
+r.value=entry?.status||'PENDIENTE';m.value=entry?.reason||'';n.value=entry?.note||''}
+for(const c of cards){const r=c.querySelector('.review'),m=c.querySelector('.reason'),n=c.querySelector('.note');
+applyReview(c.dataset.id,saved[c.dataset.id]);
+for(const el of [r,m,n])el.addEventListener('change',()=>{saved[c.dataset.id]={status:r.value,reason:m.value,note:n.value};persist()})}
+function filter(){let n=0;for(const c of cards){const st=(saved[c.dataset.id]?.status)||'PENDIENTE';
+c.hidden=!!((condition.value&&c.dataset.condition!==condition.value)||(status.value&&st!==status.value)||(search.value&&!c.textContent.toLowerCase().includes(search.value.toLowerCase())));
+if(!c.hidden)n++}document.querySelector('#count').textContent=n+' reclamos'}
+const condition=document.querySelector('#condition'),status=document.querySelector('#status'),search=document.querySelector('#search');
+condition.onchange=filter;status.onchange=filter;search.oninput=filter;filter();
+document.querySelector('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({gallery:location.pathname,manifest_sha256:manifestDigest,reviews:saved},null,2)],{type:'application/json'}));a.download='human_qa_reviews.json';a.click();URL.revokeObjectURL(a.href)};
+document.querySelector('#import').onchange=(ev)=>{const file=ev.target.files[0];if(!file)return;const reader=new FileReader();
+reader.onload=()=>{let data;try{data=JSON.parse(reader.result)}catch(e){alert('JSON inválido');return}
+if(data.manifest_sha256&&data.manifest_sha256!==manifestDigest){alert('El archivo importado corresponde a otra selección/manifest (SHA256 distinto). No se importó nada.');return}
+for(const [id,entry] of Object.entries(data.reviews||{})){saved[id]=entry;applyReview(id,entry)}persist();filter();alert('Revisión importada: '+Object.keys(data.reviews||{}).length+' casos.')};
+reader.readAsText(file)};
 </script></html>'''
     digest=sha(b''.join(canonical(c) for c in claims))
     content=content.replace('<main><p>',f'<main><p>Manifest/selección SHA256: <code>{digest}</code></p><p>',1)
     content=content.replace('const cards=',f'const manifestDigest={json.dumps(digest)};\nconst cards=',1)
     content=content.replace("key='uafeg-qa-'+location.pathname;","key='uafeg-qa-'+location.pathname+'-'+manifestDigest;")
-    content=content.replace('{gallery:location.pathname,reviews:saved}','{gallery:location.pathname,manifest_sha256:manifestDigest,reviews:saved}')
     target.write_text(content,encoding='utf-8')
 
 
