@@ -21,3 +21,6 @@ class EvidencePacket(BaseModel):
     visual: VisualEvidence | None = None
     image_quality: ImageQuality | None = None
     forensic: ForensicResult | None = None
+    provenance: dict | None = None
+    """Procedencia de las salidas de especialistas (modelo, hash de checkpoint,
+    semilla, hash de imagen/texto). Nunca contiene etiquetas ni condicion."""

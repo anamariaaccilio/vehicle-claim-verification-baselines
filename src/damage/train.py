@@ -44,6 +44,8 @@ def build_yolo_seg_dataset(
     records: list[SourceImage],
     output_dir: str | Path,
     class_names: list[str] = CANONICAL_DAMAGE_CLASSES,
+    link_images: bool = False,
+    splits: tuple[str, ...] | None = None,
 ) -> Path:
     """Convierte un manifest interno (SourceImage con anotaciones
     poligonales) al layout que espera Ultralytics YOLO para segmentacion:
@@ -72,6 +74,8 @@ def build_yolo_seg_dataset(
             continue
 
         split_name = record.split.value
+        if splits is not None and split_name not in splits:
+            continue
         img_path = Path(record.path)
 
         with Image.open(img_path) as im:
@@ -95,7 +99,10 @@ def build_yolo_seg_dataset(
 
         dest_image = images_dir / img_path.name
         if not dest_image.exists():
-            shutil.copy2(img_path, dest_image)
+            if link_images:  # symlink: same bytes, no extra disk
+                dest_image.symlink_to(img_path.resolve())
+            else:
+                shutil.copy2(img_path, dest_image)
 
         label_path = labels_dir / (img_path.stem + ".txt")
         label_path.write_text("\n".join(lines), encoding="utf-8")
@@ -105,7 +112,7 @@ def build_yolo_seg_dataset(
         "path": str(output_dir.resolve()),
         "train": "images/train",
         "val": "images/validation",
-        "test": "images/test",
+        **({"test": "images/test"} if splits is None or "test" in splits else {}),
         "names": {i: name for i, name in enumerate(class_names)},
     }
     data_yaml_path = output_dir / "data.yaml"

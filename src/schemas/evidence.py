@@ -60,12 +60,26 @@ class Polygon(BaseModel):
 
 
 class DamageAnnotation(BaseModel):
-    """Una anotacion (ground-truth o prediccion) de danio sobre una imagen."""
+    """Una anotacion (ground-truth o prediccion) de danio sobre una imagen.
+
+    Campos opcionales del EvidencePacket de la tesis (e = z,p,u,r,q,c,l,s),
+    solo para predicciones del especialista visual: ``uncertainty`` (u),
+    ``reliability`` (r, medida en validacion), ``region_quality`` (q de la
+    region: resolucion efectiva x nitidez x exposicion), ``coverage`` (c) y
+    ``mask_64x48`` (l, mascara reducida empaquetada en bits, base64)."""
 
     damage_class: str
     confidence: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     bbox: Optional[BoundingBox] = None
     polygon: Optional[Polygon] = None
+    bbox_norm: Optional[tuple[float, float, float, float]] = None
+    area_fraction: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    uncertainty: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    reliability: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    region_quality: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    region_quality_factors: Optional[dict[str, float]] = None
+    coverage: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    mask_64x48: Optional[str] = None
 
     @field_validator("damage_class")
     @classmethod
@@ -88,6 +102,12 @@ class ImageQuality(BaseModel):
     file_format: str
     laplacian_variance: Optional[float] = None
     is_corrupted: bool = False
+    # Calidad de fuente de la tesis: q = resolucion x nitidez x exposicion, y s
+    # (origen/EXIF). s es None cuando no es observable (p. ej. sin EXIF).
+    quality_q: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    quality_factors: Optional[dict[str, float]] = None
+    source_s: Optional[float] = None
+    source_s_status: Optional[str] = None
 
 
 class ForensicResult(BaseModel):
@@ -101,6 +121,32 @@ class ForensicResult(BaseModel):
     score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     reliability: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     is_diagnostic_heuristic: bool = False
+    status: Optional[str] = None
+    """Estado explicito cuando available=False (p. ej. NOT_RUN y su razon)."""
+    uncertainty: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    localization_area: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    mask_64x48: Optional[str] = None
+
+
+class NarrativeAssertion(BaseModel):
+    """Una afirmacion del relato (nodo claim de la tesis). p = (entail,
+    neutral, contradiction) de la hipotesis de su tipo de dano; u = H(p)/log3;
+    coverage = campos de la ontologia llenados / 4; reliability = r medida en
+    validacion para su tipo de dano. class_nli guarda las 3 probabilidades NLI
+    de la oracion frente a cada una de las 8 hipotesis (atributos de arista)."""
+
+    text: str
+    damage_type: str
+    polarity: str
+    p: tuple[float, float, float]
+    u: float = Field(ge=0.0, le=1.0)
+    coverage: float = Field(ge=0.0, le=1.0)
+    part: Optional[str] = None
+    severity: Optional[str] = None
+    circumstance: Optional[str] = None
+    missing_fields: list[str] = Field(default_factory=list)
+    class_nli: dict[str, tuple[float, float, float]] = Field(default_factory=dict)
+    reliability: Optional[float] = Field(default=None, ge=0.0, le=1.0)
 
 
 class NarrativeEvidence(BaseModel):
@@ -111,6 +157,7 @@ class NarrativeEvidence(BaseModel):
     model_name: str
     model_revision: Optional[str] = None
     device: str
+    assertions: Optional[list[NarrativeAssertion]] = None
 
 
 class VisualEvidence(BaseModel):

@@ -1,0 +1,43 @@
+{
+ "READY_FOR_MODELS": "YES",
+ "approved_by": "asesora (aprobado por la asesora)",
+ "artifacts_sha256": {
+  "exclusions.json": "2888e344de0c2f8bbce6c46bd1370b308c28fb3370e8a549c642fc2210d46583",
+  "exclusions_criteria.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+  "manifest.jsonl": "378e1cdd698cb417720637adcd7da2d85a060a884c73fa3f67755e066f465588",
+  "metadata.json": "ae00f4bb0084e16925d0802920f22a25d39a71fa9d30bbe8998f6e3e43366153",
+  "splits.json": "b15029098e71d4834d6ca0ea0360a34a43819593928f8728ef40efc7ef8873f8",
+  "validity_criteria.json": "7fa4bcc646bd7a234dabfd3c9575e942ae6f6fc684d361d4c3367d10cc232274"
+ },
+ "benchmark_version": "0.3.0",
+ "frozen_on": "2026-11-13",
+ "historical_versions": {
+  "0.2.0": "historical, kept reproducible, no longer official"
+ },
+ "limitations": [
+  "QA del diseno del benchmark miro tambien test: test no es completamente ciego.",
+  "Realismo de C3/C4/C5 no revisado por humanos (human_realism_review = NOT PERFORMED).",
+  "AMBIGUOUS se conservan y se marcan para analisis de sensibilidad (con y sin ellos)."
+ ],
+ "n_ambiguous_flagged": 552,
+ "n_excluded_invalid": 0,
+ "official": true,
+ "validity_summary": {
+  "C2": {
+   "AMBIGUOUS": 510,
+   "VALID": 297
+  },
+  "C3": {
+   "AMBIGUOUS": 1,
+   "VALID": 806
+  },
+  "C4": {
+   "AMBIGUOUS": 40,
+   "VALID": 767
+  },
+  "C5": {
+   "AMBIGUOUS": 1,
+   "VALID": 806
+  }
+ }
+}
