@@ -1,0 +1,21 @@
+{
+ "id": "anamaria203/uafeg-visual-infer-11m",
+ "title": "uafeg-visual-infer-11m",
+ "code_file": "visual_infer.py",
+ "language": "python",
+ "kernel_type": "script",
+ "is_private": true,
+ "enable_gpu": true,
+ "enable_internet": true,
+ "dataset_sources": [
+  "anamaria203/uafeg-v3-code",
+  "humansintheloop/car-parts-and-car-damages",
+  "anamaria203/uafeg-v3-variants-a",
+  "anamaria203/uafeg-v3-variants-b"
+ ],
+ "competition_sources": [],
+ "kernel_sources": [
+  "anamaria203/uafeg-yolo-train-11m"
+ ],
+ "machine_shape": "NvidiaTeslaT4"
+}

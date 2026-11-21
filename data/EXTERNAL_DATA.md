@@ -31,6 +31,8 @@ coincidieron; ver `artifacts/damage/yolo_record.json`, campo `hitl_sha_mismatch 
 | Modelo | Uso | Licencia | Cita |
 |---|---|---|---|
 | `yolov8n-seg.pt` (Ultralytics 8.4.155) | base del especialista visual | AGPL-3.0 | Jocher, G. et al., Ultralytics YOLOv8, 2023 |
+| `yolo11m-seg.pt` (Ultralytics 8.4.155) | base del detector post hoc (Parte 1, análisis adicional) | AGPL-3.0 | Jocher, G. y Qiu, J., Ultralytics YOLO11, 2024 |
+| `yolov8m-seg.pt` (Ultralytics 8.4.155) | base del detector post hoc (Parte 1, en cola en Kaggle) | AGPL-3.0 | Jocher, G. et al., Ultralytics YOLOv8, 2023 |
 | TruFor `trufor.pth.tar` (GRIP-UNINA) | especialista forense, solo inferencia | licencia de investigación sin fines de lucro | Guillaro, F. et al., "TruFor: Leveraging all-round clues for trustworthy image forgery detection and localization", CVPR 2023 |
 | `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli` | especialista narrativo (NLI) | MIT | Laurer, M. et al., 2022; He, P. et al., DeBERTaV3, 2021 |
 | `Qwen/Qwen2-VL-2B-Instruct` | B8 (MLLM congelado, zero-shot) | Apache-2.0 | Wang, P. et al., "Qwen2-VL", arXiv:2409.12191, 2024 |
