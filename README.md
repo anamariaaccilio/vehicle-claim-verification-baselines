@@ -108,6 +108,37 @@ Los scripts de los kernels de Kaggle están en `scripts/kaggle/` (las credencial
 se leen de la variable de entorno `KAGGLE_API_TOKEN`). Los datos externos y las licencias de los
 modelos están registrados en [data/EXTERNAL_DATA.md](data/EXTERNAL_DATA.md).
 
+## Resultados
+
+Las cifras finales de la tesis se calcularon en el repositorio `uafeg` (test evaluado una sola vez); estas figuras
+son copias de `uafeg/presentacion/figuras/`, donde están también en SVG con su explicación (`LEEME.md`).
+
+![Especialistas](docs/figuras/14_especialistas.png)
+
+![Comparación general](docs/figuras/02_comparacion_general.png)
+
+![Hipótesis](docs/figuras/03_hipotesis_forest.png)
+
+En pocas palabras:
+- **UAFEG (G1) no supera a la fusión tardía calibrada B5**: PR-AUC de Suspicious 0.851 frente a 0.878, H1
+  rechazada.
+- **La compuerta no mejora la calibración**: H2 rechazada.
+- **El forense sí aporta**: H3 aceptada, +0.062.
+- **El especialista visual es el más débil de los tres.** Aun así, un análisis post hoc en `uafeg` muestra que
+  mejorar solo la parte visual no cierra la brecha.
+
+## Aportes de este repositorio
+
+- **Benchmark v3 congelado**: 9 275 reclamos sobre 807 fotos reales, con 11 condiciones controladas, split por
+  fuente sin fugas e imágenes verificadas por SHA-256.
+- **Contratos de datos** (`EvidencePacket`) que comparten todos los sistemas, más métricas y estadística comunes.
+- **Especialistas reales y medidos**:
+  - narrativo: NLI por afirmación;
+  - visual: YOLOv8n-seg en Kaggle GPU, con validación externa en CarDD;
+  - forense: TruFor;
+  - calidad de imagen;
+  - confiabilidad r medida en validación.
+
 ## Limitaciones honestas
 
 - Los reclamos son escenarios controlados sobre imágenes reales, no expedientes de una aseguradora.
@@ -115,8 +146,9 @@ modelos están registrados en [data/EXTERNAL_DATA.md](data/EXTERNAL_DATA.md).
 - C3 y C5 comparten exactamente las mismas imágenes editadas; C3 y casi todo C4 modifican menos del 0.5 % del área.
 - El test no es completamente ciego: se miró al diseñar la QA del benchmark.
 - Narrativo: el tipo de daño exacto acierta la mitad de las veces; se usa la familia de la ontología para medir r.
+- TruFor casi no distingue el inpainting de daño (AUROC 0.544 en C4), y no se reentrena.
 
-## Cómo correrlo
+## Cómo reproducir
 
 ```bash
 python3.11 -m venv .venv
