@@ -181,4 +181,17 @@ Los scripts de auditoría escriben en `reports/`, que está fuera de git porque 
 | `demo/` | Demo local del benchmark |
 | `tests/` | Pruebas de contrato, datos y controles anti-fuga |
 
+### Scripts
+
+| Script | Para qué |
+|---|---|
+| `fetch_hitl_pilot.py`, `prepare_hitl_pilot.py`, `fetch_hitl_full.py` | Descarga y preparación de las fotos HITL (con recibos SHA-256 en `data/`) |
+| `build_claim_benchmark.py`, `build_benchmark_v2.py`, `build_benchmark_v3.py` | Construcción de las versiones del benchmark (v3 es la oficial) |
+| `apply_v3_validity_criteria.py`, `check_splits.py` | Criterios de validez C2–C5 y control de fugas entre particiones |
+| `audit_benchmark_v2.py`, `audit_benchmark_v3_pixels.py`, `summarize_benchmark_qa.py`, `build_review_sample.py` | QA medida (salida en `reports/` y `data/qa/`) y muestra para revisión humana del benchmark |
+| `prepare_damage_specialist_data.py`, `train_damage_specialist.py` | Datos y entrenamiento local del especialista visual (el final se entrenó en Kaggle) |
+| `run_specialists.py`, `build_evidence_packets.py` | Especialistas, confiabilidad r y `EvidencePacket` |
+| `create_demo_variants.py` | Variantes de la demo |
+| `kaggle/` | Kernels de Kaggle (YOLO v1/v2 y yolo11m post hoc, inferencia visual, TruFor, B8) y empaquetado de datos (`stage_code.py`, `stage_variants.py`) |
+
 Los protocolos que fijan reglas y no se regeneran están en la raíz: [el contrato experimental](EXPERIMENTAL_PROTOCOL.md), [el diseño estadístico](STATISTICAL_EVALUATION_PROTOCOL.md) y los protocolos de construcción del benchmark ([general](BENCHMARK_PROTOCOL.md) y [v2](BENCHMARK_V2_PROTOCOL.md)).

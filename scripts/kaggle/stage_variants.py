@@ -1,6 +1,6 @@
 import json, sys, tarfile, os
 from pathlib import Path
-ROOT = Path("/home/ana/Documentos/tesis 2/vehicle-claim-verification-baselines")
+ROOT = Path(__file__).resolve().parents[2]
 group, out = sys.argv[1], Path(sys.argv[2])
 rows = [json.loads(l) for l in open(ROOT / "data/manifests/benchmark_v3/manifest.jsonl")]
 seen = {}

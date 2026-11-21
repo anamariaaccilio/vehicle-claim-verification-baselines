@@ -1,7 +1,7 @@
 """Stage small code/label bundle for Kaggle kernels (no images)."""
 import json, sys, tarfile, hashlib, os, shutil
 from pathlib import Path
-ROOT = Path("/home/ana/Documentos/tesis 2/vehicle-claim-verification-baselines")
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 OUT = Path(sys.argv[1])
 from src.data.manifest import load_manifest
