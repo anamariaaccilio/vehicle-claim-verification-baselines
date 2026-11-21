@@ -18,13 +18,14 @@ flowchart TD
     F --> E
     E --> G[Grafo de evidencia con relaciones]
     G --> GT[Compuerta de confiabilidad g]
-    GT --> A[Atención GATv2 y clasificación]
+    GT --> A[Agregador interpretable de evidencia y clasificador liviano]
     A --> C[Calibración por temperatura]
     C --> AB[Decisión o abstención]
     AB --> EV[Evaluación e hipótesis]
+    AB --> HR[Reporte de verificación humana]
 ```
 
-Cada especialista describe lo que observa y el resultado se guarda en un `EvidencePacket`. La compuerta reduce el peso de las observaciones poco confiables antes de que el grafo propague mensajes. La calibración y los umbrales de abstención se ajustan solo en validación.
+Cada especialista describe lo que observa y el resultado se guarda en un `EvidencePacket`. La compuerta reduce el peso de las observaciones poco confiables; el agregador (repo `uafeg`) suma apoyo, contradicción y evidencia forense ponderados por g. La capa GATv2 quedó **fuera del alcance final** (2026-11-20). La calibración y los umbrales de abstención se ajustan solo en validación.
 
 ## Cómo se reparten los dos repositorios
 
@@ -58,7 +59,7 @@ Sobre cada fuente se generan escenarios controlados. **No son expedientes reales
 
 C10 no es una cuarta clase de entrenamiento: se reserva para medir comportamiento fuera de distribución y se reporta aparte.
 
-Hay dos versiones. **v2 está congelada** (226 reclamos sobre 24 fuentes) y es la que fija el lock. **v3 es candidata** (9.275 reclamos sobre las 807 fuentes) y sigue pendiente de validación: `READY_FOR_MODELS = NO`.
+**v3 es la versión oficial y está congelada** (9.275 reclamos sobre las 807 fuentes; `READY_FOR_MODELS = YES`, criterios de validez C2–C5 aplicados: 552 reclamos AMBIGUOS conservados y analizados con y sin ellos). v2 (226 reclamos) queda como histórica.
 
 Las auditorías comprueban tres cosas antes de permitir entrenar:
 
@@ -70,50 +71,50 @@ Dos limitaciones honestas: muchas manipulaciones son muy pequeñas en proporció
 
 ## Componentes y métodos
 
-| Componente | Método | Referencia | Estado |
+| Componente | Método | Referencia | Estado (2026-11-21) |
 |---|---|---|---|
-| Especialista narrativo | Inferencia textual (NLI) multilingüe sobre el relato | sin cita en el `.tex` | Implementado |
-| Especialista visual | Segmentación de daño con YOLO-seg | sin cita en el `.tex` | Implementado, sin checkpoint entrenado |
-| Dataset de referencia para daño vehicular | CarDD | Wang, Li y Wu, *CarDD: A New Dataset for Vision-Based Car Damage Detection*, IEEE T-ITS 24(7):7202–7214, 2023 | Referencia de diseño |
-| Fuente de imágenes usada | Car Parts and Car Damages | Humans in the Loop, 2026, CC0 1.0 | En uso |
-| Especialista forense | TruFor (localización y score de manipulación) | Guillaro, Cozzolino, Sud, Dufour y Verdoliva, CVPR 2023, pp. 20606–20615 | Pendiente de implementar |
-| Calidad de imagen | Varianza Laplaciana y comprobación de corrupción | — | Implementado. No detecta manipulación |
-| Comparador sin grafo | DeepSets | Zaheer, Kottur, Ravanbakhsh, Poczos, Salakhutdinov y Smola, NeurIPS 30, 2017 | Implementado, sin entrenar |
-| Atención sobre el grafo | GATv2 | Brody, Alon y Yahav, *How Attentive are Graph Attention Networks?*, ICLR 2022 | Implementado, sin entrenar |
-| Fusión multimodal con incertidumbre | Discounted Belief Fusion | Bezirganyan, Sellami, Berti-Equille y Fournier, AISTATS 2025, PMLR 258:3142–3150 | Referencia de diseño de la compuerta |
-| Calibración | Temperature scaling | Guo, Pleiss, Sun y Weinberger, ICML 2017, PMLR 70:1321–1330 | Implementado, no aplicado a datos reales |
-| Abstención | Clasificación selectiva, riesgo-cobertura y AURC | Geifman y El-Yaniv, NeurIPS 30, 2017, pp. 4878–4887 | Implementado, no aplicado a datos reales |
-| Intervalos de confianza | Bootstrap agrupado por `source_image_id`, 2.000 a 5.000 réplicas | descrito en el `.tex`, sin cita bibliográfica | Implementado, no ejecutado |
-| Comparaciones múltiples | Corrección de Holm, α global de 0,05 sobre H1, H2 y H3 | descrito en el `.tex`, sin cita bibliográfica | Implementado, no ejecutado |
+| Especialista narrativo | NLI por afirmación, `MoritzLaurer/mDeBERTa-v3-base-mnli-xnli` (no se reentrena) | Laurer et al., 2022; He et al., 2021 | Ejecutado sobre los 960 relatos distintos |
+| Especialista visual | YOLOv8n-seg ajustado en HITL train (val para early stopping), Kaggle GPU T4 | Jocher et al., Ultralytics, 2023 | Entrenado; inferencia sobre las 5 240 imágenes |
+| Validación externa visual | CarDD (espejo Kaggle CC BY-NC 4.0, solo cajas) | Wang, Li y Wu, IEEE T-ITS 2023 | Evaluado (mAP de caja); mAP de máscara NOT_RUN |
+| Especialista forense | TruFor, pesos oficiales, `weights_only=True`, resolución nativa, Kaggle GPU | Guillaro et al., CVPR 2023 | Ejecutado sobre las 5 240 imágenes |
+| Calidad de imagen | resolución × nitidez Laplaciana × exposición | — | Ejecutado |
+| Confiabilidad r | medida en validación por especialista (`data/specialists/reliability_v3.json`) | — | Medida |
+| B8 | Qwen2-VL-2B-Instruct congelado, zero-shot, Kaggle GPU | Wang et al., 2024 | Ejecutado (val y test) |
+| Comparador sin grafo | DeepSets | Zaheer et al., NeurIPS 2017 | Entrenado (repo uafeg) |
+| Atención sobre el grafo | GATv2 | Brody, Alon y Yahav, ICLR 2022 | **Fuera del alcance final**: no se entrena ni evalúa |
+| Calibración, abstención, bootstrap, Holm | temperature scaling; riesgo-cobertura/AURC; bootstrap agrupado; Holm | Guo et al., 2017; Geifman y El-Yaniv, 2017; Holm, 1979 | Aplicados en la evaluación final (repo uafeg) |
 
-Las referencias salen del archivo `referencias.bib` de la tesis. Donde el `.tex` no tiene cita, la columna lo dice en vez de atribuir una fuente que no elegí.
+<!-- SPECIALISTS:BEGIN -->
+### Especialistas medidos (archivos reales)
 
-## Estado actual
+| Especialista | Métrica | Valor |
+|---|---|---|
+| Narrativo | tipo de daño exacto / por familia / polaridad (val, n=1129) | 0.500 / 0.689 / 0.965 |
+| Visual YOLOv8n-seg | máscara mAP50 / mAP50-95, val HITL (110 img) | 0.118 / 0.055 |
+| | caja mAP50 / mAP50-95, val HITL (110 img) | 0.128 / 0.071 |
+| Visual YOLOv8n-seg | máscara mAP50 / mAP50-95, test HITL (129 img) | 0.096 / 0.041 |
+| | caja mAP50 / mAP50-95, test HITL (129 img) | 0.112 / 0.056 |
+| | CarDD test (374 img), caja, clases mapeadas | 0.054 / 0.022 |
+| | CarDD test, caja, daño agnóstico | 0.077 / 0.030 |
+| | CarDD máscara | NOT_RUN (el espejo con licencia declarada solo trae cajas) |
+| Forense TruFor | AUROC C3 vs C0 (val, imágenes) | 0.889 |
+| Forense TruFor | AUROC C4 vs C0 (val, imágenes) | 0.544 |
+| Forense TruFor | AUROC C5 vs C0 (val, imágenes) | 0.889 |
+| | AUROC C3–C5 vs C0 (val) | 0.774 |
 
-| Área | Estado |
-|---|---|
-| Contratos, esquemas y organización | Hecho |
-| Benchmark v2 congelado y verificado | Hecho |
-| Benchmark v3 generado y auditado | Hecho, pendiente de adjudicación humana |
-| Auditorías de fuga, duplicados y atajos | Hechas |
-| Especialista narrativo | Implementado, falta ejecutarlo sobre los relatos definitivos |
-| Especialista visual | Datos y manifest listos (807 fuentes, split congelado), falta el checkpoint |
-| Especialista forense | Pendiente por completo |
-| Métricas, calibración, incertidumbre y abstención | Implementadas, nunca aplicadas a predicciones reales |
-| Entrenamiento y resultados | No existen. Nada se ha entrenado sobre el benchmark |
+<!-- SPECIALISTS:END -->
 
-Las suites de pruebas pasan con 158 casos y 5 omitidos. Las omitidas requieren pesos de modelo cacheados y se activan con `--run-model-tests`.
+Los scripts de los kernels de Kaggle están en `scripts/kaggle/` (las credenciales nunca se guardan;
+se leen de la variable de entorno `KAGGLE_API_TOKEN`). Los datos externos y las licencias de los
+modelos están registrados en [data/EXTERNAL_DATA.md](data/EXTERNAL_DATA.md).
 
-## Qué falta, en orden
+## Limitaciones honestas
 
-1. Que mi asesora decida los criterios de validez de C2, C3, C4 y C5 sobre la muestra de revisión, y la taxonomía de nodos del grafo.
-2. Entrenar y seleccionar el checkpoint de YOLO-seg para el especialista visual.
-3. Implementar el adaptador de TruFor para el especialista forense.
-4. Implementar el cargador real con controles anti-fuga, y con él la ablación A5.
-5. Generar los `EvidencePacket` por partición con predicciones y procedencia reales.
-6. Aprobar y congelar una versión del benchmark, y actualizar el lock deliberadamente.
-7. Entrenar B6, P1 y P2 con las semillas acordadas.
-8. Calibrar en validación, evaluar en test una sola vez y contrastar H1, H2 y H3.
+- Los reclamos son escenarios controlados sobre imágenes reales, no expedientes de una aseguradora.
+- El especialista visual es débil (mAP de máscara bajo en HITL y mAP de caja aún más bajo en CarDD; ver tabla): 807 fuentes, 8 clases y un modelo nano.
+- C3 y C5 comparten exactamente las mismas imágenes editadas; C3 y casi todo C4 modifican menos del 0.5 % del área.
+- El test no es completamente ciego: se miró al diseñar la QA del benchmark.
+- Narrativo: el tipo de daño exacto acierta la mitad de las veces; se usa la familia de la ontología para medir r.
 
 ## Cómo correrlo
 

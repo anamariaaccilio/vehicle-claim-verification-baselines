@@ -1,0 +1,5 @@
+{"id": "anamaria203/uafeg-yolo-train-v2", "title": "uafeg-yolo-train-v2", "code_file": "yolo_train.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["anamaria203/uafeg-v3-code", "humansintheloop/car-parts-and-car-damages",
+                     "gabrielfcarvalho/cardd-with-yolo-annotations-images-labels"],
+ "competition_sources": [], "kernel_sources": []}

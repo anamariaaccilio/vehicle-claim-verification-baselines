@@ -90,10 +90,10 @@ def test_damage_specialist_reports_unavailable_when_no_checkpoint(tmp_path):
         specialist.predict("some_image.jpg")
 
 
-def test_damage_specialist_default_weights_currently_absent():
-    # Refleja el estado REAL de este repositorio: sin dataset, sin
-    # checkpoint entrenado. Si este test empieza a fallar, es porque ya se
-    # entreno un modelo real -- en ese caso hay que actualizar el test, no
-    # el codigo.
+def test_damage_specialist_default_weights_reflect_real_state():
+    # Refleja el estado REAL: desde 2026-11-21 existe un checkpoint entrenado en Kaggle
+    # (artifacts/damage/weights/best.pt, fuera de git). Sin el artefacto, no debe fingir estar disponible.
+    from pathlib import Path
     specialist = DamageSpecialist()
-    assert specialist.is_available is False
+    weights = Path(__file__).resolve().parents[1] / "artifacts/damage/weights/best.pt"
+    assert specialist.is_available is weights.exists()
