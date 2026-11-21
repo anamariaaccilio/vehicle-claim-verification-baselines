@@ -45,9 +45,14 @@ from src.schemas.evidence import (  # noqa: E402
 from src.schemas.packet import EvidencePacket  # noqa: E402
 
 BUNDLE = ROOT / "data/manifests/benchmark_v3"
+import os  # noqa: E402
+
 SPEC = ROOT / "artifacts/specialists"
-OUT = ROOT / "artifacts/packets/v3"
-RELIABILITY = ROOT / "data/specialists/reliability_v3.json"
+# Post hoc overrides (default = official v3): a different visual.jsonl, output dir and reliability file,
+# so an alternative detector never overwrites the official packets.
+VIS = Path(os.environ.get("UAFEG_VISUAL_DIR", SPEC))
+OUT = Path(os.environ.get("UAFEG_PACKETS_OUT", ROOT / "artifacts/packets/v3"))
+RELIABILITY = Path(os.environ.get("UAFEG_RELIABILITY", ROOT / "data/specialists/reliability_v3.json"))
 DENIAL_CONDITIONS = {"C1", "C5"}
 # HITL damage ontology families (same as uafeg.thesis_graph.DAMAGE_FAMILIES)
 FAMILY = {"scratch": "surface", "paint_chip": "surface", "flaking": "surface", "dent": "structural",
@@ -135,7 +140,7 @@ def forensic_evidence(row: dict, rel: dict) -> ForensicResult:
 
 def compute_reliability() -> dict:
     narrative = {r["text_sha256"]: r for r in load_jsonl(SPEC / "narrative.jsonl")}
-    visual = {r["image_sha256"]: r for r in load_jsonl(SPEC / "visual.jsonl")} if (SPEC / "visual.jsonl").exists() else {}
+    visual = {r["image_sha256"]: r for r in load_jsonl(VIS / "visual.jsonl")} if (VIS / "visual.jsonl").exists() else {}
     val = [c for c in claims() if c["split"] == "validation"]
     hits, totals = defaultdict(int), defaultdict(int)
     for c in val:
@@ -189,7 +194,7 @@ def compute_reliability() -> dict:
         "narrative": {"r": narrative_r, "counts": {k: {"hits": hits[k], "n": totals[k]} for k in CANONICAL_DAMAGE_CLASSES},
                       "input_sha256": sha256_file(SPEC / "narrative.jsonl")},
         "visual": {"r": visual_r, "counts": vis_counts, "criterion": "precision at IoU>=0.5 vs GT bbox",
-                   "input_sha256": sha256_file(SPEC / "visual.jsonl") if visual else None,
+                   "input_sha256": sha256_file(VIS / "visual.jsonl") if visual else None,
                    "status": "MEASURED" if visual else "NOT_AVAILABLE"},
         "forensic": forensic_reliability(val),
     }
@@ -203,7 +208,7 @@ def build_packets() -> None:
     rel = json.loads(RELIABILITY.read_text())
     narrative = {r["text_sha256"]: r for r in load_jsonl(SPEC / "narrative.jsonl")}
     quality = {r["image_sha256"]: r for r in load_jsonl(SPEC / "quality.jsonl")}
-    visual_path = SPEC / "visual.jsonl"
+    visual_path = VIS / "visual.jsonl"
     visual = {r["image_sha256"]: r for r in load_jsonl(visual_path)} if visual_path.exists() else None
     forensic_path = SPEC / "forensic.jsonl"
     forensic = ({r["image_sha256"]: r for r in load_jsonl(forensic_path)}
@@ -214,7 +219,7 @@ def build_packets() -> None:
     provenance_common = {
         "narrative": json.loads((SPEC / "narrative.provenance.json").read_text()),
         "quality": json.loads((SPEC / "quality.provenance.json").read_text()),
-        "visual": json.loads((SPEC / "visual.provenance.json").read_text()) if visual else {"status": "NOT_AVAILABLE"},
+        "visual": json.loads((VIS / "visual.provenance.json").read_text()) if visual else {"status": "NOT_AVAILABLE"},
         "forensic": (json.loads((SPEC / "forensic.provenance.json").read_text()) if forensic
                      else {"status": FORENSIC_STATUS}),
         "reliability_sha256": sha256_file(RELIABILITY),
