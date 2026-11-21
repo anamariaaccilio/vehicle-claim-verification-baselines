@@ -212,7 +212,7 @@ def main() -> int:
     ap.add_argument("specialist", choices=["narrative", "quality", "visual", "forensic"])
     ap.add_argument("--threads", type=int, default=1)
     ap.add_argument("--conf", type=float, default=0.25)
-    ap.add_argument("--imgsz", type=int, default=512)
+    ap.add_argument("--imgsz", type=int, default=416)
     ap.add_argument("--max-det", type=int, default=10)
     ap.add_argument("--max-side", type=int, default=512)
     args = ap.parse_args()

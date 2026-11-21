@@ -1,0 +1,5 @@
+{"id": "anamaria203/uafeg-b8-mllm", "title": "uafeg-b8-mllm", "code_file": "b8_mllm.py",
+ "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_internet": true,
+ "dataset_sources": ["anamaria203/uafeg-v3-code", "humansintheloop/car-parts-and-car-damages",
+                     "anamaria203/uafeg-v3-variants-a", "anamaria203/uafeg-v3-variants-b", "anamaria203/uafeg-v3-claims-nolabel"],
+ "competition_sources": [], "kernel_sources": []}

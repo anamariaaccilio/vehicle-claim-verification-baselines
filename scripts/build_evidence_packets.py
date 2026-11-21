@@ -17,7 +17,8 @@ Reliability r (versioned in data/specialists/reliability_v3.json):
   visual     per predicted class: precision at IoU>=0.5 against the HITL
              polygons' bounding boxes on the VALIDATION source images (original
              photos only), Laplace-smoothed.
-  forensic   null while TruFor is NOT_RUN.
+  forensic   per image: empirical CDF of the TruFor confidence-map mean against the
+             VALIDATION images (normalization fixed on validation); null if TruFor NOT_RUN.
 INVALID claims (exclusions_criteria.json) are dropped here; AMBIGUOUS ones are kept
 and listed in artifacts/packets/v3/ambiguous_claim_ids.json for the sensitivity
 analysis (the flag is never written into a packet).
@@ -25,6 +26,7 @@ analysis (the flag is never written into a packet).
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import math
@@ -47,9 +49,10 @@ SPEC = ROOT / "artifacts/specialists"
 OUT = ROOT / "artifacts/packets/v3"
 RELIABILITY = ROOT / "data/specialists/reliability_v3.json"
 DENIAL_CONDITIONS = {"C1", "C5"}
-FORENSIC_STATUS = ("NOT_RUN: TruFor adapter implemented (src/forensic/trufor_adapter.py) and weights "
-                   "downloaded, but executing the downloaded third-party code/pickle checkpoint was not "
-                   "authorized in this session; forensic stays null")
+# HITL damage ontology families (same as uafeg.thesis_graph.DAMAGE_FAMILIES)
+FAMILY = {"scratch": "surface", "paint_chip": "surface", "flaking": "surface", "dent": "structural",
+          "crack": "structural", "broken_part": "structural", "missing_part": "structural", "corrosion": "chemical"}
+FORENSIC_STATUS = ("NOT_RUN: artifacts/specialists/forensic.jsonl (TruFor) not available; forensic stays null")
 
 
 def sha256_file(path: Path) -> str:
@@ -87,6 +90,49 @@ def main_assertion(assertions: list[dict]) -> dict | None:
     return max(assertions, key=lambda a: a["p"][0] + a["p"][2])
 
 
+LOCAL_EDITS = {"localized_copy_move", "damage_mask_inpainting", "localized_rgb_inversion"}
+
+
+def forensic_reliability(val: list[dict]) -> dict:
+    """r forense (tesis): construido con el mapa de confiabilidad de TruFor. Por imagen,
+    r = CDF empírica de conf_mean respecto de las imágenes de VALIDACIÓN (normalización
+    fijada en validación). Además se mide en validación el AUROC del score global para
+    separar ediciones localizadas del resto (diagnóstico a nivel de especialista)."""
+    path = SPEC / "forensic.jsonl"
+    if not path.exists():
+        return {"r": None, "status": FORENSIC_STATUS}
+    rows = {r["image_sha256"]: r for r in load_jsonl(path)}
+    seen, ref, y, score = set(), [], [], []
+    for c in val:
+        sha = (c.get("transformation") or {}).get("image_sha256") if c.get("image_path") else None
+        if sha is None or sha in seen or sha not in rows:
+            continue
+        seen.add(sha)
+        ref.append(rows[sha]["conf_mean"])
+        y.append(int(c["transformation"]["operation"] in LOCAL_EDITS))
+        score.append(rows[sha]["score"])
+    from sklearn.metrics import roc_auc_score
+    return {"status": "MEASURED", "normalization": "empirical CDF of conf_mean over validation images",
+            "validation_conf_mean_sorted": sorted(ref), "n_validation_images": len(ref),
+            "validation_auroc_score_local_edit": float(roc_auc_score(y, score)) if 0 < sum(y) < len(y) else None,
+            "input_sha256": sha256_file(path)}
+
+
+def forensic_evidence(row: dict, rel: dict) -> ForensicResult:
+    import bisect
+    import numpy as np
+    ref = rel["forensic"]["validation_conf_mean_sorted"]
+    r = bisect.bisect_right(ref, row["conf_mean"]) / len(ref)
+    maps = np.load(SPEC / "forensic_maps" / f"{row['image_sha256']}.npz")
+    loc = maps["localization"].astype(np.float32)
+    import cv2
+    small = cv2.resize(loc, (64, 48), interpolation=cv2.INTER_AREA) > 0.5
+    mask = base64.b64encode(np.packbits(small.astype(np.uint8), axis=None).tobytes()).decode()
+    return ForensicResult(available=True, method="TruFor (Guillaro et al., CVPR 2023), pretrained, inference only",
+                          score=row["score"], reliability=r, uncertainty=binary_entropy(row["score"]),
+                          localization_area=float(small.mean()), mask_64x48=mask, status="MEASURED")
+
+
 def compute_reliability() -> dict:
     narrative = {r["text_sha256"]: r for r in load_jsonl(SPEC / "narrative.jsonl")}
     visual = {r["image_sha256"]: r for r in load_jsonl(SPEC / "visual.jsonl")} if (SPEC / "visual.jsonl").exists() else {}
@@ -102,7 +148,10 @@ def compute_reliability() -> dict:
         expected = "denied" if c["condition"] in DENIAL_CONDITIONS else "affirmed"
         asserted = set(c["metadata"].get("asserted_damage_classes", []))
         totals[a["damage_type"]] += 1
-        hits[a["damage_type"]] += int(a["damage_type"] in asserted and a["polarity"] == expected)
+        # Ontology mapping (decided 2026-11-20 on validation: family-level type accuracy 0.689 >
+        # exact 0.500): a hit = same damage FAMILY of the HITL ontology and correct polarity.
+        fam = {FAMILY.get(x, x) for x in asserted}
+        hits[a["damage_type"]] += int(FAMILY.get(a["damage_type"], a["damage_type"]) in fam and a["polarity"] == expected)
     narrative_r = {k: smoothed(hits[k], totals[k]) for k in CANONICAL_DAMAGE_CLASSES}
 
     visual_r, vis_counts = None, None
@@ -136,12 +185,13 @@ def compute_reliability() -> dict:
         vis_counts = {k: {"tp": tp[k], "n": n[k]} for k in CANONICAL_DAMAGE_CLASSES}
     out = {
         "measured_on": "validation split only", "smoothing": "Laplace (k+1)/(n+2)",
+        "narrative_hit_criterion": "damage family of the HITL ontology + correct polarity (validation: family 0.689 vs exact 0.500)",
         "narrative": {"r": narrative_r, "counts": {k: {"hits": hits[k], "n": totals[k]} for k in CANONICAL_DAMAGE_CLASSES},
                       "input_sha256": sha256_file(SPEC / "narrative.jsonl")},
         "visual": {"r": visual_r, "counts": vis_counts, "criterion": "precision at IoU>=0.5 vs GT bbox",
                    "input_sha256": sha256_file(SPEC / "visual.jsonl") if visual else None,
                    "status": "MEASURED" if visual else "NOT_AVAILABLE"},
-        "forensic": {"r": None, "status": FORENSIC_STATUS},
+        "forensic": forensic_reliability(val),
     }
     RELIABILITY.parent.mkdir(parents=True, exist_ok=True)
     RELIABILITY.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
@@ -155,6 +205,9 @@ def build_packets() -> None:
     quality = {r["image_sha256"]: r for r in load_jsonl(SPEC / "quality.jsonl")}
     visual_path = SPEC / "visual.jsonl"
     visual = {r["image_sha256"]: r for r in load_jsonl(visual_path)} if visual_path.exists() else None
+    forensic_path = SPEC / "forensic.jsonl"
+    forensic = ({r["image_sha256"]: r for r in load_jsonl(forensic_path)}
+                if forensic_path.exists() and rel["forensic"].get("status") == "MEASURED" else None)
     excluded = {e["claim_id"] for e in json.loads((BUNDLE / "exclusions_criteria.json").read_text())}
     validity = json.loads((BUNDLE / "validity_criteria.json").read_text())
     ambiguous = sorted(r["claim_id"] for r in validity["cases"] if r["status"] == "AMBIGUOUS")
@@ -162,7 +215,8 @@ def build_packets() -> None:
         "narrative": json.loads((SPEC / "narrative.provenance.json").read_text()),
         "quality": json.loads((SPEC / "quality.provenance.json").read_text()),
         "visual": json.loads((SPEC / "visual.provenance.json").read_text()) if visual else {"status": "NOT_AVAILABLE"},
-        "forensic": {"status": FORENSIC_STATUS},
+        "forensic": (json.loads((SPEC / "forensic.provenance.json").read_text()) if forensic
+                     else {"status": FORENSIC_STATUS}),
         "reliability_sha256": sha256_file(RELIABILITY),
     }
     for p in provenance_common.values():
@@ -219,7 +273,10 @@ def build_packets() -> None:
                         coverage=1.0, mask_64x48=d["mask_64x48"]))
                 visual_ev = VisualEvidence(detections=dets, model_name="yolov8n-seg-hitl-v3",
                                            image_width=v["width"], image_height=v["height"])
-            forensic_ev = ForensicResult(available=False, status=FORENSIC_STATUS)
+            if forensic is not None and image_sha in forensic:
+                forensic_ev = forensic_evidence(forensic[image_sha], rel)
+            else:
+                forensic_ev = ForensicResult(available=False, status=FORENSIC_STATUS)
         packet = EvidencePacket(claim=record, narrative=narrative_ev, visual=visual_ev,
                                 image_quality=quality_ev, forensic=forensic_ev, provenance=prov)
         by_split[c["split"]].append(packet.model_dump_json())

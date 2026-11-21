@@ -77,7 +77,13 @@ class TruForSpecialist:
             config.merge_from_file("lib/config/trufor_ph3.yaml")
             config.merge_from_list(["TEST.MODEL_FILE", str(WEIGHTS)])
             config.freeze()
-            checkpoint = torch.load(str(WEIGHTS), map_location="cpu", weights_only=False)
+            # weights_only=True: tensors only, no arbitrary pickle code. The checkpoint stores
+            # numpy scalars (e.g. best metric), which are explicitly allow-listed.
+            scalar = np._core.multiarray.scalar
+            safe = [(scalar, "numpy.core.multiarray.scalar"), scalar, np.dtype,
+                    type(np.dtype("float64")), type(np.dtype("float32"))]
+            with torch.serialization.safe_globals(safe):
+                checkpoint = torch.load(str(WEIGHTS), map_location="cpu", weights_only=True)
             model = get_model(config)
             model.load_state_dict(checkpoint["state_dict"])
         model.eval()

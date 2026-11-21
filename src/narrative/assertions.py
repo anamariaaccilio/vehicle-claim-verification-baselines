@@ -136,7 +136,8 @@ class SentenceNLI:
         self.torch = torch
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_name).eval()
+        # float32 on purpose: transformers keeps the fp16 checkpoint dtype, and fp16 on CPU is ~7x slower.
+        self.model = AutoModelForSequenceClassification.from_pretrained(model_name, dtype=torch.float32).eval()
         self.revision = getattr(self.model.config, "_commit_hash", None)
         ids = {k.lower(): v for k, v in self.model.config.label2id.items()}
         self.order = [ids["entailment"], ids["neutral"], ids["contradiction"]]

@@ -1,7 +1,7 @@
 """Fine-tune the visual damage specialist (YOLO-seg) on HITL train/validation.
 
-Reduced CPU scale (decided 2026-11-13, FASE 1): yolov8n-seg, imgsz 512,
-<=20 epochs, patience 5, seed 0. The test split is NEVER materialized: only
+Reduced CPU scale (decided 2026-11-13, FASE 1): yolov8n-seg, imgsz 416,
+15 epochs, patience 5, seed 0. The test split is NEVER materialized: only
 train and validation images are linked into the YOLO dataset, so the
 specialist cannot see a test source. Writes a run record with config, seed,
 commit, input/output hashes and library versions next to best.pt.
@@ -36,7 +36,7 @@ def sha256(path: Path) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--epochs", type=int, default=20)
-    ap.add_argument("--imgsz", type=int, default=512)
+    ap.add_argument("--imgsz", type=int, default=416)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--patience", type=int, default=5)
     ap.add_argument("--seed", type=int, default=0)
