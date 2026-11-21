@@ -111,13 +111,13 @@ modelos están registrados en [data/EXTERNAL_DATA.md](data/EXTERNAL_DATA.md).
 ## Resultados
 
 Las cifras finales de la tesis se calcularon en el repositorio `uafeg` (test evaluado una sola vez); estas figuras
-son copias de `uafeg/presentacion/figuras/`, donde están también en SVG con su explicación (`LEEME.md`).
+viven en `uafeg/presentacion/figuras/` (este repo no guarda imágenes, por su test de higiene), donde están también en SVG con su explicación (`LEEME.md`).
 
-![Especialistas](docs/figuras/14_especialistas.png)
+![Especialistas](https://github.com/anamariaaccilio/uafeg/raw/main/presentacion/figuras/14_especialistas.png)
 
-![Comparación general](docs/figuras/02_comparacion_general.png)
+![Comparación general](https://github.com/anamariaaccilio/uafeg/raw/main/presentacion/figuras/02_comparacion_general.png)
 
-![Hipótesis](docs/figuras/03_hipotesis_forest.png)
+![Hipótesis](https://github.com/anamariaaccilio/uafeg/raw/main/presentacion/figuras/03_hipotesis_forest.png)
 
 En pocas palabras:
 - **UAFEG (G1) no supera a la fusión tardía calibrada B5**: PR-AUC de Suspicious 0.851 frente a 0.878, H1
